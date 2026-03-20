@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amanda da Costa Cabral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&family=Urbanist:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   /* Paleta extraída da HP Tau:
@@ -488,9 +487,9 @@ footer span { color:var(--orange2); }
         <div><p class="cl-label">GitHub</p><p class="cl-value">cosmic-axolotl</p></div>
         <span class="cl-arr">↗</span>
       </a>
-      <a href="/cdn-cgi/l/email-protection#6b180e1e0e060a02072b0e130e061b070445080406" class="contact-link">
+      <a href="mailto:seuemail@exemplo.com" class="contact-link">
         <span class="cl-icon">✉</span>
-        <div><p class="cl-label">Email</p><p class="cl-value"><span class="__cf_email__" data-cfemail="e2918797878f838b8ea2879a878f928e8dcc818d8f">[email&#160;protected]</span></p></div>
+        <div><p class="cl-label">Email</p><p class="cl-value">seuemail@exemplo.com</p></div>
         <span class="cl-arr">↗</span>
       </a>
     </div>
@@ -506,7 +505,7 @@ footer span { color:var(--orange2); }
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* REVEAL */
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); }), {threshold:.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
@@ -515,4 +514,11 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 let lang = 'pt';
 function toggleLang() {
   lang = lang==='pt' ? 'en' : 'pt';
-  document.querySelector('.nav-lang').textContent = lang==='pt' ? 'EN' :
+  document.querySelector('.nav-lang').textContent = lang==='pt' ? 'EN' : 'PT';
+  document.documentElement.lang = lang==='pt' ? 'pt-BR' : 'en';
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    const v = el.getAttribute('data-'+lang);
+    if (v !== null) el.innerHTML = v;
+  });
+}
+</script>
