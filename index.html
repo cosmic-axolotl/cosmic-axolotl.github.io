@@ -5,557 +5,519 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amanda da Costa Cabral</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #05060f;
-    --surface: #0c0e1a;
-    --surface2: #12152a;
-    --border: rgba(140,160,255,0.12);
-    --border-hover: rgba(140,160,255,0.35);
-    --text: #e8eaf6;
-    --text-muted: #8892b0;
-    --text-dim: #4a5278;
-    --accent: #7c9cff;
-    --accent2: #a78bfa;
-    --accent3: #38bdf8;
-    --star: #fde68a;
-    --glow: rgba(124,156,255,0.15);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #070b18;
+  --bg2:     #0c1022;
+  --bg3:     #101428;
+  --border:  rgba(120,150,255,0.13);
+  --border2: rgba(120,150,255,0.28);
+  --text:    #dde3f5;
+  --muted:   #7a86a8;
+  --dim:     #3a4260;
+  --purple:  #9d7df5;
+  --blue:    #5ea6f8;
+  --cyan:    #4fd6c8;
+  --gold:    #f2c46a;
+  --nav-h:   60px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;font-weight:400;overflow-x:hidden;}
+#c{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
-  html { scroll-behavior: smooth; }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(7,11,24,0.8);backdrop-filter:blur(16px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--text);letter-spacing:-.01em;}
+.nav-logo span{color:var(--purple);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;letter-spacing:.02em;}
+.nav-links a:hover{color:var(--text);}
+.nav-lang{
+  font-size:.72rem;color:var(--dim);background:none;border:0.5px solid var(--border);
+  padding:.28rem .7rem;border-radius:20px;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;letter-spacing:.05em;
+  transition:border-color .2s,color .2s;
+}
+.nav-lang:hover{border-color:var(--border2);color:var(--purple);}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* WRAP */
+.wrap{position:relative;z-index:1;}
 
-  /* ── STARS CANVAS ── */
-  #stars-canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
+/* HERO */
+#home{
+  min-height:100vh;display:flex;align-items:center;
+  padding:calc(var(--nav-h) + 4rem) 2.5rem 4rem;
+  max-width:1100px;margin:0 auto;gap:4rem;
+}
+.hero-text{flex:1;}
+.hero-greeting{
+  font-size:.78rem;letter-spacing:.18em;color:var(--purple);
+  text-transform:uppercase;margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.7rem;
+}
+.hero-greeting::before{content:'';display:block;width:26px;height:1px;background:var(--purple);}
+.hero-name{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.05;
+  letter-spacing:-.03em;color:#fff;margin-bottom:1rem;
+}
+.hero-name .hl{color:var(--purple);}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:460px;margin-bottom:2.2rem;}
+.hero-sub strong{color:var(--text);font-weight:500;}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
+.btn-p{
+  padding:.65rem 1.4rem;border-radius:6px;
+  background:var(--purple);color:#fff;border:none;
+  font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:500;
+  text-decoration:none;cursor:pointer;transition:opacity .2s,transform .15s;
+}
+.btn-p:hover{opacity:.85;transform:translateY(-1px);}
+.btn-o{
+  padding:.65rem 1.4rem;border-radius:6px;
+  background:none;color:var(--text);border:0.5px solid var(--border2);
+  font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:400;
+  text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s;
+}
+.btn-o:hover{border-color:var(--purple);background:rgba(157,125,245,.08);}
 
-  /* ── LAYOUT ── */
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
+/* AVATAR */
+.hero-avatar-wrap{flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.avatar-ring{
+  width:230px;height:230px;border-radius:50%;
+  border:1.5px solid var(--purple);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  box-shadow:0 0 60px rgba(157,125,245,.15),inset 0 0 40px rgba(157,125,245,.05);
+}
+.avatar-ring::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:0.5px solid rgba(157,125,245,.18);}
+.avatar-ring::after{content:'';position:absolute;inset:-20px;border-radius:50%;border:0.5px solid rgba(157,125,245,.07);}
+.avatar-inner{
+  width:200px;height:200px;border-radius:50%;
+  background:var(--bg3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;overflow:hidden;
+}
+.avatar-glyph{font-size:4.2rem;line-height:1;user-select:none;}
+.avatar-label{font-size:.62rem;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;}
 
-  /* ── LANG TOGGLE ── */
-  #lang-btn {
-    position: fixed;
-    top: 1.5rem;
-    right: 2rem;
-    z-index: 100;
-    background: var(--surface2);
-    border: 0.5px solid var(--border);
-    color: var(--text-muted);
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 0.9rem;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: border-color .2s, color .2s;
-  }
-  #lang-btn:hover { border-color: var(--border-hover); color: var(--accent); }
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;}
+.sec-header{margin-bottom:2.8rem;}
+.sec-tag{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--purple);margin-bottom:.5rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.sec-tag::before{content:'//';opacity:.45;}
+.sec-title{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;letter-spacing:-.02em;
+}
+.divider{max-width:1100px;margin:0 auto;height:0.5px;background:var(--border);}
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 0 4rem;
-  }
-  .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp .6s .2s forwards;
-  }
-  .hero-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp .6s .35s forwards;
-  }
-  .hero-name em {
-    font-style: italic;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero-tagline {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 480px;
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp .6s .5s forwards;
-  }
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    opacity: 0;
-    animation: fadeUp .6s .65s forwards;
-  }
-  .hero-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    color: var(--text-muted);
-    border: 0.5px solid var(--border);
-    padding: 0.5rem 1.1rem;
-    border-radius: 4px;
-    transition: border-color .2s, color .2s, background .2s;
-  }
-  .hero-link:hover { border-color: var(--border-hover); color: var(--accent); background: var(--glow); }
-  .scroll-hint {
-    margin-top: 5rem;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    opacity: 0;
-    animation: fadeUp .6s .9s forwards;
-  }
-  .scroll-hint::before {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, transparent, var(--text-dim));
-  }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-text{font-size:.97rem;color:var(--muted);line-height:1.85;}
+.about-text p+p{margin-top:1rem;}
+.about-text strong{color:var(--text);font-weight:500;}
+.about-facts{display:flex;flex-direction:column;gap:.9rem;}
+.fact-card{
+  background:var(--bg2);border:0.5px solid var(--border);
+  border-radius:10px;padding:.95rem 1.1rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.fact-icon{font-size:1.3rem;flex-shrink:0;}
+.fact-label{font-size:.68rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:.12rem;}
+.fact-value{font-size:.88rem;color:var(--text);font-weight:500;}
 
-  /* ── SECTION ── */
-  section { padding: 5rem 0; }
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 0.5px;
-    background: var(--border);
-  }
+/* SKILLS */
+.skills-groups{display:flex;flex-direction:column;gap:2.2rem;}
+.skill-group-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem;}
+.pill{
+  padding:.36rem .88rem;border-radius:20px;
+  font-size:.8rem;font-weight:500;letter-spacing:.01em;border:0.5px solid;
+  transition:transform .15s,box-shadow .15s;cursor:default;
+}
+.pill:hover{transform:translateY(-2px);}
+.pill-purple{background:rgba(157,125,245,.1);color:#c4b0ff;border-color:rgba(157,125,245,.3);}
+.pill-blue  {background:rgba(94,166,248,.1); color:#93c7fd;border-color:rgba(94,166,248,.3); }
+.pill-cyan  {background:rgba(79,214,200,.1); color:#7eeadf;border-color:rgba(79,214,200,.3); }
+.pill-gold  {background:rgba(242,196,106,.1);color:#fad789;border-color:rgba(242,196,106,.3);}
 
-  /* ── ABOUT ── */
-  .about-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    max-width: 620px;
-  }
-  .about-text strong { color: var(--text); font-weight: 500; }
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.proj-card{
+  background:var(--bg2);border:0.5px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;
+  transition:border-color .25s,transform .2s,box-shadow .25s;
+}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35);}
+.proj-thumb{
+  height:130px;display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;border-bottom:0.5px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.proj-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,var(--tg,rgba(157,125,245,.25)) 0%,transparent 70%);
+}
+.t-astro {background:linear-gradient(135deg,#0c0f20,#14102e);--tg:rgba(157,125,245,.3);}
+.t-python{background:linear-gradient(135deg,#080f1c,#0c1828);--tg:rgba(94,166,248,.3);}
+.t-data  {background:linear-gradient(135deg,#071218,#0b1e1c);--tg:rgba(79,214,200,.3);}
+.t-misc  {background:linear-gradient(135deg,#13100a,#201800);--tg:rgba(242,196,106,.3);}
+.proj-body{padding:1.1rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:.5rem;}
+.proj-tags{display:flex;gap:.4rem;flex-wrap:wrap;}
+.ptag{
+  font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:.18rem .55rem;border-radius:3px;border:0.5px solid;
+}
+.ptag-a{background:rgba(157,125,245,.1);color:#c4b0ff;border-color:rgba(157,125,245,.25);}
+.ptag-p{background:rgba(94,166,248,.1); color:#93c7fd;border-color:rgba(94,166,248,.25); }
+.ptag-d{background:rgba(79,214,200,.1); color:#7eeadf;border-color:rgba(79,214,200,.25); }
+.ptag-m{background:rgba(242,196,106,.1);color:#fad789;border-color:rgba(242,196,106,.25);}
+.proj-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#fff;}
+.proj-desc{font-size:.82rem;color:var(--muted);line-height:1.6;flex:1;}
+.proj-footer{
+  padding:.75rem 1.2rem;border-top:0.5px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.proj-link{font-size:.75rem;color:var(--purple);display:flex;align-items:center;gap:.3rem;}
+.proj-ph{font-size:.72rem;color:var(--dim);font-style:italic;}
 
-  /* ── SKILLS GRID ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  .skill-card {
-    position: relative;
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    padding: 1.4rem 1.2rem;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color .25s, background .25s, transform .2s;
-    overflow: hidden;
-  }
-  .skill-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 30% 20%, var(--card-glow, var(--glow)) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity .3s;
-  }
-  .skill-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-  .skill-card:hover::before { opacity: 1; }
-  .skill-icon {
-    font-size: 1.3rem;
-    margin-bottom: 0.8rem;
-    display: block;
-  }
-  .skill-name {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-  .skill-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-  .skill-arrow {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    transition: color .2s, transform .2s;
-  }
-  .skill-card:hover .skill-arrow { color: var(--accent); transform: translate(2px, -2px); }
+/* CONTACT */
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-desc{font-size:.97rem;color:var(--muted);line-height:1.8;}
+.contact-desc strong{color:var(--text);font-weight:500;}
+.contact-links{display:flex;flex-direction:column;gap:.75rem;}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:.9rem 1.1rem;
+  background:var(--bg2);border:0.5px solid var(--border);
+  border-radius:10px;text-decoration:none;color:var(--text);
+  transition:border-color .2s,background .2s;
+}
+.contact-link:hover{border-color:var(--border2);background:var(--bg3);}
+.cl-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0;}
+.cl-label{font-size:.68rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.1rem;}
+.cl-value{font-size:.88rem;color:var(--text);font-weight:500;}
+.cl-arr{margin-left:auto;color:var(--dim);font-size:.8rem;transition:color .2s;}
+.contact-link:hover .cl-arr{color:var(--purple);}
 
-  /* card accent colors */
-  .card-astro  { --card-glow: rgba(167,139,250,0.18); }
-  .card-python { --card-glow: rgba(56,189,248,0.18);  }
-  .card-data   { --card-glow: rgba(124,156,255,0.18); }
-  .card-misc   { --card-glow: rgba(253,230,138,0.12); }
+/* FOOTER */
+footer{
+  border-top:0.5px solid var(--border);
+  text-align:center;padding:2rem;
+  font-size:.75rem;color:var(--dim);letter-spacing:.05em;
+}
+footer span{color:var(--purple);}
 
-  /* ── PROJECTS SECTION ── */
-  .projects-note {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    font-family: 'Space Mono', monospace;
-    margin-bottom: 2rem;
-  }
-  .project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .project-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.2rem;
-    padding: 1.1rem 1.2rem;
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color .2s, background .2s;
-  }
-  .project-item:hover { border-color: var(--border-hover); background: var(--surface2); }
-  .project-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .tag-astro  { background: rgba(167,139,250,0.15); color: #c4b5fd; border: 0.5px solid rgba(167,139,250,0.3); }
-  .tag-python { background: rgba(56,189,248,0.12);  color: #7dd3fc; border: 0.5px solid rgba(56,189,248,0.3);  }
-  .tag-data   { background: rgba(124,156,255,0.12); color: #a5b4fc; border: 0.5px solid rgba(124,156,255,0.3); }
-  .tag-misc   { background: rgba(253,230,138,0.1);  color: #fde68a; border: 0.5px solid rgba(253,230,138,0.25); }
-  .project-info { flex: 1; }
-  .project-name {
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.25rem;
-  }
-  .project-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-  .project-arrow {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: color .2s;
-  }
-  .project-item:hover .project-arrow { color: var(--accent); }
+/* ANIMS */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.v{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.1s;}.reveal.d2{transition-delay:.2s;}.reveal.d3{transition-delay:.3s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ha1{animation:fadeUp .6s .1s both;}.ha2{animation:fadeUp .6s .25s both;}
+.ha3{animation:fadeUp .6s .4s both;}.ha4{animation:fadeUp .6s .55s both;}
+.ha5{animation:fadeUp .6s .7s both;}
 
-  /* ── FOOTER ── */
-  footer {
-    padding: 3rem 0;
-    border-top: 0.5px solid var(--border);
-  }
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1rem;
-    color: var(--text-muted);
-  }
-  .footer-copy {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.05em;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .55s ease, transform .55s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ── DIVIDER ── */
-  .divider {
-    height: 0.5px;
-    background: var(--border);
-    margin: 0;
-  }
+@media(max-width:700px){
+  #home{flex-direction:column-reverse;padding-top:calc(var(--nav-h)+2rem);}
+  .about-grid,.contact-inner{grid-template-columns:1fr;}
+  .nav-links a:not(.nav-lang){display:none;}
+  .avatar-ring{width:160px;height:160px;}
+  .avatar-inner{width:138px;height:138px;}
+  .avatar-glyph{font-size:3rem;}
+}
 </style>
 </head>
 <body>
 
-<canvas id="stars-canvas"></canvas>
+<canvas id="c"></canvas>
 
-<button id="lang-btn" onclick="toggleLang()">EN / PT</button>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">amanda<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about"    data-pt="sobre"       data-en="about">sobre</a>
+    <a href="#skills"   data-pt="habilidades"  data-en="skills">habilidades</a>
+    <a href="#projects" data-pt="projetos"     data-en="projects">projetos</a>
+    <a href="#contact"  data-pt="contato"      data-en="contact">contato</a>
+    <button class="nav-lang" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
 
-<div class="container">
+<div class="wrap">
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-eyebrow" data-pt="portfólio" data-en="portfolio">portfólio</p>
-    <h1 class="hero-name">
-      Amanda<br><em data-pt="da Costa Cabral" data-en="da Costa Cabral">da Costa Cabral</em>
-    </h1>
-    <p class="hero-tagline" data-pt="Estudante de astronomia cutucando o mundo da programação — dados, código e cosmos." data-en="An astronomy student poking around in the programming world — data, code, and cosmos.">
-      Estudante de astronomia cutucando o mundo da programação — dados, código e cosmos.
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <p class="hero-greeting ha1" data-pt="Olá, eu sou" data-en="Hi, I'm">Olá, eu sou</p>
+    <h1 class="hero-name ha2">Amanda<br><span class="hl">da Costa Cabral</span></h1>
+    <p class="hero-sub ha3"
+       data-pt="<strong>Estudante de Astronomia & Astrofísica</strong> cutucando o mundo da programação — dados, código e cosmos."
+       data-en="<strong>Astronomy & Astrophysics student</strong> poking around in the programming world — data, code, and cosmos.">
+      <strong>Estudante de Astronomia & Astrofísica</strong> cutucando o mundo da programação — dados, código e cosmos.
     </p>
-    <div class="hero-links">
-      <a class="hero-link" href="https://github.com/cosmic-axolotl" target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        cosmic-axolotl
-      </a>
+    <div class="hero-btns ha4">
+      <a href="#projects" class="btn-p" data-pt="Ver projetos" data-en="View projects">Ver projetos</a>
+      <a href="https://github.com/cosmic-axolotl" target="_blank" class="btn-o">GitHub ↗</a>
     </div>
-    <p class="scroll-hint" data-pt="role para explorar" data-en="scroll to explore">role para explorar</p>
-  </section>
+  </div>
+  <div class="hero-avatar-wrap ha5">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <!-- Troque o emoji pela sua foto:
+             <img src="foto.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
+        <div class="avatar-glyph">🔭</div>
+        <p class="avatar-label" data-pt="astrônoma & dev" data-en="astronomer & dev">astrônoma & dev</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="divider"></div>
+<div class="divider"></div>
 
-  <!-- SOBRE MIM -->
-  <section id="sobre">
-    <p class="section-label reveal" data-pt="sobre mim" data-en="about me">sobre mim</p>
-    <p class="about-text reveal" data-pt='Estudante de <strong>Astronomia com ênfase em Astrofísica</strong>, também mergulhada no mundo da programação. Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>.' data-en='<strong>Astronomy student with an emphasis in Astrophysics</strong>, also diving deep into the programming world. I work mainly with <strong>Python</strong> — automation, web scraping with Selenium and Playwright — and use data to understand both human systems and <strong>celestial phenomena</strong>.'>
-      Estudante de <strong>Astronomia com ênfase em Astrofísica</strong>, também mergulhada no mundo da programação. Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>.
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="sec-header reveal">
+    <p class="sec-tag" data-pt="sobre mim" data-en="about me">sobre mim</p>
+    <h2 class="sec-title" data-pt="Quem sou eu" data-en="Who I am">Quem sou eu</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal d1">
+      <p data-pt="Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código."
+         data-en="I'm an <strong>Astronomy student with an emphasis in Astrophysics</strong> and a programming enthusiast. My journey started by looking at the sky and ended up leading me to lines of code.">
+        Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código.
+      </p>
+      <p data-pt="Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>."
+         data-en="I mainly work with <strong>Python</strong> — automation, web scraping with Selenium and Playwright — and use data to understand both human systems and <strong>celestial phenomena</strong>.">
+        Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>.
+      </p>
+    </div>
+    <div class="about-facts reveal d2">
+      <div class="fact-card">
+        <div class="fact-icon">🌌</div>
+        <div>
+          <p class="fact-label" data-pt="área de estudo" data-en="field of study">área de estudo</p>
+          <p class="fact-value" data-pt="Astronomia & Astrofísica" data-en="Astronomy & Astrophysics">Astronomia & Astrofísica</p>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🐍</div>
+        <div>
+          <p class="fact-label" data-pt="linguagem principal" data-en="main language">linguagem principal</p>
+          <p class="fact-value">Python</p>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🤖</div>
+        <div>
+          <p class="fact-label" data-pt="especialidade" data-en="specialty">especialidade</p>
+          <p class="fact-value">Selenium · Playwright</p>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">✦</div>
+        <div>
+          <p class="fact-label">GitHub</p>
+          <p class="fact-value">cosmic-axolotl</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="sec-header reveal">
+    <p class="sec-tag" data-pt="habilidades" data-en="skills">habilidades</p>
+    <h2 class="sec-title" data-pt="Minhas habilidades são" data-en="My skills are">Minhas habilidades são</h2>
+  </div>
+  <div class="skills-groups">
+    <div class="reveal d1">
+      <p class="skill-group-label" data-pt="Astronomia & Ciência" data-en="Astronomy & Science">Astronomia & Ciência</p>
+      <div class="pills">
+        <span class="pill pill-purple" data-pt="Astrofísica" data-en="Astrophysics">Astrofísica</span>
+        <span class="pill pill-purple" data-pt="Dados observacionais" data-en="Observational data">Dados observacionais</span>
+        <span class="pill pill-purple" data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
+        <span class="pill pill-purple" data-pt="Cosmologia" data-en="Cosmology">Cosmologia</span>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <p class="skill-group-label" data-pt="Programação" data-en="Programming">Programação</p>
+      <div class="pills">
+        <span class="pill pill-blue">Python</span>
+        <span class="pill pill-blue">Selenium</span>
+        <span class="pill pill-blue">Playwright</span>
+        <span class="pill pill-blue">Web Scraping</span>
+        <span class="pill pill-blue" data-pt="Automação" data-en="Automation">Automação</span>
+        <span class="pill pill-blue">Git</span>
+      </div>
+    </div>
+    <div class="reveal d3">
+      <p class="skill-group-label" data-pt="Dados & Análise" data-en="Data & Analysis">Dados & Análise</p>
+      <div class="pills">
+        <span class="pill pill-cyan">Pandas</span>
+        <span class="pill pill-cyan">NumPy</span>
+        <span class="pill pill-cyan">Matplotlib</span>
+        <span class="pill pill-cyan" data-pt="Visualização" data-en="Visualization">Visualização</span>
+        <span class="pill pill-cyan" data-pt="Análise exploratória" data-en="Exploratory analysis">Análise exploratória</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="sec-header reveal">
+    <p class="sec-tag" data-pt="projetos" data-en="projects">projetos</p>
+    <h2 class="sec-title" data-pt="O que eu construí" data-en="What I've built">O que eu construí</h2>
+  </div>
+  <div class="projects-grid">
+
+    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d1">
+      <div class="proj-thumb t-astro">🌠</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="ptag ptag-a">ASTRO</span><span class="ptag ptag-p">PYTHON</span></div>
+        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+        <p class="proj-desc" data-pt="Adicione a descrição do projeto de astronomia ou astrofísica aqui." data-en="Add the description of the astronomy or astrophysics project here.">Adicione a descrição do projeto de astronomia ou astrofísica aqui.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+        <span class="proj-link">GitHub ↗</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d2">
+      <div class="proj-thumb t-python">🕸️</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">SCRAPING</span></div>
+        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+        <p class="proj-desc" data-pt="Adicione a descrição do projeto de web scraping ou automação aqui." data-en="Add the description of the web scraping or automation project here.">Adicione a descrição do projeto de web scraping ou automação aqui.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+        <span class="proj-link">GitHub ↗</span>
+      </div>
+    </a>
+
+    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d3">
+      <div class="proj-thumb t-data">📡</div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="ptag ptag-d">DADOS</span><span class="ptag ptag-p">PYTHON</span></div>
+        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+        <p class="proj-desc" data-pt="Adicione a descrição do projeto de análise ou visualização de dados aqui." data-en="Add the description of the data analysis or visualization project here.">Adicione a descrição do projeto de análise ou visualização de dados aqui.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+        <span class="proj-link">GitHub ↗</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="sec-header reveal">
+    <p class="sec-tag" data-pt="contato" data-en="contact">contato</p>
+    <h2 class="sec-title" data-pt="Vamos conversar" data-en="Let's talk">Vamos conversar</h2>
+  </div>
+  <div class="contact-inner">
+    <p class="contact-desc reveal d1"
+       data-pt="Estou sempre aberta a conversar sobre <strong>astronomia</strong>, <strong>dados</strong>, projetos colaborativos ou só trocar ideia sobre o cosmos."
+       data-en="I'm always open to talking about <strong>astronomy</strong>, <strong>data</strong>, collaborative projects, or just chatting about the cosmos.">
+      Estou sempre aberta a conversar sobre <strong>astronomia</strong>, <strong>dados</strong>, projetos colaborativos ou só trocar ideia sobre o cosmos.
     </p>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- HABILIDADES -->
-  <section id="habilidades">
-    <p class="section-label reveal" data-pt="minhas habilidades são" data-en="my skills are">minhas habilidades são</p>
-    <div class="skills-grid reveal">
-
-      <a href="#projetos-astro" class="skill-card card-astro">
-        <span class="skill-icon">✦</span>
-        <p class="skill-name" data-pt="Astronomia & Astrofísica" data-en="Astronomy & Astrophysics">Astronomia & Astrofísica</p>
-        <p class="skill-desc" data-pt="Análise de dados observacionais, fenômenos estelares e cosmologia." data-en="Observational data analysis, stellar phenomena and cosmology.">Análise de dados observacionais, fenômenos estelares e cosmologia.</p>
-        <span class="skill-arrow">↗</span>
+    <div class="contact-links reveal d2">
+      <a href="https://github.com/cosmic-axolotl" target="_blank" class="contact-link">
+        <span class="cl-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
+        <div><p class="cl-label">GitHub</p><p class="cl-value">cosmic-axolotl</p></div>
+        <span class="cl-arr">↗</span>
       </a>
-
-      <a href="#projetos-python" class="skill-card card-python">
-        <span class="skill-icon">⬡</span>
-        <p class="skill-name">Python & Web Scraping</p>
-        <p class="skill-desc" data-pt="Automação, Selenium, Playwright e coleta de dados na web." data-en="Automation, Selenium, Playwright and web data collection.">Automação, Selenium, Playwright e coleta de dados na web.</p>
-        <span class="skill-arrow">↗</span>
+      <a href="mailto:seuemail@exemplo.com" class="contact-link">
+        <span class="cl-icon">✉</span>
+        <div><p class="cl-label">Email</p><p class="cl-value">seuemail@exemplo.com</p></div>
+        <span class="cl-arr">↗</span>
       </a>
-
-      <a href="#projetos-data" class="skill-card card-data">
-        <span class="skill-icon">◈</span>
-        <p class="skill-name" data-pt="Análise de Dados" data-en="Data Analysis">Análise de Dados</p>
-        <p class="skill-desc" data-pt="Exploração, visualização e interpretação de conjuntos de dados." data-en="Exploration, visualization and interpretation of datasets.">Exploração, visualização e interpretação de conjuntos de dados.</p>
-        <span class="skill-arrow">↗</span>
+      <!-- LinkedIn — descomente e preencha quando tiver:
+      <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="contact-link">
+        <span class="cl-icon">in</span>
+        <div><p class="cl-label">LinkedIn</p><p class="cl-value">Amanda da Costa Cabral</p></div>
+        <span class="cl-arr">↗</span>
       </a>
-
-      <a href="#projetos-misc" class="skill-card card-misc">
-        <span class="skill-icon">◎</span>
-        <p class="skill-name" data-pt="Projetos Pessoais" data-en="Personal Projects">Projetos Pessoais</p>
-        <p class="skill-desc" data-pt="Experimentos, ferramentas e ideias que não cabem em caixas." data-en="Experiments, tools and ideas that don't fit in boxes.">Experimentos, ferramentas e ideias que não cabem em caixas.</p>
-        <span class="skill-arrow">↗</span>
-      </a>
-
+      -->
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="divider"></div>
-
-  <!-- PROJETOS -->
-  <section id="projetos">
-    <p class="section-label reveal" data-pt="projetos" data-en="projects">projetos</p>
-    <p class="projects-note reveal" data-pt="// adicione seus repositórios abaixo — cada card linka direto pro GitHub" data-en="// add your repos below — each card links directly to GitHub">// adicione seus repositórios abaixo — cada card linka direto pro GitHub</p>
-
-    <div class="project-list reveal">
-
-      <!-- ASTRO -->
-      <div id="projetos-astro"></div>
-      <a href="https://github.com/cosmic-axolotl" class="project-item" target="_blank">
-        <span class="project-tag tag-astro">ASTRO</span>
-        <div class="project-info">
-          <p class="project-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-          <p class="project-desc" data-pt="Descrição breve do projeto de astronomia ou astrofísica." data-en="Short description of the astronomy or astrophysics project.">Descrição breve do projeto de astronomia ou astrofísica.</p>
-        </div>
-        <span class="project-arrow">↗</span>
-      </a>
-
-      <!-- PYTHON -->
-      <div id="projetos-python"></div>
-      <a href="https://github.com/cosmic-axolotl" class="project-item" target="_blank">
-        <span class="project-tag tag-python">PYTHON</span>
-        <div class="project-info">
-          <p class="project-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-          <p class="project-desc" data-pt="Script de scraping, automação ou processamento de dados." data-en="Scraping script, automation or data processing.">Script de scraping, automação ou processamento de dados.</p>
-        </div>
-        <span class="project-arrow">↗</span>
-      </a>
-
-      <!-- DATA -->
-      <div id="projetos-data"></div>
-      <a href="https://github.com/cosmic-axolotl" class="project-item" target="_blank">
-        <span class="project-tag tag-data">DADOS</span>
-        <div class="project-info">
-          <p class="project-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-          <p class="project-desc" data-pt="Análise exploratória, visualização ou modelagem de dados." data-en="Exploratory analysis, visualization or data modeling.">Análise exploratória, visualização ou modelagem de dados.</p>
-        </div>
-        <span class="project-arrow">↗</span>
-      </a>
-
-      <!-- MISC -->
-      <div id="projetos-misc"></div>
-      <a href="https://github.com/cosmic-axolotl" class="project-item" target="_blank">
-        <span class="project-tag tag-misc">MISC</span>
-        <div class="project-info">
-          <p class="project-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-          <p class="project-desc" data-pt="Um projeto pessoal, experimento ou ferramenta interessante." data-en="A personal project, experiment or interesting tool.">Um projeto pessoal, experimento ou ferramenta interessante.</p>
-        </div>
-        <span class="project-arrow">↗</span>
-      </a>
-
-    </div>
-  </section>
+<footer>
+  <p data-pt="feito com 🔭 por <span>Amanda da Costa Cabral</span>"
+     data-en="made with 🔭 by <span>Amanda da Costa Cabral</span>">
+    feito com 🔭 por <span>Amanda da Costa Cabral</span>
+  </p>
+</footer>
 
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <span class="footer-name">Amanda da Costa Cabral</span>
-      <span class="footer-copy" id="footer-copy">© 2025 · feito com curiosidade</span>
-    </div>
-  </div>
-</footer>
-
 <script>
-/* ── STAR FIELD ── */
-const canvas = document.getElementById('stars-canvas');
-const ctx = canvas.getContext('2d');
-let stars = [];
-
-function resize() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-function initStars() {
-  stars = [];
-  const n = Math.floor((canvas.width * canvas.height) / 6000);
-  for (let i = 0; i < n; i++) {
-    stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.2,
-      a: Math.random(),
-      da: (Math.random() - 0.5) * 0.004,
-      speed: Math.random() * 0.03 + 0.005
-    });
-  }
-}
-
-function drawStars() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (const s of stars) {
-    s.a += s.da;
-    if (s.a > 1 || s.a < 0) s.da *= -1;
-    s.y -= s.speed;
-    if (s.y < 0) { s.y = canvas.height; s.x = Math.random() * canvas.width; }
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(253,230,138,${s.a * 0.7})`;
-    ctx.fill();
-  }
-  requestAnimationFrame(drawStars);
-}
-
-resize();
-initStars();
-drawStars();
-window.addEventListener('resize', () => { resize(); initStars(); });
-
-/* ── SCROLL REVEAL ── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-/* ── LANGUAGE TOGGLE ── */
-let lang = 'pt';
-function toggleLang() {
-  lang = lang === 'pt' ? 'en' : 'pt';
-  document.getElementById('lang-btn').textContent = lang === 'pt' ? 'EN / PT' : 'PT / EN';
-  document.querySelectorAll('[data-pt]').forEach(el => {
-    const val = el.getAttribute('data-' + lang);
-    if (val !== null) el.innerHTML = val;
+/* STARFIELD */
+const cv=document.getElementById('c'),cx=cv.getContext('2d');
+let W,H,stars=[];
+function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+function mkStars(){
+  stars=[];
+  const n=Math.floor(W*H/5500);
+  for(let i=0;i<n;i++) stars.push({
+    x:Math.random()*W,y:Math.random()*H,
+    r:Math.random()*1.1+0.15,
+    a:Math.random(),da:(Math.random()-.5)*.003,
+    vy:Math.random()*.022+.004
   });
-  document.getElementById('footer-copy').textContent =
-    lang === 'pt' ? '© 2025 · feito com curiosidade' : '© 2025 · made with curiosity';
-  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+}
+function draw(){
+  cx.clearRect(0,0,W,H);
+  for(const s of stars){
+    s.a+=s.da; if(s.a>1||s.a<0) s.da*=-1;
+    s.y-=s.vy; if(s.y<0){s.y=H;s.x=Math.random()*W;}
+    cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    cx.fillStyle=`rgba(220,215,255,${s.a*.6})`;cx.fill();
+  }
+  requestAnimationFrame(draw);
+}
+resize();mkStars();draw();
+window.addEventListener('resize',()=>{resize();mkStars();});
+
+/* REVEAL */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* LANG */
+let lang='pt';
+function toggleLang(){
+  lang=lang==='pt'?'en':'pt';
+  document.querySelector('.nav-lang').textContent=lang==='pt'?'EN':'PT';
+  document.documentElement.lang=lang==='pt'?'pt-BR':'en';
+  document.querySelectorAll('[data-pt]').forEach(el=>{
+    const v=el.getAttribute('data-'+lang);
+    if(v!==null) el.innerHTML=v;
+  });
 }
 </script>
 </body>
