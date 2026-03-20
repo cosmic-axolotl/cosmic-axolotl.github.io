@@ -8,250 +8,281 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #070b18;
-  --bg2:     #0c1022;
-  --bg3:     #101428;
-  --border:  rgba(120,150,255,0.13);
-  --border2: rgba(120,150,255,0.28);
-  --text:    #dde3f5;
-  --muted:   #7a86a8;
-  --dim:     #3a4260;
-  --purple:  #9d7df5;
-  --blue:    #5ea6f8;
-  --cyan:    #4fd6c8;
-  --gold:    #f2c46a;
-  --nav-h:   60px;
+  /* Paleta extraída da HP Tau:
+     azul nebulosa, laranja estelar, branco frio, fundo escuro profundo */
+  --bg:        #05080f;
+  --bg2:       rgba(8, 14, 28, 0.72);
+  --bg3:       rgba(10, 17, 35, 0.85);
+  --bg-solid:  #080e1c;
+  --border:    rgba(100, 155, 220, 0.15);
+  --border2:   rgba(100, 155, 220, 0.35);
+  --text:      #dce8f5;          /* branco frio com toque azul */
+  --muted:     #7a9bbf;          /* azul nebulosa médio */
+  --dim:       #2e4a6a;          /* azul escuro */
+  --accent:    #6aabf0;          /* azul brilhante da nebulosa */
+  --orange:    #e8934a;          /* laranja das estrelas T Tauri */
+  --orange2:   #f0b070;          /* laranja suave */
+  --white-star:#dff0ff;          /* branco azulado da estrela central */
+  --nav-h:     60px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);}
-body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;font-weight:400;overflow-x:hidden;}
-#c{position:fixed;inset:0;z-index:0;pointer-events:none;}
+body{
+  background-color:var(--bg);
+  color:var(--text);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+}
 
-/* NAV */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;
+/* ── FUNDO NEBULOSA ── */
+#nebula-bg {
+  position:fixed; inset:0; z-index:0;
+  background-image: url('hp_tau.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed;
+}
+/* overlay em duas camadas: escurece e cria gradiente pra legibilidade */
+#nebula-bg::after {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 60% 30%, rgba(5,8,20,0.45) 0%, rgba(5,8,20,0.82) 70%),
+    linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.88) 100%);
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  height:var(--nav-h); display:flex; align-items:center; justify-content:space-between;
   padding:0 2.5rem;
-  background:rgba(7,11,24,0.8);backdrop-filter:blur(16px);
-  border-bottom:0.5px solid var(--border);
+  background:rgba(5,8,15,0.6);
+  backdrop-filter:blur(20px);
+  border-bottom:0.5px solid rgba(106,171,240,0.18);
 }
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--text);letter-spacing:-.01em;}
-.nav-logo span{color:var(--purple);}
-.nav-links{display:flex;gap:2rem;align-items:center;}
-.nav-links a{font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;letter-spacing:.02em;}
-.nav-links a:hover{color:var(--text);}
-.nav-lang{
-  font-size:.72rem;color:var(--dim);background:none;border:0.5px solid var(--border);
-  padding:.28rem .7rem;border-radius:20px;cursor:pointer;
-  font-family:'Space Grotesk',sans-serif;letter-spacing:.05em;
-  transition:border-color .2s,color .2s;
+.nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; }
+.nav-logo span { color:var(--accent); }
+.nav-links { display:flex; gap:2rem; align-items:center; }
+.nav-links a { font-size:.82rem; color:var(--muted); text-decoration:none; transition:color .2s; }
+.nav-links a:hover { color:var(--white-star); }
+.nav-lang {
+  font-size:.72rem; color:var(--dim); background:none;
+  border:0.5px solid rgba(106,171,240,0.2);
+  padding:.28rem .7rem; border-radius:20px; cursor:pointer;
+  font-family:'Space Grotesk',sans-serif; letter-spacing:.05em;
+  transition:border-color .2s, color .2s;
 }
-.nav-lang:hover{border-color:var(--border2);color:var(--purple);}
+.nav-lang:hover { border-color:var(--border2); color:var(--accent); }
 
-/* WRAP */
-.wrap{position:relative;z-index:1;}
+/* ── WRAP ── */
+.wrap { position:relative; z-index:1; }
 
-/* HERO */
-#home{
-  min-height:100vh;display:flex;align-items:center;
+/* ── HERO ── */
+#home {
+  min-height:100vh; display:flex; align-items:center;
   padding:calc(var(--nav-h) + 4rem) 2.5rem 4rem;
-  max-width:1100px;margin:0 auto;gap:4rem;
+  max-width:1100px; margin:0 auto; gap:4rem;
 }
-.hero-text{flex:1;}
-.hero-greeting{
-  font-size:.78rem;letter-spacing:.18em;color:var(--purple);
-  text-transform:uppercase;margin-bottom:1.2rem;
-  display:flex;align-items:center;gap:.7rem;
+.hero-text { flex:1; }
+.hero-greeting {
+  font-size:.78rem; letter-spacing:.18em; color:var(--orange2);
+  text-transform:uppercase; margin-bottom:1.2rem;
+  display:flex; align-items:center; gap:.7rem;
 }
-.hero-greeting::before{content:'';display:block;width:26px;height:1px;background:var(--purple);}
-.hero-name{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.05;
-  letter-spacing:-.03em;color:#fff;margin-bottom:1rem;
+.hero-greeting::before { content:''; display:block; width:26px; height:1px; background:var(--orange2); }
+.hero-name {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(2.4rem,5.5vw,4rem); line-height:1.05;
+  letter-spacing:-.03em; color:var(--white-star); margin-bottom:1rem;
 }
-.hero-name .hl{color:var(--purple);}
-.hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:460px;margin-bottom:2.2rem;}
-.hero-sub strong{color:var(--text);font-weight:500;}
-.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;}
-.btn-p{
-  padding:.65rem 1.4rem;border-radius:6px;
-  background:var(--purple);color:#fff;border:none;
-  font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:500;
-  text-decoration:none;cursor:pointer;transition:opacity .2s,transform .15s;
+.hero-name .hl { color:var(--accent); }
+.hero-sub { font-size:1rem; color:var(--muted); line-height:1.75; max-width:460px; margin-bottom:2.2rem; }
+.hero-sub strong { color:var(--text); font-weight:500; }
+.hero-btns { display:flex; gap:.75rem; flex-wrap:wrap; }
+.btn-p {
+  padding:.65rem 1.4rem; border-radius:6px;
+  background:var(--accent); color:#05080f; border:none;
+  font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:600;
+  text-decoration:none; cursor:pointer; transition:opacity .2s, transform .15s;
 }
-.btn-p:hover{opacity:.85;transform:translateY(-1px);}
-.btn-o{
-  padding:.65rem 1.4rem;border-radius:6px;
-  background:none;color:var(--text);border:0.5px solid var(--border2);
-  font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:400;
-  text-decoration:none;cursor:pointer;transition:border-color .2s,background .2s;
+.btn-p:hover { opacity:.85; transform:translateY(-1px); }
+.btn-o {
+  padding:.65rem 1.4rem; border-radius:6px;
+  background:none; color:var(--text); border:0.5px solid var(--border2);
+  font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:400;
+  text-decoration:none; cursor:pointer; transition:border-color .2s, background .2s;
 }
-.btn-o:hover{border-color:var(--purple);background:rgba(157,125,245,.08);}
+.btn-o:hover { border-color:var(--accent); background:rgba(106,171,240,.08); }
 
 /* AVATAR */
-.hero-avatar-wrap{flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.avatar-ring{
-  width:230px;height:230px;border-radius:50%;
-  border:1.5px solid var(--purple);
-  display:flex;align-items:center;justify-content:center;
+.hero-avatar-wrap { flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.avatar-ring {
+  width:230px; height:230px; border-radius:50%;
+  border:1.5px solid var(--accent);
+  display:flex; align-items:center; justify-content:center;
   position:relative;
-  box-shadow:0 0 60px rgba(157,125,245,.15),inset 0 0 40px rgba(157,125,245,.05);
+  box-shadow:0 0 70px rgba(106,171,240,.2), inset 0 0 40px rgba(106,171,240,.06);
 }
-.avatar-ring::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:0.5px solid rgba(157,125,245,.18);}
-.avatar-ring::after{content:'';position:absolute;inset:-20px;border-radius:50%;border:0.5px solid rgba(157,125,245,.07);}
-.avatar-inner{
-  width:200px;height:200px;border-radius:50%;
-  background:var(--bg3);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;overflow:hidden;
+.avatar-ring::before { content:''; position:absolute; inset:-9px; border-radius:50%; border:0.5px solid rgba(106,171,240,.16); }
+.avatar-ring::after  { content:''; position:absolute; inset:-20px; border-radius:50%; border:0.5px solid rgba(232,147,74,.1); }
+.avatar-inner {
+  width:200px; height:200px; border-radius:50%;
+  background:rgba(8,14,28,0.7);
+  backdrop-filter:blur(8px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.35rem; overflow:hidden;
 }
-.avatar-glyph{font-size:4.2rem;line-height:1;user-select:none;}
-.avatar-label{font-size:.62rem;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;}
+.avatar-glyph { font-size:4.2rem; line-height:1; user-select:none; }
+.avatar-label { font-size:.62rem; letter-spacing:.15em; color:var(--dim); text-transform:uppercase; }
 
 /* SECTIONS */
-.section{max-width:1100px;margin:0 auto;padding:5rem 2.5rem;}
-.sec-header{margin-bottom:2.8rem;}
-.sec-tag{
-  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--purple);margin-bottom:.5rem;
-  display:flex;align-items:center;gap:.6rem;
+.section { max-width:1100px; margin:0 auto; padding:5rem 2.5rem; }
+.sec-header { margin-bottom:2.8rem; }
+.sec-tag {
+  font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--orange2); margin-bottom:.5rem;
+  display:flex; align-items:center; gap:.6rem;
 }
-.sec-tag::before{content:'//';opacity:.45;}
-.sec-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:clamp(1.6rem,3vw,2.2rem);color:#fff;letter-spacing:-.02em;
+.sec-tag::before { content:'//'; opacity:.45; color:var(--orange); }
+.sec-title { font-family:'Syne',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; }
+
+/* divider com brilho sutil */
+.divider { max-width:1100px; margin:0 auto; height:0.5px; background:linear-gradient(to right, transparent, rgba(106,171,240,.25), transparent); }
+
+/* SECTION BG — vidro sobre a nebulosa */
+.section-bg {
+  background: var(--bg2);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
 }
-.divider{max-width:1100px;margin:0 auto;height:0.5px;background:var(--border);}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-.about-text{font-size:.97rem;color:var(--muted);line-height:1.85;}
-.about-text p+p{margin-top:1rem;}
-.about-text strong{color:var(--text);font-weight:500;}
-.about-facts{display:flex;flex-direction:column;gap:.9rem;}
-.fact-card{
-  background:var(--bg2);border:0.5px solid var(--border);
-  border-radius:10px;padding:.95rem 1.1rem;
-  display:flex;align-items:center;gap:1rem;
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+.about-text { font-size:.97rem; color:var(--muted); line-height:1.85; }
+.about-text p+p { margin-top:1rem; }
+.about-text strong { color:var(--text); font-weight:500; }
+.about-facts { display:flex; flex-direction:column; gap:.9rem; }
+.fact-card {
+  background:rgba(8,18,36,0.6);
+  backdrop-filter:blur(12px);
+  border:0.5px solid var(--border);
+  border-radius:10px; padding:.95rem 1.1rem;
+  display:flex; align-items:center; gap:1rem;
 }
-.fact-icon{font-size:1.3rem;flex-shrink:0;}
-.fact-label{font-size:.68rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-bottom:.12rem;}
-.fact-value{font-size:.88rem;color:var(--text);font-weight:500;}
+.fact-icon { font-size:1.3rem; flex-shrink:0; }
+.fact-label { font-size:.68rem; letter-spacing:.1em; color:var(--dim); text-transform:uppercase; margin-bottom:.12rem; }
+.fact-value { font-size:.88rem; color:var(--text); font-weight:500; }
 
 /* SKILLS */
-.skills-groups{display:flex;flex-direction:column;gap:2.2rem;}
-.skill-group-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;}
-.pills{display:flex;flex-wrap:wrap;gap:.5rem;}
-.pill{
-  padding:.36rem .88rem;border-radius:20px;
-  font-size:.8rem;font-weight:500;letter-spacing:.01em;border:0.5px solid;
-  transition:transform .15s,box-shadow .15s;cursor:default;
+.skills-groups { display:flex; flex-direction:column; gap:2.2rem; }
+.skill-group-label { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.85rem; }
+.pills { display:flex; flex-wrap:wrap; gap:.5rem; }
+.pill {
+  padding:.36rem .88rem; border-radius:20px;
+  font-size:.8rem; font-weight:500; border:0.5px solid;
+  transition:transform .15s, box-shadow .2s; cursor:default;
 }
-.pill:hover{transform:translateY(-2px);}
-.pill-purple{background:rgba(157,125,245,.1);color:#c4b0ff;border-color:rgba(157,125,245,.3);}
-.pill-blue  {background:rgba(94,166,248,.1); color:#93c7fd;border-color:rgba(94,166,248,.3); }
-.pill-cyan  {background:rgba(79,214,200,.1); color:#7eeadf;border-color:rgba(79,214,200,.3); }
-.pill-gold  {background:rgba(242,196,106,.1);color:#fad789;border-color:rgba(242,196,106,.3);}
+.pill:hover { transform:translateY(-2px); }
+/* azul nebulosa */
+.pill-blue   { background:rgba(106,171,240,.1); color:#a8d2f8; border-color:rgba(106,171,240,.3); }
+/* laranja estrela */
+.pill-orange { background:rgba(232,147,74,.1);  color:#f0b888; border-color:rgba(232,147,74,.3);  }
+/* branco estelar */
+.pill-white  { background:rgba(220,240,255,.07); color:#c8dff0; border-color:rgba(220,240,255,.2); }
 
 /* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
-.proj-card{
-  background:var(--bg2);border:0.5px solid var(--border);
-  border-radius:12px;overflow:hidden;
-  text-decoration:none;color:inherit;
-  display:flex;flex-direction:column;
-  transition:border-color .25s,transform .2s,box-shadow .25s;
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
+.proj-card {
+  background:rgba(6,12,26,0.65);
+  backdrop-filter:blur(18px);
+  border:0.5px solid var(--border);
+  border-radius:12px; overflow:hidden;
+  text-decoration:none; color:inherit;
+  display:flex; flex-direction:column;
+  transition:border-color .25s, transform .2s, box-shadow .25s;
 }
-.proj-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35);}
-.proj-thumb{
-  height:130px;display:flex;align-items:center;justify-content:center;
-  font-size:2.5rem;border-bottom:0.5px solid var(--border);
-  position:relative;overflow:hidden;
+.proj-card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.5); }
+.proj-thumb {
+  height:130px; display:flex; align-items:center; justify-content:center;
+  font-size:2.5rem; border-bottom:0.5px solid var(--border);
+  position:relative; overflow:hidden;
 }
-.proj-thumb::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 0%,var(--tg,rgba(157,125,245,.25)) 0%,transparent 70%);
+.proj-thumb::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, var(--tg,rgba(106,171,240,.25)) 0%, transparent 70%);
 }
-.t-astro {background:linear-gradient(135deg,#0c0f20,#14102e);--tg:rgba(157,125,245,.3);}
-.t-python{background:linear-gradient(135deg,#080f1c,#0c1828);--tg:rgba(94,166,248,.3);}
-.t-data  {background:linear-gradient(135deg,#071218,#0b1e1c);--tg:rgba(79,214,200,.3);}
-.t-misc  {background:linear-gradient(135deg,#13100a,#201800);--tg:rgba(242,196,106,.3);}
-.proj-body{padding:1.1rem 1.2rem;flex:1;display:flex;flex-direction:column;gap:.5rem;}
-.proj-tags{display:flex;gap:.4rem;flex-wrap:wrap;}
-.ptag{
-  font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;
-  padding:.18rem .55rem;border-radius:3px;border:0.5px solid;
-}
-.ptag-a{background:rgba(157,125,245,.1);color:#c4b0ff;border-color:rgba(157,125,245,.25);}
-.ptag-p{background:rgba(94,166,248,.1); color:#93c7fd;border-color:rgba(94,166,248,.25); }
-.ptag-d{background:rgba(79,214,200,.1); color:#7eeadf;border-color:rgba(79,214,200,.25); }
-.ptag-m{background:rgba(242,196,106,.1);color:#fad789;border-color:rgba(242,196,106,.25);}
-.proj-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#fff;}
-.proj-desc{font-size:.82rem;color:var(--muted);line-height:1.6;flex:1;}
-.proj-footer{
-  padding:.75rem 1.2rem;border-top:0.5px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.proj-link{font-size:.75rem;color:var(--purple);display:flex;align-items:center;gap:.3rem;}
-.proj-ph{font-size:.72rem;color:var(--dim);font-style:italic;}
+.t-astro  { background:linear-gradient(135deg,#060b1a,#0a1228); --tg:rgba(106,171,240,.3); }
+.t-python { background:linear-gradient(135deg,#0a0d18,#101624); --tg:rgba(232,147,74,.25);  }
+.t-data   { background:linear-gradient(135deg,#060e16,#0a1420); --tg:rgba(106,171,240,.2);  }
+.t-misc   { background:linear-gradient(135deg,#100c06,#1c1408); --tg:rgba(240,176,112,.3);  }
+.proj-body { padding:1.1rem 1.2rem; flex:1; display:flex; flex-direction:column; gap:.5rem; }
+.proj-tags { display:flex; gap:.4rem; flex-wrap:wrap; }
+.ptag { font-size:.63rem; letter-spacing:.08em; text-transform:uppercase; padding:.18rem .55rem; border-radius:3px; border:0.5px solid; }
+.ptag-a { background:rgba(106,171,240,.1); color:#a8d2f8; border-color:rgba(106,171,240,.25); }
+.ptag-p { background:rgba(232,147,74,.1);  color:#f0b888; border-color:rgba(232,147,74,.25);  }
+.ptag-d { background:rgba(220,240,255,.07);color:#c8dff0; border-color:rgba(220,240,255,.18); }
+.ptag-m { background:rgba(240,176,112,.1); color:#f8d0a0; border-color:rgba(240,176,112,.25); }
+.proj-name { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; color:var(--white-star); }
+.proj-desc { font-size:.82rem; color:var(--muted); line-height:1.6; flex:1; }
+.proj-footer { padding:.75rem 1.2rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.proj-link { font-size:.75rem; color:var(--accent); }
+.proj-ph { font-size:.72rem; color:var(--dim); font-style:italic; }
 
 /* CONTACT */
-.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-.contact-desc{font-size:.97rem;color:var(--muted);line-height:1.8;}
-.contact-desc strong{color:var(--text);font-weight:500;}
-.contact-links{display:flex;flex-direction:column;gap:.75rem;}
-.contact-link{
-  display:flex;align-items:center;gap:1rem;
-  padding:.9rem 1.1rem;
-  background:var(--bg2);border:0.5px solid var(--border);
-  border-radius:10px;text-decoration:none;color:var(--text);
-  transition:border-color .2s,background .2s;
+.contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
+.contact-desc { font-size:.97rem; color:var(--muted); line-height:1.8; }
+.contact-desc strong { color:var(--text); font-weight:500; }
+.contact-links { display:flex; flex-direction:column; gap:.75rem; }
+.contact-link {
+  display:flex; align-items:center; gap:1rem; padding:.9rem 1.1rem;
+  background:rgba(8,18,36,.6); backdrop-filter:blur(12px);
+  border:0.5px solid var(--border);
+  border-radius:10px; text-decoration:none; color:var(--text);
+  transition:border-color .2s, background .2s;
 }
-.contact-link:hover{border-color:var(--border2);background:var(--bg3);}
-.cl-icon{font-size:1rem;width:20px;text-align:center;flex-shrink:0;}
-.cl-label{font-size:.68rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.1rem;}
-.cl-value{font-size:.88rem;color:var(--text);font-weight:500;}
-.cl-arr{margin-left:auto;color:var(--dim);font-size:.8rem;transition:color .2s;}
-.contact-link:hover .cl-arr{color:var(--purple);}
+.contact-link:hover { border-color:var(--border2); background:rgba(106,171,240,.06); }
+.cl-icon { font-size:1rem; width:20px; text-align:center; flex-shrink:0; }
+.cl-label { font-size:.68rem; color:var(--dim); text-transform:uppercase; letter-spacing:.1em; margin-bottom:.1rem; }
+.cl-value { font-size:.88rem; color:var(--text); font-weight:500; }
+.cl-arr { margin-left:auto; color:var(--dim); font-size:.8rem; transition:color .2s; }
+.contact-link:hover .cl-arr { color:var(--accent); }
 
 /* FOOTER */
-footer{
-  border-top:0.5px solid var(--border);
-  text-align:center;padding:2rem;
-  font-size:.75rem;color:var(--dim);letter-spacing:.05em;
-}
-footer span{color:var(--purple);}
+footer { border-top:0.5px solid var(--border); text-align:center; padding:2rem; font-size:.75rem; color:var(--dim); letter-spacing:.05em; }
+footer span { color:var(--orange2); }
 
 /* ANIMS */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
-.reveal.v{opacity:1;transform:none;}
-.reveal.d1{transition-delay:.1s;}.reveal.d2{transition-delay:.2s;}.reveal.d3{transition-delay:.3s;}
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease; }
+.reveal.v { opacity:1; transform:none; }
+.reveal.d1{transition-delay:.1s;} .reveal.d2{transition-delay:.2s;} .reveal.d3{transition-delay:.3s;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.ha1{animation:fadeUp .6s .1s both;}.ha2{animation:fadeUp .6s .25s both;}
-.ha3{animation:fadeUp .6s .4s both;}.ha4{animation:fadeUp .6s .55s both;}
+.ha1{animation:fadeUp .6s .1s both;} .ha2{animation:fadeUp .6s .25s both;}
+.ha3{animation:fadeUp .6s .4s both;} .ha4{animation:fadeUp .6s .55s both;}
 .ha5{animation:fadeUp .6s .7s both;}
 
 @media(max-width:700px){
   #home{flex-direction:column-reverse;padding-top:calc(var(--nav-h)+2rem);}
   .about-grid,.contact-inner{grid-template-columns:1fr;}
   .nav-links a:not(.nav-lang){display:none;}
-  .avatar-ring{width:160px;height:160px;}
-  .avatar-inner{width:138px;height:138px;}
-  .avatar-glyph{font-size:3rem;}
+  .avatar-ring{width:160px;height:160px;} .avatar-inner{width:138px;height:138px;} .avatar-glyph{font-size:3rem;}
 }
 </style>
 </head>
 <body>
 
-<canvas id="c"></canvas>
+<!-- FUNDO NEBULOSA -->
+<div id="nebula-bg"></div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">amanda<span>.</span></div>
   <div class="nav-links">
-    <a href="#about"    data-pt="sobre"       data-en="about">sobre</a>
-    <a href="#skills"   data-pt="habilidades"  data-en="skills">habilidades</a>
-    <a href="#projects" data-pt="projetos"     data-en="projects">projetos</a>
-    <a href="#contact"  data-pt="contato"      data-en="contact">contato</a>
+    <a href="#about"    data-pt="sobre"        data-en="about">sobre</a>
+    <a href="#skills"   data-pt="habilidades"   data-en="skills">habilidades</a>
+    <a href="#projects" data-pt="projetos"      data-en="projects">projetos</a>
+    <a href="#contact"  data-pt="contato"       data-en="contact">contato</a>
     <button class="nav-lang" onclick="toggleLang()">EN</button>
   </div>
 </nav>
@@ -276,7 +307,7 @@ footer span{color:var(--purple);}
   <div class="hero-avatar-wrap ha5">
     <div class="avatar-ring">
       <div class="avatar-inner">
-        <!-- Troque o emoji pela sua foto:
+        <!-- Troque por sua foto:
              <img src="foto.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%"> -->
         <div class="avatar-glyph">🔭</div>
         <p class="avatar-label" data-pt="astrônoma & dev" data-en="astronomer & dev">astrônoma & dev</p>
@@ -288,49 +319,51 @@ footer span{color:var(--purple);}
 <div class="divider"></div>
 
 <!-- ABOUT -->
-<section id="about" class="section">
-  <div class="sec-header reveal">
-    <p class="sec-tag" data-pt="sobre mim" data-en="about me">sobre mim</p>
-    <h2 class="sec-title" data-pt="Quem sou eu" data-en="Who I am">Quem sou eu</h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal d1">
-      <p data-pt="Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código."
-         data-en="I'm an <strong>Astronomy student with an emphasis in Astrophysics</strong> and a programming enthusiast. My journey started by looking at the sky and ended up leading me to lines of code.">
-        Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código.
-      </p>
-      <p data-pt="Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>."
-         data-en="I mainly work with <strong>Python</strong> — automation, web scraping with Selenium and Playwright — and use data to understand both human systems and <strong>celestial phenomena</strong>.">
-        Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>.
-      </p>
+<section id="about" class="section-bg">
+  <div class="section">
+    <div class="sec-header reveal">
+      <p class="sec-tag" data-pt="sobre mim" data-en="about me">sobre mim</p>
+      <h2 class="sec-title" data-pt="Quem sou eu" data-en="Who I am">Quem sou eu</h2>
     </div>
-    <div class="about-facts reveal d2">
-      <div class="fact-card">
-        <div class="fact-icon">🌌</div>
-        <div>
-          <p class="fact-label" data-pt="área de estudo" data-en="field of study">área de estudo</p>
-          <p class="fact-value" data-pt="Astronomia & Astrofísica" data-en="Astronomy & Astrophysics">Astronomia & Astrofísica</p>
-        </div>
+    <div class="about-grid">
+      <div class="about-text reveal d1">
+        <p data-pt="Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código."
+           data-en="I'm an <strong>Astronomy student with an emphasis in Astrophysics</strong> and a programming enthusiast. My journey started by looking at the sky and ended up leading me to lines of code.">
+          Sou estudante de <strong>Astronomia com ênfase em Astrofísica</strong> e entusiasta de programação. Minha jornada começou olhando para o céu e acabou me levando para linhas de código.
+        </p>
+        <p data-pt="Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>."
+           data-en="I mainly work with <strong>Python</strong> — automation, web scraping with Selenium and Playwright — and use data to understand both human systems and <strong>celestial phenomena</strong>.">
+          Trabalho principalmente com <strong>Python</strong> — automação, web scraping com Selenium e Playwright — e uso dados como forma de entender tanto sistemas humanos quanto <strong>fenômenos celestes</strong>.
+        </p>
       </div>
-      <div class="fact-card">
-        <div class="fact-icon">🐍</div>
-        <div>
-          <p class="fact-label" data-pt="linguagem principal" data-en="main language">linguagem principal</p>
-          <p class="fact-value">Python</p>
+      <div class="about-facts reveal d2">
+        <div class="fact-card">
+          <div class="fact-icon">🌌</div>
+          <div>
+            <p class="fact-label" data-pt="área de estudo" data-en="field of study">área de estudo</p>
+            <p class="fact-value" data-pt="Astronomia & Astrofísica" data-en="Astronomy & Astrophysics">Astronomia & Astrofísica</p>
+          </div>
         </div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-icon">🤖</div>
-        <div>
-          <p class="fact-label" data-pt="especialidade" data-en="specialty">especialidade</p>
-          <p class="fact-value">Selenium · Playwright</p>
+        <div class="fact-card">
+          <div class="fact-icon">🐍</div>
+          <div>
+            <p class="fact-label" data-pt="linguagem principal" data-en="main language">linguagem principal</p>
+            <p class="fact-value">Python</p>
+          </div>
         </div>
-      </div>
-      <div class="fact-card">
-        <div class="fact-icon">✦</div>
-        <div>
-          <p class="fact-label">GitHub</p>
-          <p class="fact-value">cosmic-axolotl</p>
+        <div class="fact-card">
+          <div class="fact-icon">🤖</div>
+          <div>
+            <p class="fact-label" data-pt="especialidade" data-en="specialty">especialidade</p>
+            <p class="fact-value">Selenium · Playwright</p>
+          </div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">✦</div>
+          <div>
+            <p class="fact-label">GitHub</p>
+            <p class="fact-value">cosmic-axolotl</p>
+          </div>
         </div>
       </div>
     </div>
@@ -349,31 +382,31 @@ footer span{color:var(--purple);}
     <div class="reveal d1">
       <p class="skill-group-label" data-pt="Astronomia & Ciência" data-en="Astronomy & Science">Astronomia & Ciência</p>
       <div class="pills">
-        <span class="pill pill-purple" data-pt="Astrofísica" data-en="Astrophysics">Astrofísica</span>
-        <span class="pill pill-purple" data-pt="Dados observacionais" data-en="Observational data">Dados observacionais</span>
-        <span class="pill pill-purple" data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
-        <span class="pill pill-purple" data-pt="Cosmologia" data-en="Cosmology">Cosmologia</span>
+        <span class="pill pill-blue"   data-pt="Astrofísica"              data-en="Astrophysics">Astrofísica</span>
+        <span class="pill pill-blue"   data-pt="Dados observacionais"     data-en="Observational data">Dados observacionais</span>
+        <span class="pill pill-blue"   data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
+        <span class="pill pill-blue"   data-pt="Cosmologia"               data-en="Cosmology">Cosmologia</span>
       </div>
     </div>
     <div class="reveal d2">
       <p class="skill-group-label" data-pt="Programação" data-en="Programming">Programação</p>
       <div class="pills">
-        <span class="pill pill-blue">Python</span>
-        <span class="pill pill-blue">Selenium</span>
-        <span class="pill pill-blue">Playwright</span>
-        <span class="pill pill-blue">Web Scraping</span>
-        <span class="pill pill-blue" data-pt="Automação" data-en="Automation">Automação</span>
-        <span class="pill pill-blue">Git</span>
+        <span class="pill pill-orange">Python</span>
+        <span class="pill pill-orange">Selenium</span>
+        <span class="pill pill-orange">Playwright</span>
+        <span class="pill pill-orange">Web Scraping</span>
+        <span class="pill pill-orange" data-pt="Automação" data-en="Automation">Automação</span>
+        <span class="pill pill-orange">Git</span>
       </div>
     </div>
     <div class="reveal d3">
       <p class="skill-group-label" data-pt="Dados & Análise" data-en="Data & Analysis">Dados & Análise</p>
       <div class="pills">
-        <span class="pill pill-cyan">Pandas</span>
-        <span class="pill pill-cyan">NumPy</span>
-        <span class="pill pill-cyan">Matplotlib</span>
-        <span class="pill pill-cyan" data-pt="Visualização" data-en="Visualization">Visualização</span>
-        <span class="pill pill-cyan" data-pt="Análise exploratória" data-en="Exploratory analysis">Análise exploratória</span>
+        <span class="pill pill-white">Pandas</span>
+        <span class="pill pill-white">NumPy</span>
+        <span class="pill pill-white">Matplotlib</span>
+        <span class="pill pill-white" data-pt="Visualização"       data-en="Visualization">Visualização</span>
+        <span class="pill pill-white" data-pt="Análise exploratória" data-en="Exploratory analysis">Análise exploratória</span>
       </div>
     </div>
   </div>
@@ -382,52 +415,54 @@ footer span{color:var(--purple);}
 <div class="divider"></div>
 
 <!-- PROJECTS -->
-<section id="projects" class="section">
-  <div class="sec-header reveal">
-    <p class="sec-tag" data-pt="projetos" data-en="projects">projetos</p>
-    <h2 class="sec-title" data-pt="O que eu construí" data-en="What I've built">O que eu construí</h2>
-  </div>
-  <div class="projects-grid">
+<section id="projects" class="section-bg">
+  <div class="section">
+    <div class="sec-header reveal">
+      <p class="sec-tag" data-pt="projetos" data-en="projects">projetos</p>
+      <h2 class="sec-title" data-pt="O que eu construí" data-en="What I've built">O que eu construí</h2>
+    </div>
+    <div class="projects-grid">
 
-    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d1">
-      <div class="proj-thumb t-astro">🌠</div>
-      <div class="proj-body">
-        <div class="proj-tags"><span class="ptag ptag-a">ASTRO</span><span class="ptag ptag-p">PYTHON</span></div>
-        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-        <p class="proj-desc" data-pt="Adicione a descrição do projeto de astronomia ou astrofísica aqui." data-en="Add the description of the astronomy or astrophysics project here.">Adicione a descrição do projeto de astronomia ou astrofísica aqui.</p>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
-        <span class="proj-link">GitHub ↗</span>
-      </div>
-    </a>
+      <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d1">
+        <div class="proj-thumb t-astro">🌠</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-a">ASTRO</span><span class="ptag ptag-p">PYTHON</span></div>
+          <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+          <p class="proj-desc" data-pt="Adicione a descrição do projeto de astronomia aqui." data-en="Add the description of the astronomy project here.">Adicione a descrição do projeto de astronomia aqui.</p>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+          <span class="proj-link">GitHub ↗</span>
+        </div>
+      </a>
 
-    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d2">
-      <div class="proj-thumb t-python">🕸️</div>
-      <div class="proj-body">
-        <div class="proj-tags"><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">SCRAPING</span></div>
-        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-        <p class="proj-desc" data-pt="Adicione a descrição do projeto de web scraping ou automação aqui." data-en="Add the description of the web scraping or automation project here.">Adicione a descrição do projeto de web scraping ou automação aqui.</p>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
-        <span class="proj-link">GitHub ↗</span>
-      </div>
-    </a>
+      <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d2">
+        <div class="proj-thumb t-python">🕸️</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">SCRAPING</span></div>
+          <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+          <p class="proj-desc" data-pt="Adicione a descrição do projeto de scraping ou automação aqui." data-en="Add the description of the scraping or automation project here.">Adicione a descrição do projeto de scraping ou automação aqui.</p>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+          <span class="proj-link">GitHub ↗</span>
+        </div>
+      </a>
 
-    <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d3">
-      <div class="proj-thumb t-data">📡</div>
-      <div class="proj-body">
-        <div class="proj-tags"><span class="ptag ptag-d">DADOS</span><span class="ptag ptag-p">PYTHON</span></div>
-        <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-        <p class="proj-desc" data-pt="Adicione a descrição do projeto de análise ou visualização de dados aqui." data-en="Add the description of the data analysis or visualization project here.">Adicione a descrição do projeto de análise ou visualização de dados aqui.</p>
-      </div>
-      <div class="proj-footer">
-        <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
-        <span class="proj-link">GitHub ↗</span>
-      </div>
-    </a>
+      <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d3">
+        <div class="proj-thumb t-data">📡</div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag ptag-d">DADOS</span><span class="ptag ptag-p">PYTHON</span></div>
+          <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+          <p class="proj-desc" data-pt="Adicione a descrição do projeto de análise de dados aqui." data-en="Add the description of the data analysis project here.">Adicione a descrição do projeto de análise de dados aqui.</p>
+        </div>
+        <div class="proj-footer">
+          <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+          <span class="proj-link">GitHub ↗</span>
+        </div>
+      </a>
 
+    </div>
   </div>
 </section>
 
@@ -456,13 +491,6 @@ footer span{color:var(--purple);}
         <div><p class="cl-label">Email</p><p class="cl-value">seuemail@exemplo.com</p></div>
         <span class="cl-arr">↗</span>
       </a>
-      <!-- LinkedIn — descomente e preencha quando tiver:
-      <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="contact-link">
-        <span class="cl-icon">in</span>
-        <div><p class="cl-label">LinkedIn</p><p class="cl-value">Amanda da Costa Cabral</p></div>
-        <span class="cl-arr">↗</span>
-      </a>
-      -->
     </div>
   </div>
 </section>
@@ -477,46 +505,19 @@ footer span{color:var(--purple);}
 </div>
 
 <script>
-/* STARFIELD */
-const cv=document.getElementById('c'),cx=cv.getContext('2d');
-let W,H,stars=[];
-function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
-function mkStars(){
-  stars=[];
-  const n=Math.floor(W*H/5500);
-  for(let i=0;i<n;i++) stars.push({
-    x:Math.random()*W,y:Math.random()*H,
-    r:Math.random()*1.1+0.15,
-    a:Math.random(),da:(Math.random()-.5)*.003,
-    vy:Math.random()*.022+.004
-  });
-}
-function draw(){
-  cx.clearRect(0,0,W,H);
-  for(const s of stars){
-    s.a+=s.da; if(s.a>1||s.a<0) s.da*=-1;
-    s.y-=s.vy; if(s.y<0){s.y=H;s.x=Math.random()*W;}
-    cx.beginPath();cx.arc(s.x,s.y,s.r,0,Math.PI*2);
-    cx.fillStyle=`rgba(220,215,255,${s.a*.6})`;cx.fill();
-  }
-  requestAnimationFrame(draw);
-}
-resize();mkStars();draw();
-window.addEventListener('resize',()=>{resize();mkStars();});
-
 /* REVEAL */
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v');}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); }), {threshold:.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 /* LANG */
-let lang='pt';
-function toggleLang(){
-  lang=lang==='pt'?'en':'pt';
-  document.querySelector('.nav-lang').textContent=lang==='pt'?'EN':'PT';
-  document.documentElement.lang=lang==='pt'?'pt-BR':'en';
-  document.querySelectorAll('[data-pt]').forEach(el=>{
-    const v=el.getAttribute('data-'+lang);
-    if(v!==null) el.innerHTML=v;
+let lang = 'pt';
+function toggleLang() {
+  lang = lang==='pt' ? 'en' : 'pt';
+  document.querySelector('.nav-lang').textContent = lang==='pt' ? 'EN' : 'PT';
+  document.documentElement.lang = lang==='pt' ? 'pt-BR' : 'en';
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    const v = el.getAttribute('data-'+lang);
+    if (v !== null) el.innerHTML = v;
   });
 }
 </script>
