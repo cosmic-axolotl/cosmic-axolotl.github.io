@@ -255,8 +255,9 @@ footer { border-top:0.5px solid var(--border); text-align:center; padding:2rem; 
 footer span { color:var(--orange2); }
 
 /* ANIMS */
-.reveal { opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease; }
-.reveal.v { opacity:1; transform:none; }
+.reveal { opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease; }
+.js-ready .reveal { opacity:0; transform:translateY(22px); }
+.js-ready .reveal.v { opacity:1; transform:none; }
 .reveal.d1{transition-delay:.1s;} .reveal.d2{transition-delay:.2s;} .reveal.d3{transition-delay:.3s;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .ha1{animation:fadeUp .6s .1s both;} .ha2{animation:fadeUp .6s .25s both;}
@@ -506,6 +507,7 @@ footer span { color:var(--orange2); }
 </div>
 
 <script>
+document.documentElement.classList.add('js-ready');
 /* REVEAL */
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); }), {threshold:.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
