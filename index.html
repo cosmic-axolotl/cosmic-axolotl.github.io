@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amanda da Costa Cabral</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
 :root {
   /* Paleta extraída da HP Tau:
@@ -30,7 +30,7 @@ html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);}
 body{
   background-color:var(--bg);
   color:var(--text);
-  font-family:'Permanent Maker',cursive;
+  font-family:'Exo 2',sans-serif;
   font-weight:400;
   overflow-x:hidden;
 }
@@ -38,7 +38,7 @@ body{
 /* ── FUNDO NEBULOSA ── */
 #nebula-bg {
   position:fixed; inset:0; z-index:0;
-  background-image: url('hp tau.jpg');
+  background-image: url('hp_tau.jpg');
   background-size: cover;
   background-position: center 30%;
   background-attachment: fixed;
@@ -61,7 +61,7 @@ nav {
   backdrop-filter:blur(20px);
   border-bottom:0.5px solid rgba(106,171,240,0.18);
 }
-.nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; }
+.nav-logo { font-family:'Urbanist',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; text-transform:lowercase; }
 .nav-logo span { color:var(--accent); }
 .nav-links { display:flex; gap:2rem; align-items:center; }
 .nav-links a { font-size:.82rem; color:var(--muted); text-decoration:none; transition:color .2s; }
@@ -70,7 +70,7 @@ nav {
   font-size:.72rem; color:var(--dim); background:none;
   border:0.5px solid rgba(106,171,240,0.2);
   padding:.28rem .7rem; border-radius:20px; cursor:pointer;
-  font-family:'Syne',sans-serif; letter-spacing:.05em;
+  font-family:'Exo 2',sans-serif; letter-spacing:.05em;
   transition:border-color .2s, color .2s;
 }
 .nav-lang:hover { border-color:var(--border2); color:var(--accent); }
@@ -92,9 +92,10 @@ nav {
 }
 .hero-greeting::before { content:''; display:block; width:26px; height:1px; background:var(--orange2); }
 .hero-name {
-  font-family:'Syne',sans-serif; font-weight:800;
+  font-family:'Urbanist',sans-serif; font-weight:800;
   font-size:clamp(2.4rem,5.5vw,4rem); line-height:1.05;
   letter-spacing:-.03em; color:var(--white-star); margin-bottom:1rem;
+  text-transform:lowercase;
 }
 .hero-name .hl { color:var(--accent); }
 .hero-sub { font-size:1rem; color:var(--muted); line-height:1.75; max-width:460px; margin-bottom:2.2rem; }
@@ -103,14 +104,14 @@ nav {
 .btn-p {
   padding:.65rem 1.4rem; border-radius:6px;
   background:var(--accent); color:#05080f; border:none;
-  font-family:'Syne',sans-serif; font-size:.85rem; font-weight:600;
+  font-family:'Exo 2',sans-serif; font-size:.85rem; font-weight:600;
   text-decoration:none; cursor:pointer; transition:opacity .2s, transform .15s;
 }
 .btn-p:hover { opacity:.85; transform:translateY(-1px); }
 .btn-o {
   padding:.65rem 1.4rem; border-radius:6px;
   background:none; color:var(--text); border:0.5px solid var(--border2);
-  font-family:'Syne',sans-serif; font-size:.85rem; font-weight:400;
+  font-family:'Exo 2',sans-serif; font-size:.85rem; font-weight:400;
   text-decoration:none; cursor:pointer; transition:border-color .2s, background .2s;
 }
 .btn-o:hover { border-color:var(--accent); background:rgba(106,171,240,.08); }
@@ -144,7 +145,7 @@ nav {
   display:flex; align-items:center; gap:.6rem;
 }
 .sec-tag::before { content:'//'; opacity:.45; color:var(--orange); }
-.sec-title { font-family:'Syne',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; }
+.sec-title { font-family:'Urbanist',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; text-transform:lowercase; }
 
 /* divider com brilho sutil */
 .divider { max-width:1100px; margin:0 auto; height:0.5px; background:linear-gradient(to right, transparent, rgba(106,171,240,.25), transparent); }
@@ -224,7 +225,7 @@ nav {
 .ptag-p { background:rgba(232,147,74,.1);  color:#f0b888; border-color:rgba(232,147,74,.25);  }
 .ptag-d { background:rgba(220,240,255,.07);color:#c8dff0; border-color:rgba(220,240,255,.18); }
 .ptag-m { background:rgba(240,176,112,.1); color:#f8d0a0; border-color:rgba(240,176,112,.25); }
-.proj-name { font-family:'Syne',sans-serif; font-weight:700; font-size:1rem; color:var(--white-star); }
+.proj-name { font-family:'Urbanist',sans-serif; font-weight:700; font-size:1rem; color:var(--white-star); text-transform:lowercase; }
 .proj-desc { font-size:.82rem; color:var(--muted); line-height:1.6; flex:1; }
 .proj-footer { padding:.75rem 1.2rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
 .proj-link { font-size:.75rem; color:var(--accent); }
@@ -486,9 +487,9 @@ footer span { color:var(--orange2); }
         <div><p class="cl-label">GitHub</p><p class="cl-value">cosmic-axolotl</p></div>
         <span class="cl-arr">↗</span>
       </a>
-      <a href="mailto:seuemail@exemplo.com" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#6b180e1e0e060a02072b0e130e061b070445080406" class="contact-link">
         <span class="cl-icon">✉</span>
-        <div><p class="cl-label">Email</p><p class="cl-value">seuemail@exemplo.com</p></div>
+        <div><p class="cl-label">Email</p><p class="cl-value"><span class="__cf_email__" data-cfemail="e2918797878f838b8ea2879a878f928e8dcc818d8f">[email&#160;protected]</span></p></div>
         <span class="cl-arr">↗</span>
       </a>
     </div>
@@ -504,7 +505,7 @@ footer span { color:var(--orange2); }
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* REVEAL */
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('v'); }), {threshold:.08});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
@@ -513,13 +514,4 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 let lang = 'pt';
 function toggleLang() {
   lang = lang==='pt' ? 'en' : 'pt';
-  document.querySelector('.nav-lang').textContent = lang==='pt' ? 'EN' : 'PT';
-  document.documentElement.lang = lang==='pt' ? 'pt-BR' : 'en';
-  document.querySelectorAll('[data-pt]').forEach(el => {
-    const v = el.getAttribute('data-'+lang);
-    if (v !== null) el.innerHTML = v;
-  });
-}
-</script>
-</body>
-</html>
+  document.querySelector('.nav-lang').textContent = lang==='pt' ? 'EN' :
