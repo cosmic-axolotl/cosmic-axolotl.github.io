@@ -33,13 +33,14 @@ body{
   overflow-x:hidden;
 }
 
-/* ── FUNDO NEBULOSA ── */
+/* ── FUNDO ── */
 #nebula-bg {
   position:fixed; inset:0; z-index:0;
-  background-image: url('hp tau.jpg');
+  background-image: url('hp_tau.jpg');
   background-size: cover;
   background-position: center 30%;
   background-attachment: fixed;
+  transition: background-image .4s;
 }
 #nebula-bg::after {
   content:'';
@@ -47,6 +48,7 @@ body{
   background:
     radial-gradient(ellipse at 60% 30%, rgba(5,8,20,0.45) 0%, rgba(5,8,20,0.82) 70%),
     linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.88) 100%);
+  transition: background .4s;
 }
 
 /* ── NAV ── */
@@ -57,13 +59,17 @@ nav {
   background:rgba(5,8,15,0.6);
   backdrop-filter:blur(20px);
   border-bottom:0.5px solid rgba(106,171,240,0.18);
+  transition: background .3s, border-color .3s;
 }
-.nav-logo { font-family:'Urbanist',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; text-transform:lowercase; }
+.nav-logo { font-family:'Urbanist',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; text-transform:lowercase; text-decoration:none; }
 .nav-logo span { color:var(--accent); }
-.nav-logo { text-decoration: none; }
 .nav-links { display:flex; gap:2rem; align-items:center; }
 .nav-links a { font-size:.82rem; color:var(--muted); text-decoration:none; transition:color .2s; }
 .nav-links a:hover { color:var(--white-star); }
+
+/* nav right: lang + theme + hamburger */
+.nav-right { display:flex; align-items:center; gap:.5rem; }
+
 .nav-lang {
   font-size:.72rem; color:var(--dim); background:none;
   border:0.5px solid rgba(106,171,240,0.2);
@@ -73,7 +79,17 @@ nav {
 }
 .nav-lang:hover { border-color:var(--border2); color:var(--accent); }
 
-/* ── HAMBURGER BUTTON ── */
+.nav-theme {
+  display:flex; align-items:center; justify-content:center;
+  width:32px; height:32px; background:none;
+  border:0.5px solid rgba(106,171,240,0.2);
+  border-radius:8px; cursor:pointer;
+  color:var(--muted); font-size:.9rem; padding:0;
+  transition:border-color .2s, color .2s; flex-shrink:0;
+}
+.nav-theme:hover { border-color:var(--border2); color:var(--accent); }
+
+/* ── HAMBURGER ── */
 .nav-hamburger {
   display:none;
   flex-direction:column;
@@ -98,8 +114,6 @@ nav {
   transition:transform .3s ease, opacity .3s ease, background .2s;
 }
 .nav-hamburger:hover span { background:var(--accent); }
-
-/* Hamburger → X animation */
 .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -137,17 +151,16 @@ nav {
 }
 .mobile-menu a::before { content:'//'; font-size:.65rem; color:var(--orange); opacity:.5; }
 .mobile-menu a:hover { color:var(--white-star); }
-.mobile-menu a:last-child { border-bottom:none; }
-.mobile-menu .mobile-lang {
-  margin-top:.8rem;
+.mobile-menu a:last-of-type { border-bottom:none; }
+.mobile-menu-row { display:flex; gap:.5rem; align-items:center; margin-top:.8rem; }
+.mobile-lang {
   font-size:.72rem; color:var(--dim); background:none;
   border:0.5px solid rgba(106,171,240,0.2);
   padding:.35rem .9rem; border-radius:20px; cursor:pointer;
   font-family:'Exo 2',sans-serif; letter-spacing:.05em;
-  align-self:flex-start;
   transition:border-color .2s, color .2s;
 }
-.mobile-menu .mobile-lang:hover { border-color:var(--border2); color:var(--accent); }
+.mobile-lang:hover { border-color:var(--border2); color:var(--accent); }
 
 /* ── WRAP ── */
 .wrap { position:relative; z-index:1; }
@@ -335,36 +348,17 @@ footer span { color:var(--orange2); }
 
 /* ── MOBILE ── */
 @media(max-width:700px){
-  /* esconde links normais, mostra hamburger */
   .nav-links { display:none; }
-  .nav-logo { text-decoration: none; }
+  /* nav-right: mostra lang + theme + hamburger */
+  .nav-right { gap:.4rem; }
+  .nav-lang { display:flex; } /* lang visível na barra mobile */
   .nav-hamburger { display:flex; }
 
-  #home{flex-direction:column-reverse;padding-top:calc(var(--nav-h)+2rem);}
-  .about-grid,.contact-inner{grid-template-columns:1fr;}
+  #home { flex-direction:column-reverse; padding-top:calc(var(--nav-h)+2rem); }
+  .about-grid, .contact-inner { grid-template-columns:1fr; }
   .avatar-ring{width:160px;height:160px;} .avatar-inner{width:138px;height:138px;} .avatar-glyph{font-size:3rem;}
   .section { padding:3.5rem 1.4rem; }
-}
 
-/* ── THEME BUTTON ── */
-.nav-theme {
-  display:flex; align-items:center; justify-content:center;
-  width:32px; height:32px; background:none;
-  border:0.5px solid rgba(106,171,240,0.2);
-  border-radius:8px; cursor:pointer;
-  color:var(--muted); font-size:.9rem; padding:0;
-  transition:border-color .2s, color .2s; flex-shrink:0;
-}
-.nav-theme:hover { border-color:var(--border2); color:var(--accent); }
-.nav-right { display:flex; align-items:center; gap:.5rem; }
-.mobile-menu-row { display:flex; gap:.5rem; align-items:center; margin-top:.8rem; }
-.mobile-menu-row .mobile-lang { margin-top:0; }
-
-/* ── NAV TRANSITION ── */
-nav { transition:background .3s, border-color .3s; }
-
-/* ── MOBILE NAV: transparente no topo ── */
-@media(max-width:700px){
   nav:not(.nav-scrolled) {
     background:transparent;
     backdrop-filter:none;
@@ -378,65 +372,59 @@ nav { transition:background .3s, border-color .3s; }
     border-bottom-color:rgba(106,171,240,0.15);
   }
   [data-theme="light"] nav.nav-scrolled {
-    background:rgba(238,245,255,0.90);
+    background:rgba(238,245,255,0.92);
     border-bottom-color:rgba(40,90,160,0.18);
   }
 }
 
-/* ── LIGHT THEME (desktop nav) ── */
-@media(min-width:701px){
-  [data-theme="light"] nav {
-    background:rgba(238,245,255,0.80);
-    border-bottom-color:rgba(40,90,160,0.18);
-  }
-}
-
-/* ── LIGHT THEME variables ── */
+/* ── LIGHT THEME ── */
 [data-theme="light"] {
-  --bg:        #eef3f9;
-  --bg2:       rgba(255,255,255,0.82);
-  --bg3:       rgba(245,250,255,0.93);
-  --bg-solid:  #e6eef6;
-  --border:    rgba(40,90,160,0.18);
-  --border2:   rgba(40,90,160,0.42);
-  --text:      #192840;
-  --muted:     #3c5878;
-  --dim:       #8aaac0;
-  --accent:    #1a6fd4;
-  --orange:    #b85012;
-  --orange2:   #c8601a;
-  --white-star:#0c1824;
+  --bg:        #fdf6ee;
+  --bg2:       rgba(255, 245, 230, 0.80);
+  --bg3:       rgba(250, 238, 215, 0.90);
+  --bg-solid:  #f5e8d0;
+  --border:    rgba(180, 110, 40, 0.15);
+  --border2:   rgba(180, 110, 40, 0.38);
+  --text:      #1e1208;
+  --muted:     #7a5230;
+  --dim:       #c49a60;
+  --accent:    #c2541a;
+  --orange:    #e07020;
+  --orange2:   #d4956a;
+  --white-star:#0f0804;
 }
 [data-theme="light"] body { background-color:var(--bg); }
+[data-theme="light"] #nebula-bg { background-image: url('m101.jpg'); background-position: center center; }
 [data-theme="light"] #nebula-bg::after {
   background:
-    radial-gradient(ellipse at 60% 30%, rgba(220,238,255,0.62) 0%, rgba(220,238,255,0.90) 70%),
-    linear-gradient(to bottom, rgba(220,238,255,0.65) 0%, rgba(220,238,255,0.95) 100%);
+    radial-gradient(ellipse at 50% 40%, rgba(253,246,238,0.50) 0%, rgba(253,246,238,0.88) 70%),
+    linear-gradient(to bottom, rgba(253,246,238,0.55) 0%, rgba(253,246,238,0.93) 100%);
 }
-[data-theme="light"] .mobile-menu {
-  background:rgba(235,245,255,0.97);
-  border-bottom-color:rgba(40,90,160,0.16);
-}
+[data-theme="light"] nav { background:rgba(253,242,228,0.80); border-bottom-color:rgba(180,110,40,0.18); }
+[data-theme="light"] .mobile-menu { background:rgba(252,240,220,0.97); border-bottom-color:rgba(180,110,40,0.16); }
+[data-theme="light"] .nav-lang,
 [data-theme="light"] .nav-theme,
-[data-theme="light"] .nav-hamburger { border-color:rgba(40,90,160,0.25); }
+[data-theme="light"] .nav-hamburger { border-color:rgba(180,110,40,0.25); }
 [data-theme="light"] .nav-hamburger span { background:var(--muted); }
 [data-theme="light"] .mobile-menu a::before { color:var(--orange); }
 [data-theme="light"] .fact-card,
-[data-theme="light"] .contact-link { background:rgba(255,255,255,0.78); }
-[data-theme="light"] .proj-card    { background:rgba(255,255,255,0.72); }
-[data-theme="light"] .t-astro  { background:linear-gradient(135deg,#daeeff,#e8f4ff); }
-[data-theme="light"] .t-python { background:linear-gradient(135deg,#fff0e0,#fff8ee); }
-[data-theme="light"] .t-data   { background:linear-gradient(135deg,#daeeff,#e6f4ff); }
-[data-theme="light"] .t-misc   { background:linear-gradient(135deg,#fff0d8,#fff8ec); }
-[data-theme="light"] .avatar-inner { background:rgba(210,232,255,0.65); }
+[data-theme="light"] .contact-link { background:rgba(255,240,218,0.75); }
+[data-theme="light"] .proj-card    { background:rgba(255,242,222,0.72); }
+[data-theme="light"] .t-astro  { background:linear-gradient(135deg,#f5e4cc,#fceedd); }
+[data-theme="light"] .t-python { background:linear-gradient(135deg,#fde8cc,#fff3e4); }
+[data-theme="light"] .t-data   { background:linear-gradient(135deg,#f5e0c8,#fcebd8); }
+[data-theme="light"] .t-misc   { background:linear-gradient(135deg,#fde0b0,#fef0d0); }
+[data-theme="light"] .avatar-inner { background:rgba(250,230,200,0.70); }
 [data-theme="light"] .btn-p { color:#fff; }
-[data-theme="light"] .pill-blue   { background:rgba(26,111,212,0.1); color:#1a4080; border-color:rgba(26,111,212,0.3); }
-[data-theme="light"] .pill-orange { background:rgba(184,80,18,0.1);  color:#8a2e08; border-color:rgba(184,80,18,0.3);  }
-[data-theme="light"] .pill-white  { background:rgba(18,40,70,0.08);  color:#283a52; border-color:rgba(18,40,70,0.2);   }
-[data-theme="light"] .ptag-a { background:rgba(26,111,212,0.1); color:#1a4080; border-color:rgba(26,111,212,0.25); }
-[data-theme="light"] .ptag-p { background:rgba(184,80,18,0.1);  color:#8a2e08; border-color:rgba(184,80,18,0.25);  }
-[data-theme="light"] .ptag-d { background:rgba(18,40,70,0.08);  color:#283a52; border-color:rgba(18,40,70,0.18);   }
-[data-theme="light"] .ptag-m { background:rgba(180,100,20,0.1); color:#8a3e08; border-color:rgba(180,100,20,0.25); }
+[data-theme="light"] .divider { background:linear-gradient(to right, transparent, rgba(180,110,40,.25), transparent); }
+[data-theme="light"] .pill-blue   { background:rgba(194,84,26,.10); color:#7a2e0a; border-color:rgba(194,84,26,.3); }
+[data-theme="light"] .pill-orange { background:rgba(224,112,32,.10); color:#8a3a08; border-color:rgba(224,112,32,.3); }
+[data-theme="light"] .pill-white  { background:rgba(30,18,8,.07);   color:#3a2010; border-color:rgba(30,18,8,.2);   }
+[data-theme="light"] .ptag-a { background:rgba(194,84,26,.10); color:#7a2e0a; border-color:rgba(194,84,26,.25); }
+[data-theme="light"] .ptag-p { background:rgba(224,112,32,.10); color:#8a3a08; border-color:rgba(224,112,32,.25); }
+[data-theme="light"] .ptag-d { background:rgba(30,18,8,.07);   color:#3a2010; border-color:rgba(30,18,8,.18);   }
+[data-theme="light"] .ptag-m { background:rgba(200,120,20,.10); color:#7a3e08; border-color:rgba(200,120,20,.25); }
+[data-theme="light"] .section-bg { border-color:var(--border); }
 </style>
 </head>
 <body>
@@ -445,31 +433,28 @@ nav { transition:background .3s, border-color .3s; }
 
 <!-- NAV -->
 <nav>
-  <a href="#home"  class="nav-logo">amanda<span>.</span></a>
+  <a href="#home" class="nav-logo">amanda<span>.</span></a>
   <div class="nav-links">
     <a href="#about"    data-pt="sobre"       data-en="about">sobre</a>
     <a href="#skills"   data-pt="habilidades" data-en="skills">habilidades</a>
     <a href="#projects" data-pt="projetos"    data-en="projects">projetos</a>
     <a href="#contact"  data-pt="contato"     data-en="contact">contato</a>
-    <button class="nav-lang" onclick="toggleLang()">EN</button>
   </div>
   <div class="nav-right">
+    <button class="nav-lang" id="nav-lang-btn" onclick="toggleLang()">EN</button>
     <button class="nav-theme" id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">☀</button>
-    <!-- Hamburger (só aparece no mobile) -->
     <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- Menu mobile -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#about"    data-pt="sobre"       data-en="about"        onclick="closeMenu()">sobre</a>
-  <a href="#skills"   data-pt="habilidades" data-en="skills"       onclick="closeMenu()">habilidades</a>
-  <a href="#projects" data-pt="projetos"    data-en="projects"     onclick="closeMenu()">projetos</a>
-  <a href="#contact"  data-pt="contato"     data-en="contact"      onclick="closeMenu()">contato</a>
+  <a href="#about"    data-pt="sobre"       data-en="about"    onclick="closeMenu()">sobre</a>
+  <a href="#skills"   data-pt="habilidades" data-en="skills"   onclick="closeMenu()">habilidades</a>
+  <a href="#projects" data-pt="projetos"    data-en="projects" onclick="closeMenu()">projetos</a>
+  <a href="#contact"  data-pt="contato"     data-en="contact"  onclick="closeMenu()">contato</a>
   <div class="mobile-menu-row">
     <button class="mobile-lang" id="mobile-lang-btn" onclick="toggleLang()">EN</button>
     <button class="nav-theme" id="mobile-theme-btn" onclick="toggleTheme()" aria-label="Alternar tema">☀</button>
@@ -484,7 +469,7 @@ nav { transition:background .3s, border-color .3s; }
     <p class="hero-greeting ha1" data-pt="Olá, me chamo" data-en="Hi, I'm">Olá, me chamo</p>
     <h1 class="hero-name ha2">Amanda<br><span class="hl">da Costa Cabral</span></h1>
     <p class="hero-sub ha3"
-       data-pt="<strong>Estudante de Astronomia & Astrofísica</strong> se aventurando no mundo da programação — dados, códigos, estrelas e cosmos."
+       data-pt="<strong>Estudante de Astronomia & Astrofísica</strong> se aventurando no mundo da programação — dados, código, estrelas e cosmos."
        data-en="<strong>Astronomy & Astrophysics student</strong> venturing into the programming world — data, codes, stars, and cosmos.">
       <strong>Estudante de Astronomia & Astrofísica</strong> se aventurando no mundo da programação — dados, código, estrelas e cosmos.
     </p>
@@ -542,9 +527,9 @@ nav { transition:background .3s, border-color .3s; }
           </div>
         </div>
         <div class="fact-card">
-          <a href="https://github.com/cosmic-axolotl" target="_blank" class="fact-icon">
-            <span class="fact-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></span>
-          </a>
+          <div class="fact-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
           <div>
             <p class="fact-label">GitHub</p>
             <p class="fact-value">cosmic-axolotl</p>
@@ -567,10 +552,10 @@ nav { transition:background .3s, border-color .3s; }
     <div class="reveal d1">
       <p class="skill-group-label" data-pt="Astronomia & Ciência" data-en="Astronomy & Science">Astronomia & Ciência</p>
       <div class="pills">
-        <span class="pill pill-blue"   data-pt="Astrofísica"              data-en="Astrophysics">Astrofísica</span>
-        <span class="pill pill-blue"   data-pt="Dados observacionais"     data-en="Observational data">Dados observacionais</span>
-        <span class="pill pill-blue"   data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
-        <span class="pill pill-blue"   data-pt="Cosmologia"               data-en="Cosmology">Cosmologia</span>
+        <span class="pill pill-blue" data-pt="Astrofísica"              data-en="Astrophysics">Astrofísica</span>
+        <span class="pill pill-blue" data-pt="Dados observacionais"     data-en="Observational data">Dados observacionais</span>
+        <span class="pill pill-blue" data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
+        <span class="pill pill-blue" data-pt="Cosmologia"               data-en="Cosmology">Cosmologia</span>
       </div>
     </div>
     <div class="reveal d2">
@@ -685,8 +670,13 @@ nav { transition:background .3s, border-color .3s; }
      data-en="⭐ made by <span>Amanda da Costa Cabral</span> ⭐">
     ⭐ feito por <span>Amanda da Costa Cabral</span> ⭐
   </p>
-</footer>
 
+</footer>
+<footer>
+  <p data-pt="todos os créditos das imagens pertencem a NASA" data-en="all image credits go to NASA">
+    todos os créditos das imagens pertencem a NASA
+  </p>
+</footer>
 </div>
 
 <script>
@@ -699,66 +689,50 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 /* HAMBURGER */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
-
 function toggleMenu() {
   const isOpen = mobileMenu.classList.contains('open');
-  if (isOpen) {
-    closeMenu();
-  } else {
-    mobileMenu.classList.add('open');
-    hamburger.classList.add('open');
-  }
+  isOpen ? closeMenu() : (mobileMenu.classList.add('open'), hamburger.classList.add('open'));
 }
-
 function closeMenu() {
   mobileMenu.classList.remove('open');
   hamburger.classList.remove('open');
 }
-
-/* Fecha o menu ao clicar fora */
 document.addEventListener('click', function(e) {
-  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-    closeMenu();
-  }
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
 });
 
 /* THEME */
 const _root = document.documentElement;
-const _themeBtn = document.getElementById('theme-toggle');
-const _mobileThemeBtn = document.getElementById('mobile-theme-btn');
-
 function _setThemeIcon(theme) {
   const icon = theme === 'light' ? '☾' : '☀';
-  if (_themeBtn) _themeBtn.textContent = icon;
-  if (_mobileThemeBtn) _mobileThemeBtn.textContent = icon;
+  ['theme-toggle','mobile-theme-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = icon;
+  });
 }
-
 function toggleTheme() {
   const isLight = _root.getAttribute('data-theme') === 'light';
   if (isLight) {
     _root.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'dark');
+    localStorage.setItem('theme','dark');
     _setThemeIcon('dark');
   } else {
-    _root.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
+    _root.setAttribute('data-theme','light');
+    localStorage.setItem('theme','light');
     _setThemeIcon('light');
   }
 }
-
-(function() {
+(function(){
   if (localStorage.getItem('theme') === 'light') {
-    _root.setAttribute('data-theme', 'light');
+    _root.setAttribute('data-theme','light');
     _setThemeIcon('light');
   }
 })();
 
 /* NAV SCROLL (mobile transparency) */
 const _nav = document.querySelector('nav');
-function _updateNavScroll() {
-  _nav.classList.toggle('nav-scrolled', window.scrollY > 20);
-}
-window.addEventListener('scroll', _updateNavScroll, { passive: true });
+function _updateNavScroll() { _nav.classList.toggle('nav-scrolled', window.scrollY > 20); }
+window.addEventListener('scroll', _updateNavScroll, {passive:true});
 _updateNavScroll();
 
 /* LANG */
@@ -766,11 +740,13 @@ let lang = 'pt';
 function toggleLang() {
   lang = lang === 'pt' ? 'en' : 'pt';
   const label = lang === 'pt' ? 'EN' : 'PT';
-  document.querySelector('.nav-lang') && (document.querySelector('.nav-lang').textContent = label);
-  document.getElementById('mobile-lang-btn') && (document.getElementById('mobile-lang-btn').textContent = label);
+  ['nav-lang-btn','mobile-lang-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = label;
+  });
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   document.querySelectorAll('[data-pt]').forEach(el => {
-    const v = el.getAttribute('data-' + lang);
+    const v = el.getAttribute('data-'+lang);
     if (v !== null) el.innerHTML = v;
   });
 }
