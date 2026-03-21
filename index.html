@@ -558,7 +558,8 @@ function toggleTheme() {
     _setThemeIcon('dark');
     /* restaura cursor pro tema escuro */
     _cursor.style.borderColor = '';
-    _cursor.style.setProperty('--cursor-dot', '');
+    _cursor.style.removeProperty('--cursor-dot');
+    
   } else {
     document.documentElement.setAttribute('data-theme', 'light');
     localStorage.setItem('theme', 'light');
@@ -635,10 +636,15 @@ document.addEventListener('mouseup',    function() { _cursor.classList.remove('c
 document.addEventListener('mouseover', function(e) {
   var isLight = document.documentElement.getAttribute('data-theme') === 'light';
   if (!isLight) {
-    document.documentElement.style.removeProperty('--cursor-dot');
     _cursor.style.borderColor = '';
+    _cursor.style.removeProperty('--cursor-dot');
     return;
   }
+  var onSolid = e.target.closest('.section-bg, nav, .mobile-menu, .fact-card, .proj-card, .contact-link');
+  var color = onSolid ? '#7a5230' : '#fdf6ee';
+  _cursor.style.borderColor = color;
+  _cursor.style.setProperty('--cursor-dot', color);
+});
   /* elementos com fundo sólido/escuro no tema claro */
   var onSolid = e.target.closest('.section-bg, nav, .mobile-menu, .fact-card, .proj-card, .contact-link');
   var color = onSolid ? '#7a5230' : '#fdf6ee';
