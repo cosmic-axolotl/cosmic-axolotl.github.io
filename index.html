@@ -58,7 +58,7 @@ body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans
 
 /* CURSOR — só em dispositivos com mouse real */
 #cursor-ring { position:fixed; z-index:99999; pointer-events:none; width:22px; height:22px; border:1.5px solid var(--accent); border-radius:50%; transform:translate(-50%,-50%); transition:width .15s, height .15s, border-color .15s, opacity .2s; opacity:0; }
-#cursor-ring::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:4px; height:4px; background:var(--accent); border-radius:50%; }
+#cursor-ring::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:4px; height:4px; background:var(--accent); transition: background .2s; border-radius:50%; }
 #cursor-ring.visible  { opacity:1; }
 #cursor-ring.clicking { width:14px; height:14px; border-color:var(--orange); }
 #cursor-ring.clicking::after { background:var(--orange); }
@@ -226,7 +226,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 footer { border-top:0.5px solid var(--border); text-align:center; padding:1.5rem 2rem; font-size:.75rem; color:var(--dim); letter-spacing:.05em; line-height:1.8; }
 footer span { color:var(--orange2); }
 .credits { font-size:.65rem; opacity:.7; margin-top:.3rem; }
-[data-theme="light"] footer {background: rgba(253,246,238,0.85); }
+ footer { ... color: rgba(46, 74, 106, 0.6); } 
+[data-theme="light"] footer { color: rgba(196, 154, 96, 0.8); } 
 /* ANIMS */
 .reveal { opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease; }
 .js-ready .reveal { opacity:0; transform:translateY(22px); }
@@ -606,6 +607,17 @@ document.addEventListener('mousemove', function(e) {
 document.addEventListener('mouseleave', function() { _cursor.classList.remove('visible'); _cursorVisible = false; });
 document.addEventListener('mousedown',  function() { _cursor.classList.add('clicking'); });
 document.addEventListener('mouseup',    function() { _cursor.classList.remove('clicking'); });
+
+  /* CURSOR — troca de cor no tema claro */
+document.addEventListener('mouseover', function(e) {
+  var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (!isLight) return;
+
+  var onSection = e.target.closest('.section-bg');
+  var color = onSection ? '#c2541a' : '#7a5230';
+  _cursor.style.borderColor = color;
+  _cursor.style.setProperty('--cursor-color', color);
+});
 
 /* BACK TO TOP */
 var _btt = document.getElementById('back-to-top');
