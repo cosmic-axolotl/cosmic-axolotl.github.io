@@ -48,7 +48,7 @@ body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans
 #nebula-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url('hp tau.jpg'); background-size:cover; background-position:center 30%; background-attachment:fixed; background-color:#05080f; }
 #nebula-bg::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.78) 100%); }
 [data-theme="light"] #nebula-bg { background-image:url('m101.jpg'); background-position:center center; background-color:#fdf6ee; }
-[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.05) 0%, rgba(253,246,238,0.22) 100%); }
+[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.05) 0%, rgba(253,246,238,0.35) 100%); }
 
 /* ESTRELAS */
 #stars-layer { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
@@ -226,7 +226,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 footer { border-top:0.5px solid var(--border); text-align:center; padding:1.5rem 2rem; font-size:.75rem; color:var(--dim); letter-spacing:.05em; line-height:1.8; }
 footer span { color:var(--orange2); }
 .credits { font-size:.65rem; opacity:.7; margin-top:.3rem; }
-
+[data-theme="light"] footer {background: rgba(253,246,238,0.85); }
 /* ANIMS */
 .reveal { opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease; }
 .js-ready .reveal { opacity:0; transform:translateY(22px); }
