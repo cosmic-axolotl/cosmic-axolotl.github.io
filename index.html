@@ -227,7 +227,7 @@ footer { border-top:0.5px solid var(--border); text-align:center; padding:1.5rem
 footer span { color:var(--orange2); }
 .credits { font-size:.65rem; opacity:.7; margin-top:.3rem; }
  footer { ... color: rgba(46, 74, 106, 0.6); } 
-[data-theme="light"] footer { color: rgba(196, 154, 96, 0.8); } 
+[data-theme="light"] footer { color: rgba(224, 112, 32, 0.8); }
 /* ANIMS */
 .reveal { opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease; }
 .js-ready .reveal { opacity:0; transform:translateY(22px); }
@@ -614,9 +614,13 @@ document.addEventListener('mouseover', function(e) {
   if (!isLight) return;
 
   var onSection = e.target.closest('.section-bg');
-  var color = onSection ? '#c2541a' : '#7a5230';
-  _cursor.style.borderColor = color;
-  _cursor.style.setProperty('--cursor-color', color);
+  if (onSection) {
+    _cursor.style.borderColor = '#c2541a';      /* laranja — sobre seção colorida */
+    _cursor.style.setProperty('--cursor-dot', '#c2541a');
+  } else {
+    _cursor.style.borderColor = '#7a5230';      /* marrom médio — sobre fundo claro */
+    _cursor.style.setProperty('--cursor-dot', '#7a5230');
+  }
 });
 
 /* BACK TO TOP */
