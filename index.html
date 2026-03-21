@@ -636,11 +636,14 @@ document.addEventListener('mouseup',    function() { _cursor.classList.remove('c
 /* CURSOR — cor dinâmica só no tema claro */
 document.addEventListener('mouseover', function(e) {
   var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-  if (!isLight) return;
+  if (!isLight) {
+    document.documentElement.style.removeProperty('--cursor-dot');
+    return;
+  }
   var onSection = e.target.closest('.section-bg');
-  var color = onSection ? '#c2541a' : '#7a5230';
+  var color = onSection ? '#7a5230' : '#dce8f5';
+  document.documentElement.style.setProperty('--cursor-dot', color);
   _cursor.style.borderColor = color;
-  _cursor.style.setProperty('--cursor-dot', color);
 });
 
 /* BACK TO TOP */
