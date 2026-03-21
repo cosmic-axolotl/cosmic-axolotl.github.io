@@ -86,8 +86,8 @@ body {
   content:'';
   position:absolute; inset:0;
   background:
-    radial-gradient(ellipse at 60% 30%, rgba(5,8,20,0.45) 0%, rgba(5,8,20,0.82) 70%),
-    linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.88) 100%);
+    radial-gradient(ellipse at 60% 30%, rgba(5,8,20,0.25) 0%, rgba(5,8,20,0.60) 70%),
+    linear-gradient(to bottom, rgba(5,8,20,0.30) 0%, rgba(5,8,20,0.70) 100%);
 }
 [data-theme="light"] #nebula-bg {
   background-image: url('m101.jpg');
@@ -95,8 +95,8 @@ body {
 }
 [data-theme="light"] #nebula-bg::after {
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(253,246,238,0.50) 0%, rgba(253,246,238,0.88) 70%),
-    linear-gradient(to bottom, rgba(253,246,238,0.55) 0%, rgba(253,246,238,0.93) 100%);
+    radial-gradient(ellipse at 50% 40%, rgba(253,246,238,0.20) 0%, rgba(253,246,238,0.55) 70%),
+    linear-gradient(to bottom, rgba(253,246,238,0.20) 0%, rgba(253,246,238,0.60) 100%);
 }
 
 /* ══════════════════════════════
@@ -786,10 +786,10 @@ footer .credits { font-size:.65rem; color:var(--dim); opacity:.7; margin-top:.3r
       </a>
       <div class="contact-link">
         <span class="cl-icon">✉</span>
-        <div><p class="cl-label">Email</p><p class="cl-value">cosmic.axolotl31@gmail.com</p></div>
+        <div><p class="cl-label">Email</p><p class="cl-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0b3bfa3bdb9b3feb1a8bfbcbfa4bce3e190b7bdb1b9bcfeb3bfbd">[email&#160;protected]</a></p></div>
         <div class="cl-end">
           <button class="copy-email-btn" id="copy-btn" onclick="copyEmail()" title="Copiar email">⎘</button>
-          <a href="mailto:cosmic.axolotl31@gmail.com" class="cl-arr">↗</a>
+          <a href="/cdn-cgi/l/email-protection#b7d4d8c4daded499d6cfd8dbd8c3db8486f7d0dad6dedb99d4d8da" class="cl-arr">↗</a>
         </div>
       </div>
     </div>
@@ -808,7 +808,7 @@ footer .credits { font-size:.65rem; color:var(--dim); opacity:.7; margin-top:.3r
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.documentElement.classList.add('js-ready');
 
 /* REVEAL */
@@ -930,15 +930,4 @@ function toggleLang() {
   lang = lang === 'pt' ? 'en' : 'pt';
   const label = lang === 'pt' ? 'EN' : 'PT';
   ['nav-lang-btn', 'mobile-lang-btn'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = label;
-  });
-  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
-  document.querySelectorAll('[data-pt]').forEach(el => {
-    const v = el.getAttribute('data-' + lang);
-    if (v !== null) el.innerHTML = v;
-  });
-}
-</script>
-</body>
-</html>
+    const el = document.getElementById(id)
