@@ -638,13 +638,16 @@ document.addEventListener('mouseover', function(e) {
   var isLight = document.documentElement.getAttribute('data-theme') === 'light';
   if (!isLight) {
     document.documentElement.style.removeProperty('--cursor-dot');
+    _cursor.style.borderColor = '';
     return;
   }
-  var onSection = e.target.closest('.section-bg');
-  var color = onSection ? '#7a5230' : '#dce8f5';
+  /* elementos com fundo sólido/escuro no tema claro */
+  var onSolid = e.target.closest('.section-bg, nav, .mobile-menu, .fact-card, .proj-card, .contact-link');
+  var color = onSolid ? '#7a5230' : '#fdf6ee';
   document.documentElement.style.setProperty('--cursor-dot', color);
   _cursor.style.borderColor = color;
 });
+  
 
 /* BACK TO TOP */
 var _btt = document.getElementById('back-to-top');
