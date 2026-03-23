@@ -22,6 +22,21 @@
   --orange2:   #f0b070;
   --white-star:#dff0ff;
   --nav-h:     60px;
+
+   /* ===== ASTRO (violeta) ===== */
+  --astro-1: #a78bfa;
+  --astro-2: #c4b5fd;
+  --astro-3: #ddd6fe;
+
+  /* ===== CODE (azul acinzentado) ===== */
+  --code-1: #6a9ed6;
+  --code-2: #8fb6e8;
+  --code-3: #bcd4f6;
+
+  /* ===== DATA (laranja/castanho) ===== */
+  --data-1: #e8934a;
+  --data-2: #f0b070;
+  --data-3: #ffd2a6;
 }
 [data-theme="light"] {
   --bg:        #fdf6ee;
@@ -36,6 +51,21 @@
   --orange:    #e07020;
   --orange2:   #d4956a;
   --white-star:#0f0804;
+
+  /* ===== ASTRO ===== */
+  --astro-1: #6d28d9;
+  --astro-2: #7c3aed;
+  --astro-3: #8b5cf6;
+
+  /* ===== CODE ===== */
+  --code-1: #1e3a5f;
+  --code-2: #2e4a6a;
+  --code-3: #3f6a95;
+
+  /* ===== DATA ===== */
+  --data-1: #9a3412;
+  --data-2: #c2541a;
+  --data-3: #e07020;
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; scroll-padding-top:var(--nav-h); background-color:#05080f; }
@@ -188,6 +218,34 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 [data-theme="light"] .pill-blue   { background:rgba(194,84,26,.10);  color:#7a2e0a; border-color:rgba(194,84,26,.3); }
 [data-theme="light"] .pill-orange { background:rgba(224,112,32,.10); color:#8a3a08; border-color:rgba(224,112,32,.3); }
 [data-theme="light"] .pill-white  { background:rgba(30,18,8,.07);    color:#3a2010; border-color:rgba(30,18,8,.2); }
+/*pill das tags */
+.pill-astro {
+  background: rgba(167,139,250,.12);
+  color: var(--astro-2);
+  border-color: rgba(167,139,250,.4);
+}
+  .pill-code {
+  background: rgba(106,158,214,.15);
+  color: var(--code-2);
+  border-color: rgba(106,158,214,.4);
+}
+  .pill-data {
+  background: rgba(232,147,74,.15);
+  color: var(--data-2);
+  border-color: rgba(232,147,74,.45);
+}
+  .pill.soft {
+  opacity:.8;
+}
+
+.pill.strong {
+  filter: brightness(1.15);
+  border-width:1px;
+}
+.pill:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
 
 /* PROJECTS */
 .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
@@ -248,6 +306,31 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .repo-link { font-size:.75rem; color:var(--accent); }
 .repo-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
 
+/*tags*/
+  .tag {
+  font-size:.63rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:.18rem .55rem;
+  border-radius:3px;
+  border:0.5px solid;
+}
+  .tag-astro {
+  background: rgba(167,139,250,.12);
+  color: var(--astro-2);
+  border-color: rgba(167,139,250,.4);
+}
+  .tag-code {
+  background: rgba(106,158,214,.15);
+  color: var(--code-2);
+  border-color: rgba(106,158,214,.4);
+}
+  .tag-data {
+  background: rgba(232,147,74,.15);
+  color: var(--data-2);
+  border-color: rgba(232,147,74,.45);
+}
+
 /* CONTACT */
 #contact { background:var(--bg2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
 .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
@@ -270,7 +353,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 /* FOOTER — sem fundo, texto suave */
 footer { text-align:center; padding:2.5rem 2rem; font-size:.75rem; color:var(--muted); letter-spacing:.05em; line-height:1.9; }
 footer span { color:var(--orange); }
-.credits { font-size:.65rem; color:var(--dim); margin-top:.4rem; }
+.credits { font-size:.65rem; color:var(--accent; margin-top:.4rem; }
 
 /* ANIMS */
 .reveal { opacity:1; transform:none; transition:opacity .55s ease, transform .55s ease; }
@@ -424,39 +507,39 @@ footer span { color:var(--orange); }
     <div class="reveal d1">
       <p class="skill-group-label" data-pt="Astronomia & Ciência" data-en="Astronomy & Science">Astronomia & Ciência</p>
       <div class="pills">
-        <span class="pill pill-blue" data-pt="Astrofísica"              data-en="Astrophysics">Astrofísica</span>
-        <span class="pill pill-blue" data-pt="Astrofísica estelar"      data-en="Stellar Astrophysics">Astrofísica estelar</span>
-        <span class="pill pill-blue" data-pt="Dados observacionais"     data-en="Observational data">Dados observacionais</span>
-        <span class="pill pill-blue" data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
-        <span class="pill pill-blue" data-pt="Cosmologia"               data-en="Cosmology">Cosmologia</span>
+        <span class="pill pill-astro strong" data-pt="Astrofísica"              data-en="Astrophysics">Astrofísica</span>
+        <span class="pill pill-astro" data-pt="Astrofísica estelar"      data-en="Stellar Astrophysics">Astrofísica estelar</span>
+        <span class="pill pill-astro soft" data-pt="Dados observacionais"     data-en="Observational data">Dados observacionais</span>
+        <span class="pill pill-astro" data-pt="Astronomia computacional" data-en="Computational astronomy">Astronomia computacional</span>
+        <span class="pill pill-astro strong" data-pt="Cosmologia"               data-en="Cosmology">Cosmologia</span>
       </div>
     </div>
     <div class="reveal d2">
       <p class="skill-group-label" data-pt="Programação" data-en="Programming">Programação</p>
       <div class="pills">
-        <span class="pill pill-orange">Python</span>
-        <span class="pill pill-orange">Selenium & Playwright</span>
-        <span class="pill pill-orange">Julia</span>
-        <span class="pill pill-orange">HTML/CSS</span>
-        <span class="pill pill-white">Javascript</span>
-        <span class="pill pill-white">C++</span>
-        <span class="pill pill-white">React</span>
-        <span class="pill pill-white">FastAPI</span>
-        <span class="pill pill-white">Fortran</span>
-        <span class="pill pill-orange" data-pt="Automação" data-en="Automation">Automação</span>
-        <span class="pill pill-orange">Git</span>
+        <span class="pill pill-code strong">Python</span>
+        <span class="pill pill-code">Selenium & Playwright</span>
+        <span class="pill pill-code soft">Julia</span>
+        <span class="pill pill-code">HTML/CSS</span>
+        <span class="pill pill-code strong">Javascript</span>
+        <span class="pill pill-code">C++</span>
+        <span class="pill pill-code soft">React</span>
+        <span class="pill pill-code">FastAPI</span>
+        <span class="pill pill-code strong">Fortran</span>
+        <span class="pill pill-code" data-pt="Automação" data-en="Automation">Automação</span>
+        <span class="pill pill-code soft">Git</span>
       </div>
     </div>
     <div class="reveal d3">
       <p class="skill-group-label" data-pt="Dados & Análise" data-en="Data & Analysis">Dados & Análise</p>
       <div class="pills">
-        <span class="pill pill-white">Pandas</span>
-        <span class="pill pill-white">NumPy</span>
-        <span class="pill pill-white">Astropy</span>
-        <span class="pill pill-white">Matplotlib</span>
-        <span class="pill pill-white">Seaborn</span>
-        <span class="pill pill-white" data-pt="Visualização"         data-en="Visualization">Visualização</span>
-        <span class="pill pill-white" data-pt="Análise exploratória" data-en="Exploratory analysis">Análise exploratória</span>
+        <span class="pill pill-data strong">Pandas</span>
+        <span class="pill pill-data">NumPy</span>
+        <span class="pill pill-data soft">Astropy</span>
+        <span class="pill pill-data">Matplotlib</span>
+        <span class="pill pill-data strong">Seaborn</span>
+        <span class="pill pill-data" data-pt="Visualização"         data-en="Visualization">Visualização</span>
+        <span class="pill pill-data soft" data-pt="Análise exploratória" data-en="Exploratory analysis">Análise exploratória</span>
       </div>
     </div>
   </div>
@@ -521,9 +604,9 @@ footer span { color:var(--orange); }
     </div>
   <div class="repos-grid">
     <a href="https://github.com/cosmic-axolotl/astronomy-n-science" target="_blank" class="repo-card reveal d1">
-      <div class="repo-thumb t-astro">🌠</div>
+      <div class="repo-thumb t-astro">🌌</div>
       <div class="repo-body">
-        <div class="repo-tags"><span class="ptag ptag-a">ASTRO</span><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">FORTRAN</span><span class="ptag ptag-p">JULIA</span></div>
+        <div class="repo-tags"><span class="tag tag-astro">ASTRO</span><span class="tag tag-code">PYTHON</span><span class="tag tag-code">FORTRAN</span><span class="tag tag-code">JULIA</span></div>
         <p class="repo-name" data-pt="astronomia e ciência" data-en="astronomy and science">astronomia e ciência</p>
         <p class="repo-desc" data-pt="Projetos voltados para astronomia e ciência." data-en="Projects focused on astronomy and science.">Projetos voltados para astronomia e ciência.</p>
       </div>
@@ -533,9 +616,9 @@ footer span { color:var(--orange); }
       </div>
     </a>
     <a href="https://github.com/cosmic-axolotl/programming" target="_blank" class="repo-card reveal d2">
-      <div class="repo-thumb t-prog">🕸️</div>
+      <div class="repo-thumb t-prog">💻</div>
       <div class="repo-body">
-        <div class="repo-tags"><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">REACT</span><span class="ptag ptag-p">C++</span><span class="ptag ptag-p">FASTAPI</span></div>
+        <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">REACT</span><span class="tag tag-code">C++</span><span class="tag tag-code">FASTAPI</span></div>
         <p class="repo-name" data-pt="programação" data-en="programming">programação</p>
         <p class="repo-desc" data-pt="Projetos em várias linguagens de programação." data-en="Projects in various programming languages.">Projetos em várias linguagens de programação.</p>
       </div>
@@ -545,9 +628,9 @@ footer span { color:var(--orange); }
       </div>
     </a>
     <a href="https://github.com/cosmic-axolotl/data-n-analysis" target="_blank" class="repo-card reveal d3">
-      <div class="repo-thumb t-data">📡</div>
+      <div class="repo-thumb t-data">📊</div>
       <div class="repo-body">
-        <div class="repo-tags"><span class="ptag ptag-p">PYTHON</span><span class="ptag ptag-p">NUMPY</span><span class="ptag ptag-p">MATPLOTLIB</span><span class="ptag ptag-p">SEABORN</span></div>
+        <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">NUMPY</span><span class="ptag tag-data">MATPLOTLIB</span><span class="tag tag-data">SEABORN</span></div>
         <p class="repo-name" data-pt="dados e análise" data-en="data and analysis">dados e análise</p>
         <p class="repo-desc" data-pt="Projetos voltados a análises de dados." data-en="Projects focused on data analysis.">Projetos voltados a análises de dados.</p>
       </div>
