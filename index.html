@@ -396,7 +396,7 @@ footer span { color:var(--orange); }
     <a href="#contact"  data-pt="contato"     data-en="contact">contato</a>
   </div>
   <div class="nav-right">
-    <button class="nav-lang" id="nav-lang-btn" onclick="toggleLang()">EN</button>
+    <button class="nav-lang" id="nav-lang-btn" onclick="toggleLang()">PT</button>
     <button class="nav-theme" id="theme-toggle" onclick="toggleTheme()">☀</button>
     <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -410,7 +410,7 @@ footer span { color:var(--orange); }
   <a href="#projects" data-pt="projetos"    data-en="projects" onclick="closeMenu()">projetos</a>
   <a href="#contact"  data-pt="contato"     data-en="contact"  onclick="closeMenu()">contato</a>
   <div class="mobile-menu-row">
-    <button class="mobile-lang" id="mobile-lang-btn" onclick="toggleLang()">EN</button>
+    <button class="mobile-lang" id="mobile-lang-btn" onclick="toggleLang()">PT</button>
     <button class="nav-theme" id="mobile-theme-btn" onclick="toggleTheme()">☀</button>
   </div>
 </div>
@@ -761,8 +761,8 @@ function toggleTheme() {
 /* LANG */
 var lang = 'pt';
 function toggleLang() {
-  lang = lang === 'pt' ? 'en' : 'pt';
-  var label = lang === 'pt' ? 'EN' : 'PT';
+  lang = lang === 'pt' ? 'pt' : 'en';
+  var label = lang === 'pt' ? 'PT' : 'EN';
   var ids = ['nav-lang-btn', 'mobile-lang-btn'];
   for (var i = 0; i < ids.length; i++) {
     var el = document.getElementById(ids[i]);
