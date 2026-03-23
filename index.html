@@ -155,8 +155,8 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 /* SECTIONS */
 .section { max-width:1100px; margin:0 auto; padding:5rem 2.5rem; }
 .sec-header { margin-bottom:2.8rem; }
-.sec-tag { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--orange2); margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem; }
-.sec-tag::before { content:'//'; opacity:.45; color:var(--orange); }
+.sec-tag { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem; }
+.sec-tag::before { content:'//'; opacity:.45; color:var(--muted); }
 .sec-title { font-family:'Urbanist',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; text-transform:lowercase; }
 .divider { max-width:1100px; margin:0 auto; height:0.5px; background:linear-gradient(to right, transparent, rgba(106,171,240,.25), transparent); }
 [data-theme="light"] .divider { background:linear-gradient(to right, transparent, rgba(180,110,40,.25), transparent); }
@@ -249,7 +249,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .repo-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
 
 /* CONTACT */
-#contact { background:var(--bg2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-top:0.5px solid var(--border); }
+#contact.section-bg-full { background:var(--bg2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
 .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; }
 .contact-desc { font-size:.97rem; color:var(--muted); line-height:1.8; }
 .contact-desc strong { color:var(--text); font-weight:500; }
@@ -562,7 +562,7 @@ footer span { color:var(--orange2); }
 <div class="divider"></div>
 
 <!-- CONTACT — com fundo opaco -->
-<section id="contact">
+<section id="contact" class="section-bg">
   <div class="section">
     <div class="sec-header reveal">
       <p class="sec-tag" data-pt="contato" data-en="contact">contato</p>
