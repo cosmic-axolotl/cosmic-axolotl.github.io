@@ -39,39 +39,24 @@
   --data-3: #ffd2a6;
 }
 [data-theme="light"] {
-  --bg:        #fdf6ee;
-  --bg2:       rgba(255,245,230,0.80);
-  --bg3:       rgba(250,238,215,0.90);
-  --border:    rgba(180,110,40,0.15);
-  --border2:   rgba(180,110,40,0.38);
-  --text:      #1e1208;
-  --muted:     #7a5230;
-  --dim:       #c49a60;
-  --accent:    #c2541a;
-  --orange:    #e07020;
-  --orange2:   #d4956a;
-  --white-star:#0f0804;
-
-  /* ===== ASTRO ===== */
-  --astro-1: #741c73;
-  --astro-2: #541453;
-  --astro-3: #932392;
-  --astro-4: #a327a2;
-  --astro-5: #b32bb1;
-
-  /* ===== CODE ===== */
-  --code-1: #1e3a5f;
-  --code-2: #274c7d;
-  --code-3: #3668aa;
-  --code-4: #3a71b8;
-  --code-5: #437ac4;
-
-  /* ===== DATA ===== */
-  --data-1: #77280e;
-  --data-2: #9a3412;
-  --data-3: #ac3a14;
-  --data-4: #cf4618;
-  --data-5: #e65828;
+   --bg:        #180805;
+  --bg2:       rgba(28,8,4,0.78);
+  --bg3:       rgba(38,10,5,0.90);
+  --border:    rgba(210,90,30,0.20);
+  --border2:   rgba(210,90,30,0.45);
+  --text:      #f8dece;
+  --muted:     #c87850;
+  --dim:       #8a3820;
+  --accent:    #e8784a;
+  --orange:    #cc3c10;
+  --orange2:   #f09858;
+  --white-star:#fff0e8;
+  /* ASTRO — azul estelar da NGC 4449 */
+  --astro-1: #3a8fc8; --astro-2: #5aaae0; --astro-3: #88ccf5;
+  /* CODE — vermelho/laranja dos filamentos */
+  --code-1: #b83818; --code-2: #d45528; --code-3: #ee7848;
+  /* DATA — dourado do núcleo */
+  --data-1: #b87010; --data-2: #d09030; --data-3: #e8b050;
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; scroll-padding-top:var(--nav-h); background-color:#05080f; }
@@ -81,11 +66,11 @@ body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans
 #scroll-bar { position:fixed; top:0; left:0; z-index:9000; height:2px; width:0%; background:linear-gradient(to right, var(--accent), var(--orange)); pointer-events:none; }
 
 /* FUNDO */
-#nebula-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url('hp tau.jpg'); background-size:cover; background-position:center 30%; background-attachment:fixed; background-color:#05080f; }
+#nebula-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url('ngc 4449.jpg'); background-size:cover; background-position:center 30%; background-attachment:fixed; background-color:#05080f; }
 #nebula-bg::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.78) 100%); }
-[data-theme="light"] #nebula-bg { background-image:url('m101.jpg'); background-position:center center; background-color:#fdf6ee; }
-[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.2) 0%, rgba(253,246,238,0.4) 40%, rgba(253,246,238,0.6) 100% ); }
-
+[data-theme="light"] #nebula-bg { background-image:url('ngc_4449.jpg'); background-position:center center; background-color:#180805; }
+[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(24,8,5,0.45) 0%, rgba(24,8,5,0.65) 60%, rgba(24,8,5,0.78) 100%); }
+  
 /* ESTRELAS */
 #stars-layer { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
 .star { position:absolute; border-radius:50%; background:#fff; animation:twinkle var(--dur,3s) var(--delay,0s) infinite ease-in-out; }
