@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>projetos — Amanda da Costa Cabral</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600&family=Urbanist:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS (idêntico ao index.html) ───────────────────────── */
+:root {
+  --bg:        #05080f;
+  --bg2:       rgba(8,14,28,0.72);
+  --bg3:       rgba(10,17,35,0.85);
+  --border:    rgba(100,155,220,0.15);
+  --border2:   rgba(100,155,220,0.35);
+  --text:      #dce8f5;
+  --muted:     #7a9bbf;
+  --dim:       #2e4a6a;
+  --accent:    #6aabf0;
+  --orange:    #e8934a;
+  --orange2:   #f0b070;
+  --white-star:#dff0ff;
+  --nav-h:     60px;
+  --astro-1: #a78bfa; --astro-2: #c4b5fd; --astro-3: #ddd6fe;
+  --code-1:  #6a9ed6; --code-2:  #8fb6e8; --code-3:  #bcd4f6;
+  --data-1:  #e8934a; --data-2:  #f0b070; --data-3:  #ffd2a6;
+}
+[data-theme="light"] {
+  --bg:        #fdf6ee;
+  --bg2:       rgba(255,245,230,0.80);
+  --bg3:       rgba(250,238,215,0.90);
+  --border:    rgba(180,110,40,0.15);
+  --border2:   rgba(180,110,40,0.38);
+  --text:      #1e1208;
+  --muted:     #7a5230;
+  --dim:       #c49a60;
+  --accent:    #c2541a;
+  --orange:    #e07020;
+  --orange2:   #d4956a;
+  --white-star:#0f0804;
+  --astro-1: #741c73; --astro-2: #541453; --astro-3: #932392;
+  --code-1:  #1e3a5f; --code-2:  #274c7d; --code-3:  #3668aa;
+  --data-1:  #77280e; --data-2:  #9a3412; --data-3:  #ac3a14;
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; background-color:#05080f; }
+body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans-serif; font-weight:400; overflow-x:hidden; min-height:100vh; }
+
+/* FUNDO NEBULA */
+#nebula-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url('../hp tau.jpg'); background-size:cover; background-position:center 30%; background-attachment:fixed; background-color:#05080f; }
+#nebula-bg::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.78) 100%); }
+[data-theme="light"] #nebula-bg { background-image:url('../ngc 4449.jpg'); background-position:center center; background-color:#fdf6ee; }
+[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.2) 0%, rgba(253,246,238,0.4) 40%, rgba(253,246,238,0.6) 100%); }
+
+/* ESTRELAS */
+#stars-layer { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
+.star { position:absolute; border-radius:50%; background:#fff; animation:twinkle var(--dur,3s) var(--delay,0s) infinite ease-in-out; }
+@keyframes twinkle { 0%,100%{opacity:var(--min-op,.15);transform:scale(1)} 50%{opacity:var(--max-op,.9);transform:scale(1.4)} }
+[data-theme="light"] #stars-layer { opacity:.15; }
+
+/* CURSOR */
+#cursor-ring {
+  position:fixed; z-index:99999; pointer-events:none;
+  width:22px; height:22px; border:1.5px solid var(--accent); border-radius:50%;
+  transform:translate(-50%,-50%);
+  transition:width .15s,height .15s,border-color .2s,opacity .2s; opacity:0;
+}
+#cursor-ring::after {
+  content:''; position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%); width:4px; height:4px;
+  background:var(--cursor-dot,var(--accent)); transition:background .2s; border-radius:50%;
+}
+#cursor-ring.visible  { opacity:1; }
+#cursor-ring.clicking { width:14px; height:14px; border-color:var(--orange); }
+#cursor-ring.clicking::after { background:var(--orange) !important; }
+@media (hover:hover) and (pointer:fine) { * { cursor:none !important; } }
+@media (hover:none),(pointer:coarse),(max-width:700px) { #cursor-ring { display:none !important; } }
+
+/* NAV */
+nav { position:sticky; top:0; z-index:100; height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; padding:0 2.5rem; background:rgba(5,8,15,0.6); backdrop-filter:blur(20px); border-bottom:0.5px solid rgba(106,171,240,0.18); transition:background .3s,border-color .3s; }
+[data-theme="light"] nav { background:rgba(253,242,228,0.80); border-bottom-color:rgba(180,110,40,0.18); }
+.nav-logo { font-family:'Urbanist',sans-serif; font-weight:800; font-size:1rem; color:var(--text); letter-spacing:-.01em; text-transform:lowercase; text-decoration:none; }
+.nav-logo span { color:var(--accent); }
+.nav-right { display:flex; align-items:center; gap:.5rem; }
+.nav-back { font-size:.8rem; color:var(--muted); text-decoration:none; display:flex; align-items:center; gap:.4rem; transition:color .2s; padding:.3rem .6rem; border:0.5px solid transparent; border-radius:6px; }
+.nav-back:hover { color:var(--white-star); border-color:var(--border); }
+.nav-lang { font-size:.72rem; color:var(--dim); background:none; border:0.5px solid rgba(106,171,240,0.2); padding:.28rem .7rem; border-radius:20px; cursor:pointer; font-family:'Exo 2',sans-serif; letter-spacing:.05em; transition:border-color .2s,color .2s; }
+.nav-lang:hover { border-color:var(--border2); color:var(--accent); }
+[data-theme="light"] .nav-lang { border-color:rgba(180,110,40,0.25); }
+.nav-theme { display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:0.5px solid rgba(106,171,240,0.2); border-radius:8px; cursor:pointer; color:var(--muted); font-size:.9rem; padding:0; transition:border-color .2s,color .2s; }
+.nav-theme:hover { border-color:var(--border2); color:var(--accent); }
+[data-theme="light"] .nav-theme { border-color:rgba(180,110,40,0.25); }
+
+/* WRAP */
+.wrap { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:3rem 2.5rem 5rem; }
+
+/* PAGE HEADER */
+.page-header { margin-bottom:2.8rem; }
+.sec-tag { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem; }
+.sec-tag::before { content:'//'; opacity:.45; color:var(--muted); }
+.sec-title { font-family:'Urbanist',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; text-transform:lowercase; }
+.sec-sub { font-size:.88rem; color:var(--muted); margin-top:.4rem; font-weight:300; }
+
+/* SEARCH */
+.search-wrap { position:relative; margin-bottom:1.4rem; }
+.search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--dim); font-size:.9rem; pointer-events:none; }
+#search-input {
+  width:100%; background:rgba(6,12,26,0.65); backdrop-filter:blur(12px);
+  border:0.5px solid var(--border); border-radius:8px;
+  color:var(--text); font-family:'Exo 2',sans-serif; font-size:.92rem; font-weight:300;
+  padding:12px 40px 12px 40px; outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+[data-theme="light"] #search-input { background:rgba(255,240,218,0.65); }
+#search-input::placeholder { color:var(--dim); }
+#search-input:focus { border-color:var(--accent); box-shadow:0 0 0 2px rgba(106,171,240,.12); }
+[data-theme="light"] #search-input:focus { box-shadow:0 0 0 2px rgba(194,84,26,.12); }
+.search-clear { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--dim); cursor:pointer; font-size:.85rem; padding:4px; border-radius:4px; display:none; transition:color .2s; }
+.search-clear.visible { display:block; }
+.search-clear:hover { color:var(--text); }
+
+/* FILTERS */
+.filters-area { display:flex; flex-direction:column; gap:10px; margin-bottom:1.6rem; }
+.filter-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.filter-label { font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--dim); min-width:72px; flex-shrink:0; }
+.filter-pills { display:flex; flex-wrap:wrap; gap:5px; }
+.fpill {
+  font-family:'Urbanist',sans-serif; font-size:.75rem; font-weight:600;
+  padding:.28rem .8rem; border-radius:20px; border:0.5px solid var(--border);
+  background:rgba(6,12,26,0.5); color:var(--muted); cursor:pointer;
+  transition:all .15s; letter-spacing:.02em; user-select:none;
+}
+[data-theme="light"] .fpill { background:rgba(255,240,218,0.5); }
+.fpill:hover { border-color:var(--border2); color:var(--text); }
+/* estados activos por categoria de cor */
+.fpill.active-all   { background:rgba(106,171,240,.12); border-color:var(--accent); color:var(--accent); }
+.fpill.active-astro { background:rgba(167,139,250,.12); border-color:rgba(167,139,250,.6); color:#c4b5fd; }
+.fpill.active-code  { background:rgba(106,158,214,.15); border-color:rgba(106,158,214,.6); color:#8fb6e8; }
+.fpill.active-data  { background:rgba(232,147,74,.12);  border-color:rgba(232,147,74,.6);  color:#f0b070; }
+[data-theme="light"] .fpill.active-all   { color:var(--accent); }
+[data-theme="light"] .fpill.active-astro { color:var(--astro-1); border-color:rgba(116,28,115,.5); background:rgba(116,28,115,.07); }
+[data-theme="light"] .fpill.active-code  { color:var(--code-1);  border-color:rgba(30,58,95,.5);  background:rgba(30,58,95,.07); }
+[data-theme="light"] .fpill.active-data  { color:var(--data-1);  border-color:rgba(119,40,14,.5); background:rgba(119,40,14,.07); }
+.filter-divider { height:0.5px; background:var(--border); }
+
+/* ACTIVE FILTERS STRIP */
+.active-filters { display:none; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
+.active-filters.has-filters { display:flex; }
+.active-filter-label { font-size:.7rem; color:var(--dim); }
+.active-chip {
+  display:inline-flex; align-items:center; gap:4px;
+  font-family:'Urbanist',sans-serif; font-size:.72rem; font-weight:600;
+  padding:.22rem .65rem; border-radius:20px;
+  background:rgba(106,171,240,.1); border:0.5px solid var(--accent); color:var(--accent);
+  cursor:pointer; transition:background .15s;
+}
+.active-chip:hover { background:rgba(106,171,240,.2); }
+.chip-x { font-size:.6rem; opacity:.7; }
+.clear-all-btn { font-size:.72rem; color:var(--dim); background:none; border:none; cursor:pointer; text-decoration:underline; text-underline-offset:2px; transition:color .2s; }
+.clear-all-btn:hover { color:var(--muted); }
+
+/* RESULTS META */
+.results-meta { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; flex-wrap:wrap; gap:8px; }
+.results-count { font-size:.8rem; color:var(--dim); }
+.results-count strong { color:var(--muted); font-weight:600; }
+.sort-select { background:rgba(6,12,26,0.55); border:0.5px solid var(--border); border-radius:6px; color:var(--muted); font-family:'Exo 2',sans-serif; font-size:.78rem; padding:5px 9px; outline:none; cursor:pointer; transition:border-color .2s; }
+[data-theme="light"] .sort-select { background:rgba(255,240,218,0.6); }
+.sort-select:focus { border-color:var(--accent); }
+
+/* GRID */
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
+
+/* PROJ CARD — visual idêntico ao index.html */
+.proj-card {
+  background:rgba(6,12,26,0.65); backdrop-filter:blur(18px);
+  border:0.5px solid var(--border); border-radius:12px;
+  overflow:hidden; color:inherit; display:flex; flex-direction:column;
+  transition:border-color .25s,transform .2s,box-shadow .25s;
+  animation:fadeUp .3s ease both;
+}
+.proj-card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.5); }
+[data-theme="light"] .proj-card { background:rgba(255,242,222,0.72); }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+
+.proj-thumb { height:110px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; border-bottom:0.5px solid var(--border); position:relative; overflow:hidden; }
+.proj-thumb::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, var(--tg,rgba(106,171,240,.25)) 0%, transparent 70%); }
+.t-astro  { background:linear-gradient(135deg,#060b1a,#0a1228); --tg:rgba(106,171,240,.3); }
+.t-python { background:linear-gradient(135deg,#0a0d18,#101624); --tg:rgba(232,147,74,.25); }
+.t-data   { background:linear-gradient(135deg,#060e16,#0a1420); --tg:rgba(106,171,240,.2); }
+.t-prog   { background:linear-gradient(135deg,#0a0818,#100a24); --tg:rgba(167,125,245,.25); }
+[data-theme="light"] .t-astro  { background:linear-gradient(135deg,#f5e4cc,#fceedd); }
+[data-theme="light"] .t-python { background:linear-gradient(135deg,#fde8cc,#fff3e4); }
+[data-theme="light"] .t-data   { background:linear-gradient(135deg,#f5e0c8,#fcebd8); }
+[data-theme="light"] .t-prog   { background:linear-gradient(135deg,#ede4f8,#f5eeff); }
+
+.proj-body { padding:1rem 1.1rem; flex:1; display:flex; flex-direction:column; gap:.45rem; }
+.proj-tags { display:flex; gap:.4rem; flex-wrap:wrap; }
+.proj-name { font-family:'Urbanist',sans-serif; font-weight:700; font-size:.97rem; color:var(--white-star); text-transform:lowercase; }
+.proj-desc { font-size:.8rem; color:var(--muted); line-height:1.6; flex:1; }
+.proj-footer { padding:.65rem 1.1rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
+.proj-link { font-size:.75rem; color:var(--accent); text-decoration:none; }
+.proj-link:hover { text-decoration:underline; text-underline-offset:2px; }
+.proj-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
+
+/* TAGS (idêntico ao index.html) */
+.tag { font-size:.63rem; letter-spacing:.08em; text-transform:uppercase; padding:.18rem .55rem; border-radius:3px; border:0.5px solid; }
+.tag-astro { background:rgba(167,139,250,.12); color:var(--astro-2); border-color:rgba(167,139,250,.4); }
+.tag-code  { background:rgba(106,158,214,.15); color:var(--code-2);  border-color:rgba(106,158,214,.4); }
+.tag-data  { background:rgba(232,147,74,.15);  color:var(--data-2);  border-color:rgba(232,147,74,.45); }
+[data-theme="light"] .tag-astro { background:rgba(237,180,237,.10); color:var(--astro-2); border-color:rgba(179,43,177,.3); }
+[data-theme="light"] .tag-code  { background:rgba(106,158,214,.10); color:var(--code-3);  border-color:rgba(44,99,159,.3); }
+[data-theme="light"] .tag-data  { background:rgba(238,143,111,.07); color:var(--data-3);  border-color:rgba(190,64,22,.2); }
+
+/* EMPTY STATE */
+.empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--dim); }
+.empty-icon  { font-size:2.2rem; margin-bottom:.8rem; }
+.empty-state p { font-size:.9rem; color:var(--muted); font-weight:300; }
+
+/* FOOTER */
+footer { text-align:center; padding:2.5rem 2rem; font-size:.75rem; color:var(--muted); letter-spacing:.05em; line-height:1.9; position:relative; z-index:2; }
+footer span { color:var(--orange); }
+
+/* ANIMS */
+.reveal { opacity:1; transform:none; transition:opacity .55s ease,transform .55s ease; }
+.js-ready .reveal { opacity:0; transform:translateY(22px); }
+.js-ready .reveal.v { opacity:1; transform:none; }
+
+@media(max-width:700px) {
+  .wrap { padding:2rem 1.4rem 4rem; }
+  .projects-grid { grid-template-columns:1fr; }
+  nav { padding:0 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="nebula-bg"></div>
+<div id="stars-layer"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="../" class="nav-logo">amanda<span>.</span></a>
+  <div class="nav-right">
+    <a href="../" class="nav-back" data-pt="← início" data-en="← home">← início</a>
+    <button class="nav-lang" id="nav-lang-btn" onclick="toggleLang()">PT</button>
+    <button class="nav-theme" id="theme-toggle" onclick="toggleTheme()">☀</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="page-header reveal">
+    <p class="sec-tag" data-pt="todos os projetos" data-en="all projects">todos os projetos</p>
+    <h1 class="sec-title" data-pt="buscar projetos" data-en="search projects">buscar projetos</h1>
+    <p class="sec-sub" data-pt="filtre por categoria, tag ou pesquise pelo nome" data-en="filter by category, tag or search by name">filtre por categoria, tag ou pesquise pelo nome</p>
+  </header>
+
+  <!-- SEARCH -->
+  <div class="search-wrap reveal">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" autocomplete="off" spellcheck="false"
+           placeholder="buscar por nome, descrição ou tag..." />
+    <button class="search-clear" id="search-clear" aria-label="limpar">✕</button>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filters-area reveal">
+    <div class="filter-row">
+      <span class="filter-label" data-pt="categoria" data-en="category">categoria</span>
+      <div class="filter-pills" id="cat-filters">
+        <button class="fpill active-all" data-cat="all"   data-pt="todos"               data-en="all">todos</button>
+        <button class="fpill"            data-cat="astro" data-pt="astronomia & ciência" data-en="astronomy & science">astronomia & ciência</button>
+        <button class="fpill"            data-cat="code"  data-pt="programação"          data-en="programming">programação</button>
+        <button class="fpill"            data-cat="data"  data-pt="dados & análise"       data-en="data & analysis">dados & análise</button>
+      </div>
+    </div>
+    <div class="filter-divider"></div>
+    <div class="filter-row">
+      <span class="filter-label">tags</span>
+      <div class="filter-pills" id="tag-filters">
+        <button class="fpill" data-tag="ASTRO">ASTRO</button>
+        <button class="fpill" data-tag="PYTHON">PYTHON</button>
+        <button class="fpill" data-tag="HTML/CSS">HTML/CSS</button>
+        <button class="fpill" data-tag="JAVASCRIPT">JAVASCRIPT</button>
+        <button class="fpill" data-tag="FASTAPI">FASTAPI</button>
+        <button class="fpill" data-tag="REACT">REACT</button>
+        <button class="fpill" data-tag="TYPESCRIPT">TYPESCRIPT</button>
+        <button class="fpill" data-tag="JULIA">JULIA</button>
+        <button class="fpill" data-tag="C++">C++</button>
+        <button class="fpill" data-tag="FORTRAN">FORTRAN</button>
+        <button class="fpill" data-tag="DADOS">DADOS</button>
+        <button class="fpill" data-tag="NUMPY">NUMPY</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVE FILTERS STRIP -->
+  <div class="active-filters" id="active-filters"></div>
+
+  <!-- META -->
+  <div class="results-meta">
+    <p class="results-count" id="results-count"><strong>0</strong> projetos</p>
+    <select class="sort-select" id="sort-select">
+      <option value="default" data-pt="ordem padrão"  data-en="default order">ordem padrão</option>
+      <option value="name"    data-pt="nome A→Z"       data-en="name A→Z">nome A→Z</option>
+      <option value="status"  data-pt="por status"     data-en="by status">por status</option>
+    </select>
+  </div>
+
+  <!-- GRID -->
+  <div class="projects-grid" id="projects-grid"></div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p data-pt="⭐ feito por <span>Amanda da Costa Cabral</span> ⭐"
+     data-en="⭐ made by <span>Amanda da Costa Cabral</span> ⭐">
+    ⭐ feito por <span>Amanda da Costa Cabral</span> ⭐
+  </p>
+</footer>
+
+<script>
+document.documentElement.classList.add('js-ready');
+
+/* ── DADOS ──────────────────────────────────────────────────── */
+var PROJECTS = [
+  {
+    emoji:'🌠', thumb:'t-astro',
+    name:'site gerador de cronograma da disciplina',
+    nameEn:'course schedule generator website',
+    desc:'Um site interativo que gera o cronograma da disciplina, levando em consideração o ano letivo de 2026 da UFRJ. Podendo adicionar parâmetros como número de relatórios e aulas dedicadas a cada um, além da adição de datas excepcionais.',
+    descEn:'An interactive site that generates the course schedule for the 2026 academic year at UFRJ. Allows adding reports, dedicated classes and exceptional dates.',
+    cat:'astro', catLabelPt:'astronomia & ciência', catLabelEn:'astronomy & science',
+    tags:['ASTRO','HTML/CSS','JAVASCRIPT'],
+    status:'live', statusLabelPt:'disponível', statusLabelEn:'available',
+    ph:'disponível, sujeito a alterações', phEn:'available, subject to change',
+    href:'https://cosmic-axolotl.github.io/simulacoes-astrofisicas/', linkLabel:'GitHub Page ↗'
+  },
+  {
+    emoji:'🔭', thumb:'t-python',
+    name:'AstroQuery',
+    nameEn:'AstroQuery',
+    desc:'Ferramenta de pesquisa de objetos astronômicos em múltiplos bancos de dados: SIMBAD TAP, VizieR e NASA ADS. Backend FastAPI + frontend React/Vite.',
+    descEn:'Tool for searching astronomical objects across multiple databases: SIMBAD TAP, VizieR and NASA ADS. FastAPI backend + React/Vite frontend.',
+    cat:'astro', catLabelPt:'astronomia & ciência', catLabelEn:'astronomy & science',
+    tags:['ASTRO','HTML/CSS','JAVASCRIPT','FASTAPI','REACT','PYTHON'],
+    status:'wip', statusLabelPt:'em construção', statusLabelEn:'under construction',
+    ph:'ainda em construção', phEn:'still under construction',
+    href:'https://cosmic-axolotl.github.io/astro-query/', linkLabel:'GitHub ↗'
+  },
+  {
+    emoji:'📡', thumb:'t-data',
+    name:'[nome do projeto]',
+    nameEn:'[project name]',
+    desc:'Projeto de análise de dados astronômicos. Pipeline de redução fotométrica, cross-match de catálogos e visualizações científicas.',
+    descEn:'Astronomical data analysis project. Photometric reduction pipeline, catalog cross-match and scientific visualizations.',
+    cat:'data', catLabelPt:'dados & análise', catLabelEn:'data & analysis',
+    tags:['DADOS','PYTHON'],
+    status:'soon', statusLabelPt:'em breve', statusLabelEn:'coming soon',
+    ph:'em breve', phEn:'coming soon',
+    href:'https://github.com/cosmic-axolotl', linkLabel:'GitHub ↗'
+  },
+  {
+    emoji:'🌌', thumb:'t-astro',
+    name:'astronomia e ciência',
+    nameEn:'astronomy and science',
+    desc:'Repositório com projetos voltados para astronomia e ciência: simulações, análises observacionais e ferramentas astrofísicas.',
+    descEn:'Repository with projects focused on astronomy and science: simulations, observational analyses and astrophysical tools.',
+    cat:'astro', catLabelPt:'astronomia & ciência', catLabelEn:'astronomy & science',
+    tags:['ASTRO','PYTHON','FORTRAN','JULIA'],
+    status:'wip', statusLabelPt:'em construção', statusLabelEn:'under construction',
+    ph:'mais conteúdo em breve', phEn:'more content soon',
+    href:'https://github.com/cosmic-axolotl/astronomy-n-science', linkLabel:'GitHub ↗'
+  },
+  {
+    emoji:'💻', thumb:'t-prog',
+    name:'programação',
+    nameEn:'programming',
+    desc:'Repositório com projetos em diversas linguagens: Python, React, C++, FastAPI. Foco em ferramentas científicas e desenvolvimento full stack.',
+    descEn:'Repository with projects in various languages: Python, React, C++, FastAPI. Focus on scientific tools and full stack development.',
+    cat:'code', catLabelPt:'programação', catLabelEn:'programming',
+    tags:['PYTHON','REACT','C++','FASTAPI'],
+    status:'wip', statusLabelPt:'em construção', statusLabelEn:'under construction',
+    ph:'mais conteúdo em breve', phEn:'more content soon',
+    href:'https://github.com/cosmic-axolotl/programming', linkLabel:'GitHub ↗'
+  },
+  {
+    emoji:'📊', thumb:'t-data',
+    name:'dados e análise',
+    nameEn:'data and analysis',
+    desc:'Repositório com projetos de análise de dados: pipelines fotométricos, cross-match de catálogos e visualizações científicas.',
+    descEn:'Repository with data analysis projects: photometric pipelines, catalog cross-match and scientific visualizations.',
+    cat:'data', catLabelPt:'dados & análise', catLabelEn:'data & analysis',
+    tags:['PYTHON','NUMPY','DADOS'],
+    status:'wip', statusLabelPt:'em construção', statusLabelEn:'under construction',
+    ph:'mais conteúdo em breve', phEn:'more content soon',
+    href:'https://github.com/cosmic-axolotl/data-n-analysis', linkLabel:'GitHub ↗'
+  }
+];
+
+/* ── STATE ──────────────────────────────────────────────────── */
+var state = { query:'', cat:'all', tags:[], sort:'default' };
+var currentLang = 'pt';
+
+/* ── HELPERS ────────────────────────────────────────────────── */
+function t(ptStr, enStr) { return currentLang === 'en' ? enStr : ptStr; }
+
+function tagCat(tag) {
+  var astroTags = ['ASTRO','JULIA','FORTRAN'];
+  var dataTags  = ['DADOS','NUMPY','MATPLOTLIB','SEABORN','TYPESCRIPT'];
+  if (astroTags.indexOf(tag) !== -1) return 'astro';
+  if (dataTags.indexOf(tag) !== -1)  return 'data';
+  return 'code';
+}
+function tagClass(tag) {
+  var c = tagCat(tag);
+  return c === 'astro' ? 'tag-astro' : c === 'data' ? 'tag-data' : 'tag-code';
+}
+
+function statusClass(s) {
+  /* reutiliza a paleta já existente via inline style */
+  if (s === 'live') return 'color:#6aabf0;border-color:rgba(106,171,240,.4);background:rgba(106,171,240,.08)';
+  if (s === 'wip')  return 'color:#f0b070;border-color:rgba(240,176,112,.4);background:rgba(240,176,112,.08)';
+  return 'color:var(--dim);border-color:var(--border);background:transparent';
+}
+
+function esc(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+/* ── FILTER ─────────────────────────────────────────────────── */
+function filterProjects() {
+  var q = state.query.toLowerCase().trim();
+  var res = PROJECTS.filter(function(p) {
+    var matchQ = !q || p.name.toLowerCase().includes(q) || p.nameEn.toLowerCase().includes(q)
+      || p.desc.toLowerCase().includes(q) || p.tags.some(function(t){ return t.toLowerCase().includes(q); });
+    var matchC = state.cat === 'all' || p.cat === state.cat;
+    var matchT = state.tags.length === 0
+      || state.tags.every(function(t){ return p.tags.indexOf(t) !== -1; });
+    return matchQ && matchC && matchT;
+  });
+  if (state.sort === 'name') res.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  if (state.sort === 'status') {
+    var ord = {live:0,wip:1,soon:2};
+    res.sort(function(a,b){ return (ord[a.status]||2)-(ord[b.status]||2); });
+  }
+  return res;
+}
+
+/* ── RENDER ─────────────────────────────────────────────────── */
+function renderGrid() {
+  var grid = document.getElementById('projects-grid');
+  var countEl = document.getElementById('results-count');
+  var res = filterProjects();
+  var count = res.length;
+  countEl.innerHTML = '<strong>' + count + '</strong> ' + t(count===1?'projeto encontrado':'projetos encontrados', count===1?'project found':'projects found');
+
+  if (!count) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🌑</div><p>' + t('nenhum projeto encontrado','no projects found') + '</p></div>';
+    return;
+  }
+
+  grid.innerHTML = res.map(function(p, i) {
+    var tagsHtml = p.tags.map(function(tg){ return '<span class="tag '+tagClass(tg)+'">'+tg+'</span>'; }).join('');
+    var sStyle = statusClass(p.status);
+    var sLabel = t(p.statusLabelPt, p.statusLabelEn);
+    return '<div class="proj-card" style="animation-delay:'+(i*45)+'ms">'
+      + '<div class="proj-thumb '+p.thumb+'">'+p.emoji+'</div>'
+      + '<div class="proj-body">'
+      + '<div class="proj-tags">'+tagsHtml+'</div>'
+      + '<p class="proj-name">'+esc(t(p.name,p.nameEn))+'</p>'
+      + '<p class="proj-desc">'+esc(t(p.desc,p.descEn))+'</p>'
+      + '</div>'
+      + '<div class="proj-footer">'
+      + '<span class="proj-ph" style="display:inline-flex;align-items:center;gap:4px;font-size:.68rem;padding:.15rem .5rem;border-radius:20px;border:0.5px solid;'+sStyle+'">'
+      + sLabel+'</span>'
+      + '<a href="'+p.href+'" target="_blank" rel="noopener" class="proj-link">'+p.linkLabel+'</a>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function renderActiveFilters() {
+  var strip = document.getElementById('active-filters');
+  var chips = [];
+  if (state.cat !== 'all') {
+    var catNames = { astro: t('astronomia & ciência','astronomy & science'), code: t('programação','programming'), data: t('dados & análise','data & analysis') };
+    chips.push({label: catNames[state.cat], type:'cat'});
+  }
+  state.tags.forEach(function(tg){ chips.push({label:tg, type:'tag', value:tg}); });
+
+  if (!chips.length) { strip.classList.remove('has-filters'); strip.innerHTML=''; return; }
+  strip.classList.add('has-filters');
+  var html = '<span class="active-filter-label">'+t('filtros:','filters:')+'</span>';
+  chips.forEach(function(c) {
+    html += '<button class="active-chip" data-type="'+c.type+'" data-value="'+(c.value||'')+'">'+c.label+' <span class="chip-x">✕</span></button>';
+  });
+  html += '<button class="clear-all-btn" id="clear-all-btn">'+t('limpar tudo','clear all')+'</button>';
+  strip.innerHTML = html;
+  strip.querySelectorAll('.active-chip').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (btn.dataset.type==='cat') { state.cat='all'; syncCatUI(); }
+      else { removeTag(btn.dataset.value); }
+      renderAll();
+    });
+  });
+  var ca = document.getElementById('clear-all-btn');
+  if (ca) ca.addEventListener('click', clearFilters);
+}
+
+function renderAll() { renderGrid(); renderActiveFilters(); }
+
+/* ── UI SYNC ────────────────────────────────────────────────── */
+function syncCatUI() {
+  document.querySelectorAll('[data-cat]').forEach(function(btn){
+    btn.className='fpill';
+    if (btn.dataset.cat===state.cat) {
+      var m = {all:'active-all',astro:'active-astro',code:'active-code',data:'active-data'};
+      btn.classList.add(m[state.cat]||'active-all');
+    }
+  });
+}
+
+function syncTagUI() {
+  document.querySelectorAll('[data-tag]').forEach(function(btn){
+    btn.className='fpill';
+    if (state.tags.indexOf(btn.dataset.tag)!==-1) {
+      var m = {astro:'active-astro',code:'active-code',data:'active-data'};
+      btn.classList.add(m[tagCat(btn.dataset.tag)]||'active-code');
+    }
+  });
+}
+
+function removeTag(tg) { var i=state.tags.indexOf(tg); if(i!==-1) state.tags.splice(i,1); syncTagUI(); }
+
+function clearFilters() {
+  state.cat='all'; state.tags=[]; state.query='';
+  document.getElementById('search-input').value='';
+  document.getElementById('search-clear').classList.remove('visible');
+  syncCatUI(); syncTagUI(); renderAll();
+}
+
+/* ── EVENTOS ────────────────────────────────────────────────── */
+document.getElementById('search-input').addEventListener('input', function(e){
+  state.query=e.target.value;
+  document.getElementById('search-clear').classList.toggle('visible', state.query.length>0);
+  renderAll();
+});
+document.getElementById('search-clear').addEventListener('click', function(){
+  state.query=''; this.classList.remove('visible');
+  document.getElementById('search-input').value=''; renderAll();
+});
+document.getElementById('cat-filters').addEventListener('click', function(e){
+  var btn=e.target.closest('[data-cat]'); if(!btn) return;
+  state.cat=btn.dataset.cat; syncCatUI(); renderAll();
+});
+document.getElementById('tag-filters').addEventListener('click', function(e){
+  var btn=e.target.closest('[data-tag]'); if(!btn) return;
+  var tg=btn.dataset.tag, idx=state.tags.indexOf(tg);
+  if(idx===-1) state.tags.push(tg); else state.tags.splice(idx,1);
+  syncTagUI(); renderAll();
+});
+document.getElementById('sort-select').addEventListener('change', function(){ state.sort=this.value; renderAll(); });
+
+/* ── THEME ──────────────────────────────────────────────────── */
+var _cursor = document.getElementById('cursor-ring');
+function _setCursorColor(c){ _cursor.style.borderColor=c; _cursor.style.setProperty('--cursor-dot',c); }
+function _resetCursorColor(){ _cursor.style.borderColor=''; _cursor.style.removeProperty('--cursor-dot'); }
+function _setThemeIcon(th){
+  var el=document.getElementById('theme-toggle');
+  if(el) el.textContent = th==='light'?'☾':'☀';
+}
+function toggleTheme(){
+  var isLight=document.documentElement.getAttribute('data-theme')==='light';
+  if(isLight){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); _setThemeIcon('dark'); _resetCursorColor(); }
+  else{ document.documentElement.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); _setThemeIcon('light'); _setCursorColor('#7a5230'); }
+}
+(function(){
+  if(localStorage.getItem('theme')==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    _setThemeIcon('light'); _setCursorColor('#7a5230');
+  }
+})();
+
+/* ── LANG ───────────────────────────────────────────────────── */
+function toggleLang(){
+  currentLang = currentLang==='pt'?'en':'pt';
+  var label = currentLang==='pt'?'PT':'EN';
+  var el = document.getElementById('nav-lang-btn'); if(el) el.textContent=label;
+  document.documentElement.lang = currentLang==='pt'?'pt-BR':'en';
+  /* traduz elementos estáticos com data-pt/data-en */
+  document.querySelectorAll('[data-pt]').forEach(function(el){
+    var v=el.getAttribute('data-'+currentLang); if(v!==null) el.innerHTML=v;
+  });
+  /* re-renderiza grid e filtros com novo idioma */
+  renderAll();
+}
+
+/* ── CURSOR EVENTS ──────────────────────────────────────────── */
+var _cursorVisible=false;
+document.addEventListener('mousemove',function(e){
+  _cursor.style.left=e.clientX+'px'; _cursor.style.top=e.clientY+'px';
+  if(!_cursorVisible){_cursor.classList.add('visible');_cursorVisible=true;}
+},{passive:true});
+document.addEventListener('mouseleave',function(){_cursor.classList.remove('visible');_cursorVisible=false;});
+document.addEventListener('mousedown',function(){_cursor.classList.add('clicking');});
+document.addEventListener('mouseup',function(){_cursor.classList.remove('clicking');});
+document.addEventListener('mouseover',function(e){
+  var isLight=document.documentElement.getAttribute('data-theme')==='light';
+  if(!isLight){_resetCursorColor();return;}
+  var onSolid=e.target.closest('nav,.proj-card,.contact-link');
+  _setCursorColor(onSolid?'#7a5230':'#fdf6ee');
+});
+
+/* ── STARS ──────────────────────────────────────────────────── */
+(function(){
+  var layer=document.getElementById('stars-layer');
+  for(var i=0;i<90;i++){
+    var s=document.createElement('div'); s.className='star';
+    var size=Math.random()*2+0.5;
+    s.style.cssText='left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;width:'+size+'px;height:'+size+'px;--dur:'+(2+Math.random()*4)+'s;--delay:'+(Math.random()*6)+'s;--min-op:'+(0.1+Math.random()*0.2).toFixed(2)+';--max-op:'+(0.5+Math.random()*0.5).toFixed(2)+';';
+    layer.appendChild(s);
+  }
+})();
+
+/* ── REVEAL ─────────────────────────────────────────────────── */
+var revObs=new IntersectionObserver(function(es){
+  for(var i=0;i<es.length;i++){if(es[i].isIntersecting) es[i].target.classList.add('v');}
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+
+/* ── INIT ───────────────────────────────────────────────────── */
+renderAll();
+</script>
+</body>
+</html>

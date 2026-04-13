@@ -22,21 +22,9 @@
   --orange2:   #f0b070;
   --white-star:#dff0ff;
   --nav-h:     60px;
-
-   /* ===== ASTRO (violeta) ===== */
-  --astro-1: #a78bfa;
-  --astro-2: #c4b5fd;
-  --astro-3: #ddd6fe;
-
-  /* ===== CODE (azul acinzentado) ===== */
-  --code-1: #6a9ed6;
-  --code-2: #8fb6e8;
-  --code-3: #bcd4f6;
-
-  /* ===== DATA (laranja/castanho) ===== */
-  --data-1: #e8934a;
-  --data-2: #f0b070;
-  --data-3: #ffd2a6;
+  --astro-1: #a78bfa; --astro-2: #c4b5fd; --astro-3: #ddd6fe;
+  --code-1:  #6a9ed6; --code-2:  #8fb6e8; --code-3:  #bcd4f6;
+  --data-1:  #e8934a; --data-2:  #f0b070; --data-3:  #ffd2a6;
 }
 [data-theme="light"] {
   --bg:        #fdf6ee;
@@ -51,27 +39,9 @@
   --orange:    #e07020;
   --orange2:   #d4956a;
   --white-star:#0f0804;
-
-  /* ===== ASTRO ===== */
-  --astro-1: #741c73;
-  --astro-2: #541453;
-  --astro-3: #932392;
-  --astro-4: #a327a2;
-  --astro-5: #b32bb1;
-
-  /* ===== CODE ===== */
-  --code-1: #1e3a5f;
-  --code-2: #274c7d;
-  --code-3: #3668aa;
-  --code-4: #3a71b8;
-  --code-5: #437ac4;
-
-  /* ===== DATA ===== */
-  --data-1: #77280e;
-  --data-2: #9a3412;
-  --data-3: #ac3a14;
-  --data-4: #cf4618;
-  --data-5: #e65828;
+  --astro-1: #741c73; --astro-2: #541453; --astro-3: #932392; --astro-4: #a327a2; --astro-5: #b32bb1;
+  --code-1:  #1e3a5f; --code-2:  #274c7d; --code-3:  #3668aa; --code-4:  #3a71b8; --code-5:  #437ac4;
+  --data-1:  #77280e; --data-2:  #9a3412; --data-3:  #ac3a14; --data-4:  #cf4618; --data-5:  #e65828;
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; scroll-padding-top:var(--nav-h); background-color:#05080f; }
@@ -84,7 +54,7 @@ body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans
 #nebula-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url('hp tau.jpg'); background-size:cover; background-position:center 30%; background-attachment:fixed; background-color:#05080f; }
 #nebula-bg::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to bottom, rgba(5,8,20,0.55) 0%, rgba(5,8,20,0.78) 100%); }
 [data-theme="light"] #nebula-bg { background-image:url('ngc 4449.jpg'); background-position:center center; background-color:#fdf6ee; }
-[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.2) 0%, rgba(253,246,238,0.4) 40%, rgba(253,246,238,0.6) 100% ); }
+[data-theme="light"] #nebula-bg::after { background:linear-gradient(to bottom, rgba(253,246,238,0.2) 0%, rgba(253,246,238,0.4) 40%, rgba(253,246,238,0.6) 100%); }
 
 /* ESTRELAS */
 #stars-layer { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
@@ -105,7 +75,6 @@ body { background-color:transparent; color:var(--text); font-family:'Exo 2',sans
   content:''; position:absolute; top:50%; left:50%;
   transform:translate(-50%,-50%);
   width:4px; height:4px;
-  /* usa variável local do elemento, cai pro --accent se não setada */
   background: var(--cursor-dot, var(--accent));
   transition:background .2s;
   border-radius:50%;
@@ -192,13 +161,10 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .section { max-width:1100px; margin:0 auto; padding:5rem 2.5rem; }
 .sec-header { margin-bottom:2.8rem; }
 .sec-tag { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem; }
-[data_theme="light"] .sec-tag { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--orange); margin-bottom:.5rem; display:flex; align-items:center; gap:.6rem; }
 .sec-tag::before { content:'//'; opacity:.45; color:var(--muted); }
 .sec-title { font-family:'Urbanist',sans-serif; font-weight:700; font-size:clamp(1.6rem,3vw,2.2rem); color:var(--white-star); letter-spacing:-.02em; text-transform:lowercase; }
 .divider { max-width:1100px; margin:0 auto; height:0.5px; background:linear-gradient(to right, transparent, rgba(106,171,240,.25), transparent); }
 [data-theme="light"] .divider { background:linear-gradient(to right, transparent, rgba(180,110,40,.25), transparent); }
-
-/* seção com fundo opaco */
 .section-bg { background:var(--bg2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
 
 /* ABOUT */
@@ -218,75 +184,111 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .skill-group-label { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.85rem; }
 .pills { display:flex; flex-wrap:wrap; gap:.5rem; }
 .pill { padding:.36rem .88rem; border-radius:20px; font-size:.8rem; font-weight:500; border:0.5px solid; transition:transform .15s; cursor:default; }
-.pill:hover { transform:translateY(-2px); filter: brightness(1.15);}
-/*pill das tags */
-.pill-astro {
-  background: rgba(167,139,250,.12);
-  color: var(--astro-3);
-  border-color: rgba(167,139,250,.4);
-}
-  .pill-code {
-  background: rgba(106,158,214,.15);
-  color: var(--code-3);
-  border-color: rgba(106,158,214,.4);
-}
-  .pill-data {
-  background: rgba(232,147,74,.15);
-  color: var(--data-3);
-  border-color: rgba(232,147,74,.45);
-}
-[data-theme="light"] .pill-astro   { background:rgba(237,180,237,.10);  color: var(--astro-1); border-color:rgba(179,43,177,.3); }
-[data-theme="light"] .pill-code { background:rgba(106,158,214,.10); color:var(--code-3); border-color:rgba(44, 99, 159,.3); }
-[data-theme="light"] .pill-data  { background:rgba(238,143,111,.07);    color: var(--data-3); border-color:rgba(190,64,22,.2); }
+.pill:hover { transform:translateY(-2px); filter:brightness(1.15); }
+.pill-astro { background:rgba(167,139,250,.12); color:var(--astro-3); border-color:rgba(167,139,250,.4); }
+.pill-code  { background:rgba(106,158,214,.15); color:var(--code-3);  border-color:rgba(106,158,214,.4); }
+.pill-data  { background:rgba(232,147,74,.15);  color:var(--data-3);  border-color:rgba(232,147,74,.45); }
+[data-theme="light"] .pill-astro { background:rgba(237,180,237,.10); color:var(--astro-1); border-color:rgba(179,43,177,.3); }
+[data-theme="light"] .pill-code  { background:rgba(106,158,214,.10); color:var(--code-3);  border-color:rgba(44,99,159,.3); }
+[data-theme="light"] .pill-data  { background:rgba(238,143,111,.07); color:var(--data-3);  border-color:rgba(190,64,22,.2); }
 
+/* TAGS */
+.tag { font-size:.63rem; letter-spacing:.08em; text-transform:uppercase; padding:.18rem .55rem; border-radius:3px; border:0.5px solid; }
+.tag-astro { background:rgba(167,139,250,.12); color:var(--astro-2); border-color:rgba(167,139,250,.4); }
+.tag-code  { background:rgba(106,158,214,.15); color:var(--code-2);  border-color:rgba(106,158,214,.4); }
+.tag-data  { background:rgba(232,147,74,.15);  color:var(--data-2);  border-color:rgba(232,147,74,.45); }
+[data-theme="light"] .tag-astro { background:rgba(237,180,237,.10); color:var(--astro-2); border-color:rgba(179,43,177,.3); }
+[data-theme="light"] .tag-code  { background:rgba(106,158,214,.10); color:var(--code-3);  border-color:rgba(44,99,159,.3); }
+[data-theme="light"] .tag-data  { background:rgba(238,143,111,.07); color:var(--data-3);  border-color:rgba(190,64,22,.2); }
 
-/* PROJECTS */
-.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
-.proj-card { background:rgba(6,12,26,0.65); backdrop-filter:blur(18px); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:border-color .25s, transform .2s, box-shadow .25s; }
-.proj-card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.5); }
-[data-theme="light"] .proj-card { background:rgba(255,242,222,0.72); }
-.proj-thumb { height:130px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; border-bottom:0.5px solid var(--border); position:relative; overflow:hidden; }
-.proj-thumb::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, var(--tg,rgba(106,171,240,.25)) 0%, transparent 70%); }
+/* ─── PROJECTS — CAROUSEL ────────────────────────────────── */
+.projects-header-row {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:2.2rem; flex-wrap:wrap; gap:12px;
+}
+/* botão "ver todos" */
+.btn-ver-todos {
+  font-family:'Urbanist',sans-serif; font-size:.82rem; font-weight:700;
+  letter-spacing:.04em; color:var(--accent);
+  background:rgba(106,171,240,.08);
+  border:0.5px solid var(--border2); border-radius:6px;
+  padding:.55rem 1.1rem; text-decoration:none; cursor:pointer;
+  transition:background .2s, box-shadow .2s, border-color .2s;
+  white-space:nowrap; display:inline-flex; align-items:center; gap:5px;
+}
+.btn-ver-todos:hover { background:rgba(106,171,240,.16); box-shadow:0 0 18px rgba(106,171,240,.15); }
+[data-theme="light"] .btn-ver-todos { background:rgba(194,84,26,.07); border-color:var(--border2); color:var(--accent); }
+[data-theme="light"] .btn-ver-todos:hover { background:rgba(194,84,26,.14); }
+
+/* trilho com fade na borda direita */
+.projects-track-wrap { position:relative; }
+.projects-track-wrap::after {
+  content:''; position:absolute; top:0; right:0; width:80px; height:100%;
+  background:linear-gradient(to left, #05080f 0%, transparent 100%);
+  pointer-events:none; z-index:2;
+  transition:background .3s;
+}
+[data-theme="light"] .projects-track-wrap::after { background:linear-gradient(to left, #fdf6ee 0%, transparent 100%); }
+
+.projects-track {
+  display:flex; gap:1.2rem; overflow-x:auto; padding-bottom:14px;
+  cursor:grab; user-select:none; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.projects-track::-webkit-scrollbar { display:none; }
+.projects-track.dragging { cursor:grabbing; }
+
+/* cards do carrossel — visual igual aos proj-card originais */
+.pcard {
+  flex:0 0 290px;
+  background:rgba(6,12,26,0.65); backdrop-filter:blur(18px);
+  border:0.5px solid var(--border); border-radius:12px;
+  overflow:hidden; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column;
+  transition:border-color .25s, transform .2s, box-shadow .25s;
+}
+.pcard:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.5); }
+[data-theme="light"] .pcard { background:rgba(255,242,222,0.72); }
+
+.pcard-thumb {
+  height:110px; display:flex; align-items:center; justify-content:center;
+  font-size:2.2rem; border-bottom:0.5px solid var(--border);
+  position:relative; overflow:hidden;
+}
+.pcard-thumb::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 0%, var(--tg,rgba(106,171,240,.25)) 0%, transparent 70%); }
 .t-astro  { background:linear-gradient(135deg,#060b1a,#0a1228); --tg:rgba(106,171,240,.3); }
 .t-python { background:linear-gradient(135deg,#0a0d18,#101624); --tg:rgba(232,147,74,.25); }
 .t-data   { background:linear-gradient(135deg,#060e16,#0a1420); --tg:rgba(106,171,240,.2); }
-.t-misc   { background:linear-gradient(135deg,#100c06,#1c1408); --tg:rgba(240,176,112,.3); }
 .t-prog   { background:linear-gradient(135deg,#0a0818,#100a24); --tg:rgba(167,125,245,.25); }
 [data-theme="light"] .t-astro  { background:linear-gradient(135deg,#f5e4cc,#fceedd); }
 [data-theme="light"] .t-python { background:linear-gradient(135deg,#fde8cc,#fff3e4); }
 [data-theme="light"] .t-data   { background:linear-gradient(135deg,#f5e0c8,#fcebd8); }
-[data-theme="light"] .t-misc   { background:linear-gradient(135deg,#fde0b0,#fef0d0); }
 [data-theme="light"] .t-prog   { background:linear-gradient(135deg,#ede4f8,#f5eeff); }
-.proj-body { padding:1.1rem 1.2rem; flex:1; display:flex; flex-direction:column; gap:.5rem; }
-.proj-tags { display:flex; gap:.4rem; flex-wrap:wrap; }
-.ptag { font-size:.63rem; letter-spacing:.08em; text-transform:uppercase; padding:.18rem .55rem; border-radius:3px; border:0.5px solid; }
-.ptag-a { background:rgba(106,171,240,.1); color:#a8d2f8; border-color:rgba(106,171,240,.25); }
-.ptag-p { background:rgba(232,147,74,.1);  color:#f0b888; border-color:rgba(232,147,74,.25); }
-.ptag-d { background:rgba(220,240,255,.07);color:#c8dff0; border-color:rgba(220,240,255,.18); }
-.ptag-m { background:rgba(240,176,112,.1); color:#f8d0a0; border-color:rgba(240,176,112,.25); }
-[data-theme="light"] .ptag-a { background:rgba(194,84,26,.10);  color:#7a2e0a; border-color:rgba(194,84,26,.25); }
-[data-theme="light"] .ptag-p { background:rgba(224,112,32,.10); color:#8a3a08; border-color:rgba(224,112,32,.25); }
-[data-theme="light"] .ptag-d { background:rgba(30,18,8,.07);    color:#3a2010; border-color:rgba(30,18,8,.18); }
-[data-theme="light"] .ptag-m { background:rgba(200,120,20,.10); color:#7a3e08; border-color:rgba(200,120,20,.25); }
-.proj-name { font-family:'Urbanist',sans-serif; font-weight:700; font-size:1rem; color:var(--white-star); text-transform:lowercase; }
-.proj-desc { font-size:.82rem; color:var(--muted); line-height:1.6; flex:1; }
-.proj-footer { padding:.75rem 1.2rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
-.proj-link { font-size:.75rem; color:var(--accent); }
-.proj-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
 
-/* REPOS — igual projetos mas sem fundo opaco */
+.pcard-body { padding:1rem 1.1rem; flex:1; display:flex; flex-direction:column; gap:.45rem; }
+.pcard-tags { display:flex; gap:.4rem; flex-wrap:wrap; }
+.pcard-name { font-family:'Urbanist',sans-serif; font-weight:700; font-size:.95rem; color:var(--white-star); text-transform:lowercase; }
+.pcard-desc {
+  font-size:.8rem; color:var(--muted); line-height:1.6; flex:1;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.pcard-footer { padding:.65rem 1.1rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+.pcard-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
+.pcard-link { font-size:.75rem; color:var(--accent); }
+
+/* dots de navegação */
+.scroll-dots { display:flex; justify-content:center; gap:6px; margin-top:14px; }
+.scroll-dot {
+  width:5px; height:5px; border-radius:50%;
+  background:var(--border2); border:none; padding:0; cursor:pointer;
+  transition:background .2s, transform .2s;
+}
+.scroll-dot.active { background:var(--accent); transform:scale(1.4); }
+
+/* REPOS */
 .repos-section { max-width:1100px; margin:0 auto; padding:0 2.5rem 5rem; }
 .repos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
-.repo-card {
-  /* fundo translúcido leve — deixa imagem aparecer */
-  background:rgba(6,12,26,0.30);
-  backdrop-filter:blur(8px);
-  border:0.5px solid var(--border);
-  border-radius:12px; overflow:hidden;
-  text-decoration:none; color:inherit;
-  display:flex; flex-direction:column;
-  transition:border-color .25s, transform .2s, box-shadow .25s;
-}
+.repo-card { background:rgba(6,12,26,0.30); backdrop-filter:blur(8px); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:border-color .25s, transform .2s, box-shadow .25s; }
 .repo-card:hover { border-color:var(--border2); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,.4); }
 [data-theme="light"] .repo-card { background:rgba(255,242,222,0.25); }
 .repo-thumb { height:110px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; border-bottom:0.5px solid var(--border); position:relative; overflow:hidden; }
@@ -298,36 +300,6 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .repo-footer { padding:.65rem 1.1rem; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
 .repo-link { font-size:.75rem; color:var(--accent); }
 .repo-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
-
-/*tags*/
-  .tag {
-  font-size:.63rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  padding:.18rem .55rem;
-  border-radius:3px;
-  border:0.5px solid;
-}
-  .tag-astro {
-  background: rgba(167,139,250,.12);
-  color: var(--astro-2);
-  border-color: rgba(167,139,250,.4);
-}
-  .tag-code {
-  background: rgba(106,158,214,.15);
-  color: var(--code-2);
-  border-color: rgba(106,158,214,.4);
-}
-  .tag-data {
-  background: rgba(232,147,74,.15);
-  color: var(--data-2);
-  border-color: rgba(232,147,74,.45);
-}
-
-[data-theme="light"] .tag-astro   { background:rgba(237,180,237,.10);  color: var(--astro-2); border-color:rgba(179,43,177,.3); }
-[data-theme="light"] .tag-code { background:rgba(106,158,214,.10); color:var(--code-3); border-color:rgba(44, 99, 159,.3); }
-[data-theme="light"] .tag-data  { background:rgba(238,143,111,.07);    color: var(--data-3); border-color:rgba(190,64,22,.2); }
-
 
 /* CONTACT */
 #contact { background:var(--bg2); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
@@ -348,7 +320,7 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .copy-email-btn:hover  { border-color:var(--border2); color:var(--accent); }
 .copy-email-btn.copied { color:#4ecb8e; border-color:#4ecb8e; }
 
-/* FOOTER — sem fundo, texto suave */
+/* FOOTER */
 footer { text-align:center; padding:2.5rem 2rem; font-size:.75rem; color:var(--muted); letter-spacing:.05em; line-height:1.9; }
 footer span { color:var(--orange); }
 .credits { font-size:.65rem; color:var(--accent); margin-top:.4rem; }
@@ -377,6 +349,8 @@ footer span { color:var(--orange); }
   [data-theme="light"] nav .nav-lang,
   [data-theme="light"] nav .nav-theme,
   [data-theme="light"] nav .nav-hamburger { background:rgba(253,242,228,0.85) !important; }
+  .pcard { flex:0 0 260px; }
+  .projects-track-wrap::after { width:48px; }
 }
 </style>
 </head>
@@ -546,53 +520,102 @@ footer span { color:var(--orange); }
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
+<!-- PROJECTS — CAROUSEL -->
 <section id="projects" class="section-bg">
   <div class="section">
-    <div class="sec-header reveal">
-      <p class="sec-tag" data-pt="projetos" data-en="projects">projetos</p>
-      <h2 class="sec-title" data-pt="Meus projetos principais" data-en="My main projects">Meus projetos principais</h2>
+
+    <div class="projects-header-row reveal">
+      <div class="sec-header" style="margin-bottom:0">
+        <p class="sec-tag" data-pt="projetos" data-en="projects">projetos</p>
+        <h2 class="sec-title" data-pt="Meus projetos principais" data-en="My main projects">Meus projetos principais</h2>
+      </div>
+      <a href="./projects/" class="btn-ver-todos" data-pt="ver todos ↗" data-en="see all ↗">ver todos ↗</a>
     </div>
-    <div class="projects-grid">
-      <a href="https://cosmic-axolotl.github.io/simulacoes-astrofisicas/" target="_blank" class="proj-card reveal d1">
-        <div class="proj-thumb t-astro">🌠</div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="tag tag-astro">ASTRO</span><span class="tag tag-code">HTML/CSS</span> <span class="tag tag-code">Javascript</span></div>
-          <p class="proj-name" data-pt="Site gerador de cronograma da disciplina" data-en="Course schedule generator website"> Site gerador de cronograma da disciplina</p>
-          <p class="proj-desc" data-pt="Um site interativo que gera o cronograma da disciplina, levando em consideração o ano letivo de 2026 da UFRJ. Podendo adicionar parâmetros como número de relatórios e aulas dedicadas a cada um, além da adição de datas excepcionais, onde não serão consideradas as aulas." 
-            data-en="An interactive site that generates the course schedule, taking into account the 2026 academic year at UFRJ. It allows the addition of parameters such as the number of reports and classes dedicated to each, as well as the inclusion of exceptional dates where classes will not be considered.">
-            Um site interativo que gera o cronograma da disciplina, levando em consideração o ano letivo de 2026 da UFRJ. Podendo adicionar parâmetros como número de relatórios e aulas dedicadas a cada um, além da adição de datas excepcionais, onde não serão consideradas as aulas.</p>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-ph" data-pt="Já disponível, mas sujeito à alterações." data-en="Available now, but subject to change.">Já disponível, mas sujeito à alterações.</span>
-          <span class="proj-link">GitHub Page↗</span>
-        </div>
-      </a>
-      <a href="https://cosmic-axolotl.github.io/astro-query/" target="_blank" class="proj-card reveal d2">
-        <div class="proj-thumb t-python">🔭</div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="tag tag-astro">ASTRO</span><span class="tag tag-code">HTML/CSS</span><span class="tag tag-code">Javascript</span><span class="tag tag-code">FastAPI</span></div>
-          <p class="proj-name" data-pt="AstroQuery" data-en="AstroQuery">AstroQuery</p>
-          <p class="proj-desc" data-pt="Uma LLM que busca objetos astronômicos em diversos bancos de dados. Uso de APIs públicas." data-en="An LLM that searches for astronomical objects in various databases. Use of public APIs.">Uma LLM que busca objetos astronômicos em diversos bancos de dados. Uso de APIs públicas.</p>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-ph" data-pt="ainda em construção" data-en="still under construction">ainda em construção</span>
-          <span class="proj-link">GitHub ↗</span>
-        </div>
-      </a>
-      <a href="https://github.com/cosmic-axolotl" target="_blank" class="proj-card reveal d3">
-        <div class="proj-thumb t-data">📡</div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="tag tag-data">DADOS</span><span class="tag tag-code">PYTHON</span></div>
-          <p class="proj-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
-          <p class="proj-desc" data-pt="Adicione a descrição do projeto de dados aqui." data-en="Add the description of the data project here.">Adicione a descrição do projeto de dados aqui.</p>
-        </div>
-        <div class="proj-footer">
-          <span class="proj-ph" data-pt="em breve" data-en="coming soon">em breve</span>
-          <span class="proj-link">GitHub ↗</span>
-        </div>
-      </a>
-    </div>
+
+    <div class="projects-track-wrap">
+      <div class="projects-track" id="proj-track">
+
+        <!-- card 1 -->
+        <a href="https://cosmic-axolotl.github.io/simulacoes-astrofisicas/" target="_blank" class="pcard reveal d1">
+          <div class="pcard-thumb t-astro">🌠</div>
+          <div class="pcard-body">
+            <div class="pcard-tags">
+              <span class="tag tag-astro">ASTRO</span>
+              <span class="tag tag-code">HTML/CSS</span>
+              <span class="tag tag-code">Javascript</span>
+            </div>
+            <p class="pcard-name" data-pt="site gerador de cronograma da disciplina" data-en="course schedule generator website">site gerador de cronograma da disciplina</p>
+            <p class="pcard-desc"
+               data-pt="Um site interativo que gera o cronograma da disciplina, levando em consideração o ano letivo de 2026 da UFRJ. Podendo adicionar parâmetros como número de relatórios e aulas dedicadas a cada um, além da adição de datas excepcionais."
+               data-en="An interactive site that generates the course schedule, taking into account the 2026 academic year at UFRJ. Allows adding parameters such as the number of reports and classes dedicated to each.">
+              Um site interativo que gera o cronograma da disciplina, levando em consideração o ano letivo de 2026 da UFRJ.
+            </p>
+          </div>
+          <div class="pcard-footer">
+            <span class="pcard-ph" data-pt="disponível, sujeito a alterações" data-en="available, subject to change">disponível, sujeito a alterações</span>
+            <span class="pcard-link">GitHub Page ↗</span>
+          </div>
+        </a>
+
+        <!-- card 2 -->
+        <a href="https://cosmic-axolotl.github.io/astro-query/" target="_blank" class="pcard reveal d2">
+          <div class="pcard-thumb t-python">🔭</div>
+          <div class="pcard-body">
+            <div class="pcard-tags">
+              <span class="tag tag-astro">ASTRO</span>
+              <span class="tag tag-code">HTML/CSS</span>
+              <span class="tag tag-code">Javascript</span>
+              <span class="tag tag-code">FastAPI</span>
+            </div>
+            <p class="pcard-name">AstroQuery</p>
+            <p class="pcard-desc"
+               data-pt="Uma LLM que busca objetos astronômicos em diversos bancos de dados. Uso de APIs públicas como SIMBAD, VizieR e NASA ADS."
+               data-en="An LLM that searches for astronomical objects in various databases. Uses public APIs like SIMBAD, VizieR and NASA ADS.">
+              Uma LLM que busca objetos astronômicos em diversos bancos de dados. Uso de APIs públicas.
+            </p>
+          </div>
+          <div class="pcard-footer">
+            <span class="pcard-ph" data-pt="ainda em construção" data-en="still under construction">ainda em construção</span>
+            <span class="pcard-link">GitHub ↗</span>
+          </div>
+        </a>
+
+        <!-- card 3 -->
+        <a href="https://github.com/cosmic-axolotl" target="_blank" class="pcard reveal d3">
+          <div class="pcard-thumb t-data">📡</div>
+          <div class="pcard-body">
+            <div class="pcard-tags">
+              <span class="tag tag-data">DADOS</span>
+              <span class="tag tag-code">PYTHON</span>
+            </div>
+            <p class="pcard-name" data-pt="[nome do projeto]" data-en="[project name]">[nome do projeto]</p>
+            <p class="pcard-desc" data-pt="Adicione a descrição do projeto de dados aqui." data-en="Add the description of the data project here.">Adicione a descrição do projeto de dados aqui.</p>
+          </div>
+          <div class="pcard-footer">
+            <span class="pcard-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+            <span class="pcard-link">GitHub ↗</span>
+          </div>
+        </a>
+
+        <!-- card placeholder -->
+        <a href="./projects/" class="pcard" style="border-style:dashed;opacity:.4;">
+          <div class="pcard-thumb t-prog">✨</div>
+          <div class="pcard-body">
+            <div class="pcard-tags"><span class="tag tag-astro">ASTRO</span></div>
+            <p class="pcard-name" data-pt="próximo projeto" data-en="next project">próximo projeto</p>
+            <p class="pcard-desc" data-pt="Mais projetos chegando em breve." data-en="More projects coming soon.">Mais projetos chegando em breve.</p>
+          </div>
+          <div class="pcard-footer">
+            <span class="pcard-ph" data-pt="em breve" data-en="coming soon">em breve</span>
+            <span class="pcard-link" data-pt="ver todos ↗" data-en="see all ↗">ver todos ↗</span>
+          </div>
+        </a>
+
+      </div><!-- /proj-track -->
+    </div><!-- /track-wrap -->
+
+    <div class="scroll-dots" id="scroll-dots"></div>
+
   </div>
 </section>
 
@@ -603,46 +626,47 @@ footer span { color:var(--orange); }
       <p class="sec-tag" data-pt="repositórios" data-en="repositories">repositórios</p>
       <h2 class="sec-title" data-pt="meus repositórios" data-en="my repositories">meus repositórios</h2>
     </div>
-  <div class="repos-grid">
-    <a href="https://github.com/cosmic-axolotl/astronomy-n-science" target="_blank" class="repo-card reveal d1">
-      <div class="repo-thumb t-astro">🌌</div>
-      <div class="repo-body">
-        <div class="repo-tags"><span class="tag tag-astro">ASTRO</span><span class="tag tag-code">PYTHON</span><span class="tag tag-code">FORTRAN</span><span class="tag tag-code">JULIA</span></div>
-        <p class="repo-name" data-pt="astronomia e ciência" data-en="astronomy and science">astronomia e ciência</p>
-        <p class="repo-desc" data-pt="Projetos voltados para astronomia e ciência." data-en="Projects focused on astronomy and science.">Projetos voltados para astronomia e ciência.</p>
-      </div>
-      <div class="repo-footer">
-        <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
-        <span class="repo-link">GitHub ↗</span>
-      </div>
-    </a>
-    <a href="https://github.com/cosmic-axolotl/programming" target="_blank" class="repo-card reveal d2">
-      <div class="repo-thumb t-prog">💻</div>
-      <div class="repo-body">
-        <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">REACT</span><span class="tag tag-code">C++</span><span class="tag tag-code">FASTAPI</span></div>
-        <p class="repo-name" data-pt="programação" data-en="programming">programação</p>
-        <p class="repo-desc" data-pt="Projetos em várias linguagens de programação." data-en="Projects in various programming languages.">Projetos em várias linguagens de programação.</p>
-      </div>
-      <div class="repo-footer">
-        <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
-        <span class="repo-link">GitHub ↗</span>
-      </div>
-    </a>
-    <a href="https://github.com/cosmic-axolotl/data-n-analysis" target="_blank" class="repo-card reveal d3">
-      <div class="repo-thumb t-data">📊</div>
-      <div class="repo-body">
-        <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">NUMPY</span><span class="ptag tag-data">MATPLOTLIB</span><span class="tag tag-data">SEABORN</span></div>
-        <p class="repo-name" data-pt="dados e análise" data-en="data and analysis">dados e análise</p>
-        <p class="repo-desc" data-pt="Projetos voltados a análises de dados." data-en="Projects focused on data analysis.">Projetos voltados a análises de dados.</p>
-      </div>
-      <div class="repo-footer">
-        <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
-        <span class="repo-link">GitHub ↗</span>
-      </div>
-    </a>
+    <div class="repos-grid">
+      <a href="https://github.com/cosmic-axolotl/astronomy-n-science" target="_blank" class="repo-card reveal d1">
+        <div class="repo-thumb t-astro">🌌</div>
+        <div class="repo-body">
+          <div class="repo-tags"><span class="tag tag-astro">ASTRO</span><span class="tag tag-code">PYTHON</span><span class="tag tag-code">FORTRAN</span><span class="tag tag-code">JULIA</span></div>
+          <p class="repo-name" data-pt="astronomia e ciência" data-en="astronomy and science">astronomia e ciência</p>
+          <p class="repo-desc" data-pt="Projetos voltados para astronomia e ciência." data-en="Projects focused on astronomy and science.">Projetos voltados para astronomia e ciência.</p>
+        </div>
+        <div class="repo-footer">
+          <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
+          <span class="repo-link">GitHub ↗</span>
+        </div>
+      </a>
+      <a href="https://github.com/cosmic-axolotl/programming" target="_blank" class="repo-card reveal d2">
+        <div class="repo-thumb t-prog">💻</div>
+        <div class="repo-body">
+          <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">REACT</span><span class="tag tag-code">C++</span><span class="tag tag-code">FASTAPI</span></div>
+          <p class="repo-name" data-pt="programação" data-en="programming">programação</p>
+          <p class="repo-desc" data-pt="Projetos em várias linguagens de programação." data-en="Projects in various programming languages.">Projetos em várias linguagens de programação.</p>
+        </div>
+        <div class="repo-footer">
+          <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
+          <span class="repo-link">GitHub ↗</span>
+        </div>
+      </a>
+      <a href="https://github.com/cosmic-axolotl/data-n-analysis" target="_blank" class="repo-card reveal d3">
+        <div class="repo-thumb t-data">📊</div>
+        <div class="repo-body">
+          <div class="repo-tags"><span class="tag tag-code">PYTHON</span><span class="tag tag-code">NUMPY</span><span class="tag tag-data">MATPLOTLIB</span><span class="tag tag-data">SEABORN</span></div>
+          <p class="repo-name" data-pt="dados e análise" data-en="data and analysis">dados e análise</p>
+          <p class="repo-desc" data-pt="Projetos voltados a análises de dados." data-en="Projects focused on data analysis.">Projetos voltados a análises de dados.</p>
+        </div>
+        <div class="repo-footer">
+          <span class="repo-ph" data-pt="mais conteúdo em breve" data-en="more content soon">mais conteúdo em breve</span>
+          <span class="repo-link">GitHub ↗</span>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
-</div>
+
 <div class="divider"></div>
 
 <!-- CONTACT -->
@@ -660,15 +684,8 @@ footer span { color:var(--orange); }
       </p>
       <div class="contact-links reveal d2">
         <a href="https://linkedin.com/in/SEU-PERFIL-AQUI" target="_blank" class="contact-link">
-          <span class="cl-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </span>
-          <div>
-            <p class="cl-label">LinkedIn</p>
-            <p class="cl-value">Amanda da Costa Cabral</p>
-          </div>
+          <span class="cl-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+          <div><p class="cl-label">LinkedIn</p><p class="cl-value">Amanda da Costa Cabral</p></div>
           <span class="cl-arr">↗</span>
         </a>
         <a href="https://github.com/cosmic-axolotl" target="_blank" class="contact-link">
@@ -689,7 +706,6 @@ footer span { color:var(--orange); }
   </div>
 </section>
 
-<!-- FOOTER — sem fundo, texto suave sobre a imagem -->
 <footer>
   <p data-pt="⭐ feito por <span>Amanda da Costa Cabral</span> ⭐"
      data-en="⭐ made by <span>Amanda da Costa Cabral</span> ⭐">
@@ -700,7 +716,7 @@ footer span { color:var(--orange); }
   </p>
 </footer>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
 document.documentElement.classList.add('js-ready');
@@ -710,7 +726,7 @@ var revObs = new IntersectionObserver(function(es) {
   for (var i = 0; i < es.length; i++) {
     if (es[i].isIntersecting) es[i].target.classList.add('v');
   }
-}, { threshold: .08 });
+}, { threshold:.08 });
 var revEls = document.querySelectorAll('.reveal');
 for (var i = 0; i < revEls.length; i++) { revObs.observe(revEls[i]); }
 
@@ -718,59 +734,35 @@ for (var i = 0; i < revEls.length; i++) { revObs.observe(revEls[i]); }
 var hamburger  = document.getElementById('hamburger');
 var mobileMenu = document.getElementById('mobile-menu');
 function toggleMenu() {
-  if (mobileMenu.classList.contains('open')) { closeMenu(); }
+  if (mobileMenu.classList.contains('open')) closeMenu();
   else { mobileMenu.classList.add('open'); hamburger.classList.add('open'); }
 }
-function closeMenu() {
-  mobileMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-}
+function closeMenu() { mobileMenu.classList.remove('open'); hamburger.classList.remove('open'); }
 document.addEventListener('click', function(e) {
   if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
 });
 
-/* CURSOR — declarado antes do THEME para que toggleTheme possa usá-lo */
+/* CURSOR */
 var _cursor = document.getElementById('cursor-ring');
 var _cursorVisible = false;
-
-function _setCursorColor(color) {
-  _cursor.style.borderColor = color;
-  /* seta a variável no próprio elemento — ::after herda por cascata */
-  _cursor.style.setProperty('--cursor-dot', color);
-}
-function _resetCursorColor() {
-  _cursor.style.borderColor = '';
-  _cursor.style.removeProperty('--cursor-dot');
-}
+function _setCursorColor(c) { _cursor.style.borderColor = c; _cursor.style.setProperty('--cursor-dot', c); }
+function _resetCursorColor() { _cursor.style.borderColor = ''; _cursor.style.removeProperty('--cursor-dot'); }
 
 /* THEME */
-function _setThemeIcon(theme) {
-  var icon = theme === 'light' ? '☾' : '☀';
-  var ids = ['theme-toggle', 'mobile-theme-btn'];
-  for (var i = 0; i < ids.length; i++) {
-    var el = document.getElementById(ids[i]);
-    if (el) el.textContent = icon;
-  }
+function _setThemeIcon(t) {
+  var icon = t === 'light' ? '☾' : '☀';
+  var ids = ['theme-toggle','mobile-theme-btn'];
+  for (var i = 0; i < ids.length; i++) { var el = document.getElementById(ids[i]); if (el) el.textContent = icon; }
 }
 function toggleTheme() {
   var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-  if (isLight) {
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'dark');
-    _setThemeIcon('dark');
-    _resetCursorColor();
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    _setThemeIcon('light');
-    _setCursorColor('#7a5230');
-  }
+  if (isLight) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); _setThemeIcon('dark'); _resetCursorColor(); }
+  else { document.documentElement.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); _setThemeIcon('light'); _setCursorColor('#7a5230'); }
 }
 (function() {
   if (localStorage.getItem('theme') === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    _setThemeIcon('light');
-    _setCursorColor('#7a5230');
+    document.documentElement.setAttribute('data-theme','light');
+    _setThemeIcon('light'); _setCursorColor('#7a5230');
   }
 })();
 
@@ -779,23 +771,17 @@ var lang = 'pt';
 function toggleLang() {
   lang = lang === 'pt' ? 'en' : 'pt';
   var label = lang === 'pt' ? 'PT' : 'EN';
-  var ids = ['nav-lang-btn', 'mobile-lang-btn'];
-  for (var i = 0; i < ids.length; i++) {
-    var el = document.getElementById(ids[i]);
-    if (el) el.textContent = label;
-  }
+  var ids = ['nav-lang-btn','mobile-lang-btn'];
+  for (var i = 0; i < ids.length; i++) { var el = document.getElementById(ids[i]); if (el) el.textContent = label; }
   document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
   var els = document.querySelectorAll('[data-pt]');
-  for (var j = 0; j < els.length; j++) {
-    var v = els[j].getAttribute('data-' + lang);
-    if (v !== null) els[j].innerHTML = v;
-  }
+  for (var j = 0; j < els.length; j++) { var v = els[j].getAttribute('data-'+lang); if (v !== null) els[j].innerHTML = v; }
 }
 
 /* NAV SCROLL */
 var _nav = document.querySelector('nav');
 function _updateNavScroll() { _nav.classList.toggle('nav-scrolled', window.scrollY > 20); }
-window.addEventListener('scroll', _updateNavScroll, { passive: true });
+window.addEventListener('scroll', _updateNavScroll, {passive:true});
 _updateNavScroll();
 
 /* SCROLL BAR */
@@ -803,7 +789,7 @@ var _scrollBar = document.getElementById('scroll-bar');
 window.addEventListener('scroll', function() {
   var max = document.documentElement.scrollHeight - window.innerHeight;
   _scrollBar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-}, { passive: true });
+}, {passive:true});
 
 /* STARS */
 (function() {
@@ -811,36 +797,30 @@ window.addEventListener('scroll', function() {
   for (var i = 0; i < 90; i++) {
     var s = document.createElement('div');
     s.className = 'star';
-    var size = Math.random() * 2 + 0.5;
-    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;width:' + size + 'px;height:' + size + 'px;--dur:' + (2+Math.random()*4) + 's;--delay:' + (Math.random()*6) + 's;--min-op:' + (0.1+Math.random()*0.2).toFixed(2) + ';--max-op:' + (0.5+Math.random()*0.5).toFixed(2) + ';';
+    var size = Math.random()*2+0.5;
+    s.style.cssText = 'left:'+(Math.random()*100)+'%;top:'+(Math.random()*100)+'%;width:'+size+'px;height:'+size+'px;--dur:'+(2+Math.random()*4)+'s;--delay:'+(Math.random()*6)+'s;--min-op:'+(0.1+Math.random()*0.2).toFixed(2)+';--max-op:'+(0.5+Math.random()*0.5).toFixed(2)+';';
     layer.appendChild(s);
   }
 })();
 
-/* CURSOR — eventos */
+/* CURSOR eventos */
 document.addEventListener('mousemove', function(e) {
-  _cursor.style.left = e.clientX + 'px';
-  _cursor.style.top  = e.clientY + 'px';
+  _cursor.style.left = e.clientX+'px'; _cursor.style.top = e.clientY+'px';
   if (!_cursorVisible) { _cursor.classList.add('visible'); _cursorVisible = true; }
-}, { passive: true });
+}, {passive:true});
 document.addEventListener('mouseleave', function() { _cursor.classList.remove('visible'); _cursorVisible = false; });
 document.addEventListener('mousedown',  function() { _cursor.classList.add('clicking'); });
 document.addEventListener('mouseup',    function() { _cursor.classList.remove('clicking'); });
-
-/* CURSOR — cor dinâmica só no tema claro */
 document.addEventListener('mouseover', function(e) {
   var isLight = document.documentElement.getAttribute('data-theme') === 'light';
   if (!isLight) { _resetCursorColor(); return; }
-  /* fundo sólido = escuro; fundo transparente (sobre imagem) = claro */
-  var onSolid = e.target.closest('.section-bg, nav, #contact, .mobile-menu, .fact-card, .proj-card, .repo-card, .contact-link');
+  var onSolid = e.target.closest('.section-bg,nav,#contact,.mobile-menu,.fact-card,.proj-card,.repo-card,.contact-link');
   _setCursorColor(onSolid ? '#7a5230' : '#fdf6ee');
 });
 
 /* BACK TO TOP */
 var _btt = document.getElementById('back-to-top');
-window.addEventListener('scroll', function() {
-  _btt.classList.toggle('visible', window.scrollY > 300);
-}, { passive: true });
+window.addEventListener('scroll', function() { _btt.classList.toggle('visible', window.scrollY > 300); }, {passive:true});
 
 /* ACTIVE NAV */
 var _navAs = document.querySelectorAll('.nav-links a[href^="#"]');
@@ -848,25 +828,84 @@ function _updateActiveNav() {
   var scrollY = window.scrollY + 80;
   var active = null;
   var secs = document.querySelectorAll('section[id]');
-  for (var i = 0; i < secs.length; i++) {
-    if (secs[i].offsetTop <= scrollY) active = secs[i].id;
-  }
-  for (var j = 0; j < _navAs.length; j++) {
-    _navAs[j].classList.toggle('active', _navAs[j].getAttribute('href') === '#' + active);
-  }
+  for (var i = 0; i < secs.length; i++) { if (secs[i].offsetTop <= scrollY) active = secs[i].id; }
+  for (var j = 0; j < _navAs.length; j++) { _navAs[j].classList.toggle('active', _navAs[j].getAttribute('href') === '#'+active); }
 }
-window.addEventListener('scroll', _updateActiveNav, { passive: true });
+window.addEventListener('scroll', _updateActiveNav, {passive:true});
 _updateActiveNav();
 
 /* COPY EMAIL */
 function copyEmail() {
   navigator.clipboard.writeText('cosmic.axolotl31@gmail.com').then(function() {
     var btn = document.getElementById('copy-btn');
-    btn.textContent = '✓';
-    btn.classList.add('copied');
+    btn.textContent = '✓'; btn.classList.add('copied');
     setTimeout(function() { btn.textContent = '⎘'; btn.classList.remove('copied'); }, 2000);
   });
 }
+
+/* ── CAROUSEL DRAG/SWIPE ──────────────────────────────────── */
+(function() {
+  var track = document.getElementById('proj-track');
+  if (!track) return;
+  var isDown = false, startX = 0, scrollL = 0, moved = false;
+
+  track.addEventListener('mousedown', function(e) {
+    isDown = true; moved = false;
+    startX = e.pageX - track.offsetLeft;
+    scrollL = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+  document.addEventListener('mouseup', function() { isDown = false; track.classList.remove('dragging'); });
+  track.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - track.offsetLeft;
+    var walk = (x - startX) * 1.2;
+    if (Math.abs(walk) > 4) moved = true;
+    track.scrollLeft = scrollL - walk;
+    updateDots();
+  });
+  /* bloqueia clique nos links ao arrastar */
+  track.addEventListener('click', function(e) { if (moved) e.preventDefault(); }, true);
+
+  /* touch */
+  var tStartX = 0, tScrollL = 0;
+  track.addEventListener('touchstart', function(e) { tStartX = e.touches[0].pageX; tScrollL = track.scrollLeft; }, {passive:true});
+  track.addEventListener('touchmove',  function(e) { track.scrollLeft = tScrollL + (tStartX - e.touches[0].pageX); updateDots(); }, {passive:true});
+
+  /* dots */
+  var dotsWrap = document.getElementById('scroll-dots');
+  var cards    = track.querySelectorAll('.pcard');
+  var dots     = [];
+
+  function buildDots() {
+    dotsWrap.innerHTML = ''; dots = [];
+    for (var i = 0; i < cards.length; i++) {
+      var d = document.createElement('button');
+      d.className = 'scroll-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'projeto ' + (i+1));
+      (function(idx) {
+        d.addEventListener('click', function() {
+          track.scrollTo({left: cards[idx].offsetLeft - 24, behavior:'smooth'});
+          updateDots(idx);
+        });
+      })(i);
+      dotsWrap.appendChild(d); dots.push(d);
+    }
+  }
+
+  function updateDots(forceIdx) {
+    if (!dots.length || !cards.length) return;
+    var idx = forceIdx !== undefined
+      ? forceIdx
+      : Math.round(track.scrollLeft / (cards[0].offsetWidth + 19));
+    idx = Math.max(0, Math.min(idx, dots.length - 1));
+    for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+  }
+
+  track.addEventListener('scroll', function() { updateDots(); }, {passive:true});
+  buildDots(); updateDots(0);
+})();
 </script>
 </body>
 </html>
