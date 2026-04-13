@@ -276,6 +276,27 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h); 
 .pcard-ph   { font-size:.72rem; color:var(--dim); font-style:italic; }
 .pcard-link { font-size:.75rem; color:var(--accent); }
 
+/* setas de navegação do carrossel */
+.carousel-arrows {
+  display:flex; justify-content:flex-end; gap:6px; margin-bottom:10px;
+}
+.carousel-arrow {
+  width:32px; height:32px;
+  background:rgba(6,12,26,0.65); backdrop-filter:blur(12px);
+  border:0.5px solid var(--border2); border-radius:8px;
+  color:var(--accent); font-size:.85rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .2s, border-color .2s, opacity .2s, transform .15s;
+  user-select:none;
+}
+.carousel-arrow:hover { background:rgba(106,171,240,.14); border-color:var(--accent); transform:scale(1.08); }
+.carousel-arrow:active { transform:scale(.94); }
+.carousel-arrow:disabled { opacity:.25; cursor:default; transform:none; }
+[data-theme="light"] .carousel-arrow { background:rgba(255,240,218,0.75); }
+[data-theme="light"] .carousel-arrow:hover { background:rgba(194,84,26,.12); border-color:var(--accent); }
+/* esconde setas em touch/mobile — lá o swipe nativo já basta */
+@media (hover:none), (pointer:coarse) { .carousel-arrows { display:none; } }
+
 /* dots de navegação */
 .scroll-dots { display:flex; justify-content:center; gap:6px; margin-top:14px; }
 .scroll-dot {
@@ -530,6 +551,11 @@ footer span { color:var(--orange); }
         <h2 class="sec-title" data-pt="Meus projetos principais" data-en="My main projects">Meus projetos principais</h2>
       </div>
       <a href="./projects/" class="btn-ver-todos" data-pt="ver todos ↗" data-en="see all ↗">ver todos ↗</a>
+    </div>
+
+    <div class="carousel-arrows">
+      <button class="carousel-arrow" id="arr-prev" aria-label="anterior">←</button>
+      <button class="carousel-arrow" id="arr-next" aria-label="próximo">→</button>
     </div>
 
     <div class="projects-track-wrap">
@@ -845,7 +871,9 @@ function copyEmail() {
 
 /* ── CAROUSEL DRAG/SWIPE ──────────────────────────────────── */
 (function() {
-  var track = document.getElementById('proj-track');
+  var track   = document.getElementById('proj-track');
+  var btnPrev = document.getElementById('arr-prev');
+  var btnNext = document.getElementById('arr-next');
   if (!track) return;
   var isDown = false, startX = 0, scrollL = 0, moved = false;
 
@@ -878,6 +906,10 @@ function copyEmail() {
   var cards    = track.querySelectorAll('.pcard');
   var dots     = [];
 
+  function cardStep() {
+    return cards.length > 0 ? (cards[0].offsetWidth + 19) : 300;
+  }
+
   function buildDots() {
     dotsWrap.innerHTML = ''; dots = [];
     for (var i = 0; i < cards.length; i++) {
@@ -898,9 +930,34 @@ function copyEmail() {
     if (!dots.length || !cards.length) return;
     var idx = forceIdx !== undefined
       ? forceIdx
-      : Math.round(track.scrollLeft / (cards[0].offsetWidth + 19));
+      : Math.round(track.scrollLeft / cardStep());
     idx = Math.max(0, Math.min(idx, dots.length - 1));
     for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+    updateArrows(idx);
+  }
+
+  function updateArrows(idx) {
+    if (!btnPrev || !btnNext) return;
+    btnPrev.disabled = (idx <= 0);
+    btnNext.disabled = (idx >= cards.length - 1);
+  }
+
+  /* setas */
+  if (btnPrev) {
+    btnPrev.addEventListener('click', function() {
+      var cur = Math.round(track.scrollLeft / cardStep());
+      var target = Math.max(0, cur - 1);
+      track.scrollTo({left: cards[target].offsetLeft - 24, behavior:'smooth'});
+      updateDots(target);
+    });
+  }
+  if (btnNext) {
+    btnNext.addEventListener('click', function() {
+      var cur = Math.round(track.scrollLeft / cardStep());
+      var target = Math.min(cards.length - 1, cur + 1);
+      track.scrollTo({left: cards[target].offsetLeft - 24, behavior:'smooth'});
+      updateDots(target);
+    });
   }
 
   track.addEventListener('scroll', function() { updateDots(); }, {passive:true});
