@@ -229,9 +229,40 @@ footer span { color:var(--orange); }
 .js-ready .reveal.v { opacity:1; transform:none; }
 
 @media(max-width:700px) {
-  .wrap { padding:2rem 1.4rem 4rem; }
+  /* layout geral */
+  .wrap { padding:2rem 1.2rem 4rem; }
+  nav   { padding:0 1.2rem; }
+  .nav-back { display:none; } /* economiza espaço — logo já é link */
+
+  /* page header */
+  .sec-title { font-size:1.5rem; }
+
+  /* search — input mais alto, fácil de tocar */
+  #search-input { font-size:.95rem; padding:14px 40px 14px 40px; border-radius:10px; }
+
+  /* filtros — label vai pro topo, pills em scroll horizontal sem quebrar */
+  .filters-area { gap:8px; }
+  .filter-row   { flex-direction:column; align-items:flex-start; gap:6px; }
+  .filter-label { min-width:unset; }
+  .filter-pills {
+    display:flex; flex-wrap:nowrap; gap:5px;
+    overflow-x:auto; padding-bottom:4px;
+    scrollbar-width:none; -webkit-overflow-scrolling:touch;
+    max-width:100%;
+  }
+  .filter-pills::-webkit-scrollbar { display:none; }
+  .fpill { white-space:nowrap; flex-shrink:0; font-size:.72rem; padding:.26rem .75rem; }
+
+  /* active chips */
+  .active-filters { gap:4px; }
+  .active-chip    { font-size:.7rem; }
+
+  /* grid — 1 coluna */
   .projects-grid { grid-template-columns:1fr; }
-  nav { padding:0 1.2rem; }
+
+  /* results meta — empilha */
+  .results-meta { flex-direction:column; align-items:flex-start; gap:6px; }
+  .sort-select  { width:100%; }
 }
 </style>
 </head>
